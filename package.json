@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-jorge-valero",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "shots": "node scripts/shoot.mjs",
+    "serve": "npx --yes serve -l 4321 ."
+  },
+  "dependencies": {
+    "playwright": "^1.62.1",
+    "sharp": "^0.35.3"
+  }
+}

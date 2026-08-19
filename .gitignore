@@ -1,0 +1,30 @@
+# ── Nada de secretos en un repo publico ──────────────────────────────────
+# `*.local.*` es la convencion de este repo para lo que se queda en la maquina.
+*.local.ps1
+*.local.js
+*.local.mjs
+*.local.json
+.env
+.env.*
+
+# ── Peso muerto para GitHub Pages ────────────────────────────────────────
+node_modules/
+
+# Los PNG de origen a 3200x2000. Son el material del que salen los WebP de
+# assets/img, que si se publican. Publicar ambos multiplicaria el peso del
+# repo sin que nadie vea la diferencia.
+assets/shots/
+# Tanda anterior de PNG de origen (13-ago), ya sustituida y sin referenciar
+# desde index.html, el CSS ni el JS. Son 19 MB, el 85% del peso del repo.
+assets/shots-old/
+
+# Grafo de conocimiento: util en local, ruido en el repo publico.
+graphify-out/
+
+# Salida de scripts/revisar.mjs: capturas de la propia revision visual.
+revision/
+
+# ── Sistema ──────────────────────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store
