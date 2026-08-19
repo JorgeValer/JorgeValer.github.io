@@ -478,6 +478,23 @@
            style="--acento-base:#e9e5dd;--tinte-base:#08080a">
     <h2 class="perfil__titulo revelar">Sobre <span class="cursiva">mí</span></h2>
     <div class="perfil__rejilla">
+
+      <!-- Va a todo el ancho y en primer lugar: es lo que los cuatro proyectos
+           de arriba demuestran, y conviene leerlo justo después de verlos. -->
+      <div class="perfil__bloque perfil__bloque--ancho revelar">
+        <h3>IA y sistemas de agentes</h3>
+        <p class="perfil__intro">Un modelo no es una caja negra a la que se le pide texto. El trabajo de verdad está en lo que va alrededor: repartir la tarea entre agentes, darles memoria, medir si lo que devuelven vale y acotar lo que pueden tocar.</p>
+        <ul class="claves">
+          <li><b>Orquestación multi-agente</b>Reparto por roles con un ciclo de vida común —instanciar, consultar la memoria, ejecutar, registrar la decisión y cerrar—, con validación del resultado y reintento cuando la calidad no da la talla.</li>
+          <li><b>RAG y memoria</b>Bases vectoriales con embeddings locales, memoria compartida entre agentes y bucle de realimentación para que lo aprendido vuelva a entrar en las respuestas siguientes.</li>
+          <li><b>Modelos corriendo en local</b>Lenguaje, transcripción, voz, visión e imagen en la propia máquina, sin llamadas a servicios de pago y sin que los datos salgan de ella.</li>
+          <li><b>Fine-tuning</b>Captura automática de los ejemplos de alta confianza y pipeline LoRA, con partición held-out para distinguir si el modelo mejora o sólo está memorizando.</li>
+          <li><b>MCP</b>Servidores propios que dan a un modelo acceso controlado a ficheros, git, base de datos, memoria y búsqueda, en vez de barra libre.</li>
+          <li><b>Ejecución acotada</b>El código que escribe un modelo corre aislado, y el resultado declara siempre bajo qué nivel de aislamiento corrió en lugar de prometer uno que no tiene.</li>
+          <li><b>n8n</b>Automatización de flujos: disparadores, encadenado de servicios y pasos con lógica propia. Es la herramienta a la que voy cuando el problema es conectar sistemas, no escribir un agente desde cero.</li>
+        </ul>
+      </div>
+
       <div class="perfil__bloque revelar">
         <h3>Formación</h3>
         <dl class="datos">
@@ -495,7 +512,7 @@
 
       <div class="perfil__bloque revelar">
         <h3>Lenguajes y plataformas</h3>
-        <ul class="stack stack--suelto"><li>Python</li><li>C</li><li>C#</li><li>C++</li><li>Java</li><li>JavaScript</li><li>Next.js</li><li>SQL</li><li>HTML</li><li>CSS</li><li>AWS</li><li>Linux</li></ul>
+        <ul class="stack stack--suelto"><li>Python</li><li>C</li><li>C#</li><li>C++</li><li>Java</li><li>JavaScript</li><li>Next.js</li><li>SQL</li><li>HTML</li><li>CSS</li><li>n8n</li><li>AWS</li><li>Linux</li></ul>
         <h3 class="perfil__subtitulo">Idiomas</h3>
         <ul class="stack stack--suelto"><li>Español — nativo</li><li>Inglés — C1</li></ul>
       </div>

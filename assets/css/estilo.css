@@ -267,6 +267,13 @@ img { max-width: 100%; display: block; }
   padding-bottom: 0.7rem; border-bottom: 1px solid var(--linea);
 }
 .perfil__subtitulo { margin-top: 2rem !important; }
+
+/* Bloque a todo el ancho de la rejilla del perfil. La lista va en dos columnas
+   para que no se convierta en una tirada larguísima justo debajo del titular. */
+.perfil__bloque--ancho { grid-column: 1 / -1; }
+.perfil__intro { margin: 0 0 1.4rem; color: var(--papel-mate); max-width: 68ch; }
+.perfil__bloque--ancho .claves { columns: 2 22rem; column-gap: clamp(1.6rem, 3vw, 3.5rem); }
+.perfil__bloque--ancho .claves li { break-inside: avoid; border-bottom: 0; }
 .datos { margin: 0; display: grid; gap: 1.6rem; }
 .datos dt { font-weight: 700; color: var(--papel); font-size: 0.96rem; }
 .datos dd { margin: 0.3rem 0 0; color: var(--papel-mate); font-size: 0.9rem; }
