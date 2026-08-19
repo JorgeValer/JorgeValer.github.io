@@ -6,37 +6,30 @@
 <title>Jorge Valero — Ingeniero de Software</title>
 <meta name="description" content="Portfolio de Jorge Valero Marcos, ingeniero de software especializado en datos e inteligencia artificial. Cuatro proyectos: PROMETEO, NEXUS, ITERUM y Mesa de D&amp;D.">
 <meta name="color-scheme" content="dark">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308080a'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%232ed3ee' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2308080a'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23e9e5dd' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/fonts/fuentes.css">
 <link rel="stylesheet" href="assets/css/estilo.css">
 </head>
 <body>
 
-<!-- Grano y viñeta: dan textura de película al lienzo negro para que no se lea
-     como un "dark mode" plano de plantilla. -->
 <div class="grano" aria-hidden="true"></div>
-<div class="vineta" aria-hidden="true"></div>
 <div class="progreso" aria-hidden="true"><span class="progreso__barra"></span></div>
-
 <a class="saltar" href="#proyectos">Saltar al trabajo</a>
 
-<!-- ───────────────────────── Raíl de navegación ───────────────────────── -->
 <nav class="rail" aria-label="Índice de proyectos">
   <ul class="rail__lista">
     <li><a href="#prometeo" data-rail="prometeo"><span class="rail__num">01</span><span class="rail__nombre">Prometeo</span></a></li>
-    <li><a href="#nexus"    data-rail="nexus"><span class="rail__num">02</span><span class="rail__nombre">Nexus</span></a></li>
-    <li><a href="#iterum"   data-rail="iterum"><span class="rail__num">03</span><span class="rail__nombre">Iterum</span></a></li>
-    <li><a href="#mesa"     data-rail="mesa"><span class="rail__num">04</span><span class="rail__nombre">Mesa D&amp;D</span></a></li>
+    <li><a href="#nexus" data-rail="nexus"><span class="rail__num">02</span><span class="rail__nombre">Nexus</span></a></li>
+    <li><a href="#iterum" data-rail="iterum"><span class="rail__num">03</span><span class="rail__nombre">Iterum</span></a></li>
+    <li><a href="#mesa" data-rail="mesa"><span class="rail__num">04</span><span class="rail__nombre">Mesa de D&amp;D</span></a></li>
   </ul>
 </nav>
 
-<!-- ─────────────────────────────── Portada ─────────────────────────────── -->
-<header class="portada" id="inicio">
+<header class="portada" id="inicio" data-acento data-rail-id="inicio"
+        style="--acento-base:#e9e5dd;--tinte-base:#08080a">
   <div class="portada__malla" aria-hidden="true"></div>
 
-  <p class="portada__meta linea" style="--retraso:0ms">
-    <span class="punto"></span> Valdemoro, Madrid · disponible
-  </p>
+  <p class="portada__meta linea" style="--retraso:0ms"><span class="punto"></span> Valdemoro, Madrid · disponible</p>
 
   <h1 class="portada__nombre">
     <span class="mascara linea" style="--retraso:120ms"><span>Jorge</span></span>
@@ -44,13 +37,7 @@
   </h1>
 
   <p class="portada__rol linea" style="--retraso:340ms">Ingeniero de software</p>
-
-  <p class="portada__pitch linea" style="--retraso:440ms">
-    Especializado en <em>datos e inteligencia artificial</em>. Construyo sistemas
-    que corren enteros en local: asistentes de voz, orquestadores de agentes y
-    generadores con modelos propios. Cuatro de ellos están más abajo, con
-    capturas de las aplicaciones reales funcionando.
-  </p>
+  <p class="portada__pitch linea" style="--retraso:440ms">Especializado en <em>datos e inteligencia artificial</em>. Construyo sistemas que corren enteros en local: asistentes de voz, orquestadores de agentes y generadores con modelos propios. Cuatro de ellos están más abajo, con capturas de las aplicaciones reales funcionando.</p>
 
   <ul class="portada__cifras linea" style="--retraso:560ms">
     <li><b>4</b><span>proyectos</span></li>
@@ -64,400 +51,453 @@
     <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 0v34M4 26l8 8 8-8"/></svg>
   </a>
 
-  <!-- Índice adelantado: ocupa el vacío de la derecha con contenido útil y
-       enseña de un vistazo los cuatro colores que va a tomar la página. -->
+  <!-- El índice adelantado es el único sitio de la portada donde asoman los
+       cuatro colores: cada proyecto conserva el suyo, el resto va en negro. -->
   <ol class="portada__indice linea" style="--retraso:780ms">
-    <li style="--c:#2ed3ee"><a href="#prometeo"><span>01</span><b>Prometeo</b><em>Asistente de voz 100 % local</em></a></li>
-    <li style="--c:#8b6bff"><a href="#nexus"><span>02</span><b>Nexus</b><em>Plataforma multi-agente</em></a></li>
-    <li style="--c:#3ddc97"><a href="#iterum"><span>03</span><b>Iterum</b><em>Gestión de proyectos con IA</em></a></li>
-    <li style="--c:#e0a838"><a href="#mesa"><span>04</span><b>Mesa de D&amp;D</b><em>Rol en red local</em></a></li>
+    <li style="--c:#ff7a2f"><a href="#prometeo"><span>01</span><b>Prometeo</b><em>Asistente de voz 100 % local</em></a></li>
+    <li style="--c:#a97bff"><a href="#nexus"><span>02</span><b>Nexus</b><em>Plataforma multi-agente</em></a></li>
+    <li style="--c:#5c9bff"><a href="#iterum"><span>03</span><b>Iterum</b><em>Gestión de proyectos con IA</em></a></li>
+    <li style="--c:#e8b33d"><a href="#mesa"><span>04</span><b>Mesa de D&amp;D</b><em>Rol en red local</em></a></li>
   </ol>
 </header>
 
 <main id="proyectos">
 
-  <!-- ══════════════════════════ 01 · PROMETEO ══════════════════════════ -->
-  <section class="proyecto" id="prometeo" data-acento="cian" data-rail-id="prometeo">
+  <section class="proyecto" id="prometeo" data-acento data-rail-id="prometeo"
+           style="--acento-base:#ff7a2f;--tinte-base:#1c0e04">
+
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">01</span>
-      <div>
+      <div class="proyecto__id">
         <h2 class="proyecto__titulo">Prometeo <span class="etiqueta">En desarrollo temprano</span></h2>
         <p class="proyecto__lema">Un asistente de voz que corre <em>entero</em> en tu máquina.</p>
       </div>
     </div>
 
-    <figure class="visor revelar" data-lightbox="assets/img/prometeo-inicio@2x.webp">
-      <img src="assets/img/prometeo-inicio.webp"
-           srcset="assets/img/prometeo-inicio.webp 1400w, assets/img/prometeo-inicio@2x.webp 2400w"
-           sizes="(max-width: 1100px) 100vw, 1200px"
-           width="1400" height="875" loading="lazy" decoding="async"
-           alt="Interfaz de PROMETEO: en el centro un núcleo 3D con forma de diamante facetado naranja, partido en placas separadas con textura de circuito, rodeado de tarjetas de telemetría y con paneles laterales de modos, agentes, memoria y herramientas.">
-      <figcaption>Neural Command Interface — el núcleo se abre y se cierra soltando descargas por las juntas, con los agentes Planner/Executor/Critic y el estado de memoria en vivo.</figcaption>
-    </figure>
+    <dl class="spec revelar">
+      <div><dt>Año</dt><dd>2025 — hoy</dd></div>
+      <div><dt>Rol</dt><dd>Diseño y desarrollo</dd></div>
+      <div><dt>Superficie</dt><dd>7 modos</dd></div>
+      <div><dt>Servidores MCP</dt><dd>6</dd></div>
+      <div><dt>Estado</dt><dd>Activo</dd></div>
+    </dl>
+
+      <figure class="visor visor--hero revelar" data-lightbox="assets/img/prometeo-inicio@2x.webp">
+        <img src="assets/img/prometeo-inicio.webp"
+             srcset="assets/img/prometeo-inicio.webp 1400w, assets/img/prometeo-inicio@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Interfaz de PROMETEO: en el centro un núcleo 3D con forma de diamante facetado naranja, partido en placas separadas con textura de circuito, rodeado de tarjetas de telemetría y con paneles laterales de modos, agentes, memoria y herramientas.">
+        <figcaption>Neural Command Interface — el núcleo se abre y se cierra soltando descargas por las juntas, con los agentes Planner/Executor/Critic y el estado de memoria en vivo.</figcaption>
+      </figure>
 
     <div class="proyecto__cuerpo">
-      <div class="proyecto__texto revelar">
-        <p>
-          Asistente personal completo —wake word, voz, memoria y herramientas—
-          sin una sola llamada a un servicio de pago. El modelo es Ollama en local,
-          la transcripción es Whisper, la voz es Piper y la memoria vive en
-          ChromaDB sobre disco. Nada sale de la máquina y no hay telemetría.
-        </p>
-        <p>
-          Por encima del modelo hay un sistema multi-agente que descompone la
-          petición (Planner), la ejecuta (Executor) y valida el resultado
-          (Critic), con reintentos cuando la calidad no da la talla.
-        </p>
+      <div class="columna">
+        <div class="parrafos revelar">
+          <p>Asistente personal completo —wake word, voz, memoria y herramientas— sin una sola llamada a un servicio de pago. El modelo es Ollama en local, la transcripción es Whisper, la voz es Piper y la memoria vive en ChromaDB sobre disco. Nada sale de la máquina y no hay telemetría.</p>
+          <p>Por encima del modelo hay un sistema multi-agente que descompone la petición (Planner), la ejecuta (Executor) y valida el resultado (Critic), con reintentos cuando la calidad no da la talla.</p>
+        </div>
+        <div class="revelar"><ul class="stack"><li>Python</li><li>Ollama</li><li>Whisper</li><li>ChromaDB</li><li>Piper TTS</li><li>aiohttp</li><li>MCP</li><li>Docker</li><li>TRELLIS</li><li>Three.js</li><li>Oracle Cloud</li></ul></div>
       </div>
-
       <ul class="claves revelar">
-        <li><b>Multi-agente</b> Planner · Executor · Critic con bucle de reintento por calidad.</li>
-        <li><b>RAG con aprendizaje continuo</b> y feedback loop sobre SQLite + ChromaDB.</li>
-        <li><b>6 servidores MCP</b> — filesystem, git, base de datos, memoria, búsqueda y seguridad.</li>
-        <li><b>Generación 3D paramétrica</b> con exportación STL validada para impresión.</li>
-        <li><b>Malla 3D a partir de imágenes</b> — TRELLIS en contenedor, alimentado con tres vistas ortogonales en vez de una. El experimento controlado contra la vista única salió más rápido y con mejor fidelidad de grosor.</li>
-        <li><b>Sandbox propio para el código que escribe el modelo</b> — dos niveles reales (contenedor sin red ni disco, o proceso acotado por <i>job object</i>), y el resultado <b>declara siempre cuál de los dos corrió</b> en vez de prometer un aislamiento que no tiene.</li>
-        <li><b>WhatsApp</b> con texto y notas de voz, sesión persistente vía Baileys.</li>
-        <li><b>AES-256-GCM</b>, rate limiting, sanitización de entradas y auditoría de acciones.</li>
-        <li><b>Grafo de conocimiento propio</b> — 14 000 nodos que enlazan las notas del segundo cerebro con el código de siete proyectos, navegable en 3D desde la propia interfaz.</li>
+        <li><b>Multi-agente</b>Planner · Executor · Critic con bucle de reintento por calidad.</li>
+        <li><b>RAG con aprendizaje continuo</b>y feedback loop sobre SQLite + ChromaDB.</li>
+        <li><b>6 servidores MCP</b>filesystem, git, base de datos, memoria, búsqueda y seguridad.</li>
+        <li><b>Generación 3D paramétrica</b>con exportación STL validada para impresión.</li>
+        <li><b>Malla 3D a partir de imágenes</b>TRELLIS en contenedor, alimentado con tres vistas ortogonales en vez de una. El experimento controlado contra la vista única salió más rápido y con mejor fidelidad de grosor.</li>
+        <li><b>Sandbox propio para el código que escribe el modelo</b>dos niveles reales —contenedor sin red ni disco, o proceso acotado por job object— y el resultado declara siempre cuál de los dos corrió.</li>
+        <li><b>WhatsApp</b>con texto y notas de voz, sesión persistente vía Baileys.</li>
+        <li><b>AES-256-GCM</b>rate limiting, sanitización de entradas y auditoría de acciones.</li>
+        <li><b>Grafo de conocimiento propio</b>14.889 nodos que enlazan las notas del segundo cerebro con el código de siete proyectos, navegable en 3D desde la propia interfaz.</li>
       </ul>
     </div>
 
-    <ul class="stack revelar">
-      <li>Python</li><li>Ollama</li><li>Whisper</li><li>ChromaDB</li><li>Piper TTS</li>
-      <li>aiohttp</li><li>MCP</li><li>Docker</li><li>TRELLIS</li><li>Three.js</li><li>Oracle Cloud</li>
-    </ul>
-
-    <div class="galeria galeria--rejilla revelar">
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-investigacion@2x.webp">
-        <img src="assets/img/prometeo-modo-investigacion.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Investigación de PROMETEO en tema cian, con el núcleo facetado teñido del color del modo y el panel para lanzar una investigación por tema.">
+    <div class="galeria">
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-investigacion@2x.webp">
+        <img src="assets/img/prometeo-modo-investigacion.webp"
+             srcset="assets/img/prometeo-modo-investigacion.webp 1400w, assets/img/prometeo-modo-investigacion@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Modo Investigación de PROMETEO en tema cian, con el panel para lanzar una investigación por tema.">
         <figcaption>Modo Investigación — cada modo repinta la interfaz entera con su propio color.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-entrenamiento@2x.webp">
-        <img src="assets/img/prometeo-modo-entrenamiento.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-entrenamiento@2x.webp">
+        <img src="assets/img/prometeo-modo-entrenamiento.webp"
+             srcset="assets/img/prometeo-modo-entrenamiento.webp 1400w, assets/img/prometeo-modo-entrenamiento@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Modo Entrenamiento de PROMETEO con el panel de fine-tuning: modelos base y code, regeneración de dataset, held-out ratio y control de etapas.">
         <figcaption>Modo Entrenamiento — el bucle de fine-tuning, con held-out ratio y etapas.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-3d@2x.webp">
-        <img src="assets/img/prometeo-modo-3d.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo 3D de PROMETEO con la malla de una figura completa cargada en el visor de Three.js, reconstruida a partir de fotografías: un personaje de pie en pose de combate, con el pelo en púas, los puños cerrados y los pliegues de la ropa resueltos. A la izquierda, el panel Imprimir: una caja de texto libre que pregunta «¿Qué quieres imprimir?» con el ejemplo «Una caja de 80 x 60 x 40 mm con tapa», donde también se puede soltar una foto, un campo de alto opcional y el botón Hazlo; los generadores paramétricos concretos quedan plegados debajo.">
-        <figcaption>Modo 3D — figura completa reconstruida a partir de fotografías, cargada en el visor. Se describe la pieza o se suelta una imagen; los generadores paramétricos quedan detrás, para cuando hace falta control fino.</figcaption>
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-3d@2x.webp">
+        <img src="assets/img/prometeo-modo-3d.webp"
+             srcset="assets/img/prometeo-modo-3d.webp 1400w, assets/img/prometeo-modo-3d@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Modo 3D de PROMETEO con la malla de una figura completa cargada en el visor de Three.js, reconstruida a partir de fotografías.">
+        <figcaption>Modo 3D — figura completa reconstruida a partir de fotografías. Se describe la pieza o se suelta una imagen; los generadores paramétricos quedan detrás.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-agentes@2x.webp">
-        <img src="assets/img/prometeo-modo-agentes.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-agentes@2x.webp">
+        <img src="assets/img/prometeo-modo-agentes.webp"
+             srcset="assets/img/prometeo-modo-agentes.webp 1400w, assets/img/prometeo-modo-agentes@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Modo Agentes de PROMETEO, con el panel para crear agentes personalizados y su editor.">
         <figcaption>Modo Agentes — agentes propios sobre el mismo núcleo.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-imagenes@2x.webp">
-        <img src="assets/img/prometeo-modo-imagenes.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Imágenes de PROMETEO en tema magenta, con el panel Generar imagen: un campo para describir lo que se quiere ver, ajustes finos plegados y el motor indicado como Stable Diffusion 1.5 en disco. Debajo, la galería de últimas imágenes generadas — un zorro, un bosque nevado, un faro al atardecer y varios dragones sobre montañas.">
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-imagenes@2x.webp">
+        <img src="assets/img/prometeo-modo-imagenes.webp"
+             srcset="assets/img/prometeo-modo-imagenes.webp 1400w, assets/img/prometeo-modo-imagenes@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Modo Imágenes de PROMETEO en tema magenta, con el panel Generar imagen y la galería de últimas imágenes generadas.">
         <figcaption>Modo Imágenes — Stable Diffusion 1.5 en disco, sin ninguna llamada a un servicio de pago.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-codigo@2x.webp">
-        <img src="assets/img/prometeo-modo-codigo.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Código de PROMETEO en tema verde. El panel Ejecutar código avisa «Aislamiento real: sin red y sin acceso al disco» sobre un editor con print(sum(range(10))). Debajo, el panel Auto-mejora: «PROMETEO propone, las pruebas juzgan, tú fusionas. Nada se aplica al proyecto sin que lo apruebes», y una lista de lo que no puede tocar, que incluye jarvis/tests, jarvis/core/autorizacion.py y jarvis/core/aislamiento.py.">
-        <figcaption>Modo Código — el código corre aislado, y la auto-mejora no toca nada sin que se apruebe: los ficheros de tests, autorización y aislamiento están fuera de su alcance a propósito.</figcaption>
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-codigo@2x.webp">
+        <img src="assets/img/prometeo-modo-codigo.webp"
+             srcset="assets/img/prometeo-modo-codigo.webp 1400w, assets/img/prometeo-modo-codigo@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Modo Código de PROMETEO en tema verde, con el aviso de aislamiento real sobre el editor y el panel de auto-mejora.">
+        <figcaption>Modo Código — el código corre aislado, y la auto-mejora no toca nada sin que se apruebe.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-modo-sistema@2x.webp">
-        <img src="assets/img/prometeo-modo-sistema.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Sistema de PROMETEO en tema oro, con telemetría real de la máquina: VRAM, CPU sobre 24 núcleos, RAM y disco. Debajo, el estado de cada servicio — Ollama respondiendo en localhost:11434, TRELLIS con Docker corriendo, la interfaz web, el agente de entrenamiento parado y Docker disponible para ejecutar código aislado.">
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-sistema@2x.webp">
+        <img src="assets/img/prometeo-modo-sistema.webp"
+             srcset="assets/img/prometeo-modo-sistema.webp 1400w, assets/img/prometeo-modo-sistema@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Modo Sistema de PROMETEO en tema oro, con telemetría real de la máquina y el estado de cada servicio.">
         <figcaption>Modo Sistema — telemetría real de la máquina y el estado de cada pieza: qué responde, qué está parado y por qué.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-movil@2x.webp">
-        <img src="assets/img/prometeo-movil.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="PROMETEO en un teléfono, cuatro pantallas seguidas: la portada con el núcleo a sangre y una barra inferior de Menú y Estado; el menú desplegado con los siete modos, los agentes Planner, Executor y Critic, y el estado de memoria; el modo 3D con la malla de la figura ocupando el visor a pantalla completa; y el modo Código en verde con el aviso de aislamiento real sobre el editor.">
-        <figcaption>En el teléfono — la misma interfaz reflowada, con los paneles recogidos tras un menú y el núcleo a pantalla completa. No es una app aparte: son las mismas media queries.</figcaption>
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-movil@2x.webp">
+        <img src="assets/img/prometeo-movil.webp"
+             srcset="assets/img/prometeo-movil.webp 1400w, assets/img/prometeo-movil@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="PROMETEO en un teléfono, cuatro pantallas seguidas: portada, menú desplegado, modo 3D a pantalla completa y modo Código.">
+        <figcaption>En el teléfono — la misma interfaz reflowada. No es una app aparte: son las mismas media queries.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/prometeo-cerebro@2x.webp">
-        <img src="assets/img/prometeo-cerebro.webp" width="1400" height="875" loading="lazy" decoding="async"
-             alt="PROMETEO BRAIN: el grafo de conocimiento dibujado sobre un atractor de Aizawa, con 14.889 nodos y 33.768 aristas trazando lazos de luz magenta, cian y verde sobre negro. A la izquierda, las ocho fuentes con su recuento (bóveda, D&amp;D, Iterum, Jarvis, Nexus, portfolio, skill-forge, vídeos), los tipos de nodo y la salud del grafo; abajo, mandos en vivo de brillo, estelas, giro de cámara y velocidad de flujo.">
-        <figcaption>PROMETEO BRAIN — 14.889 nodos y 33.768 aristas de ocho proyectos sobre un atractor de Aizawa, navegable en vivo desde la propia interfaz.</figcaption>
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-cerebro@2x.webp">
+        <img src="assets/img/prometeo-cerebro.webp"
+             srcset="assets/img/prometeo-cerebro.webp 1400w, assets/img/prometeo-cerebro@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="PROMETEO BRAIN: el grafo de conocimiento dibujado sobre un atractor de Aizawa, con 14.889 nodos y 33.768 aristas.">
+        <figcaption>PROMETEO BRAIN — 14.889 nodos y 33.768 aristas de ocho proyectos sobre un atractor de Aizawa, navegable en vivo.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ═══════════════════════════ 02 · NEXUS ═══════════════════════════ -->
-  <section class="proyecto" id="nexus" data-acento="violeta" data-rail-id="nexus">
+  <section class="proyecto" id="nexus" data-acento data-rail-id="nexus"
+           style="--acento-base:#a97bff;--tinte-base:#150a26">
+
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">02</span>
-      <div>
+      <div class="proyecto__id">
         <h2 class="proyecto__titulo">Nexus</h2>
         <p class="proyecto__lema">Un equipo de agentes <em>especializados</em> trabajando sobre tus repos.</p>
       </div>
     </div>
 
-    <figure class="visor revelar" data-lightbox="assets/img/nexus-proyecto@2x.webp">
-      <img src="assets/img/nexus-proyecto.webp"
-           srcset="assets/img/nexus-proyecto.webp 1400w, assets/img/nexus-proyecto@2x.webp 2400w"
-           sizes="(max-width: 1100px) 100vw, 1200px"
-           width="1400" height="875" loading="lazy" decoding="async"
-           alt="Detalle del proyecto FitFuel en NEXUS: tarjetas de los agentes Architect, Frontend, Backend y AI/QA, panel de specs, niveles de confianza por agente e historial de tareas.">
-      <figcaption>Un proyecto por dentro: los cuatro agentes con su estado, sus specs, los niveles de confianza que tiene cada uno sobre el repo y el registro de decisiones.</figcaption>
-    </figure>
+    <dl class="spec revelar">
+      <div><dt>Año</dt><dd>2025</dd></div>
+      <div><dt>Rol</dt><dd>Arquitectura y desarrollo</dd></div>
+      <div><dt>Agentes</dt><dd>5 roles</dd></div>
+      <div><dt>Tests</dt><dd>261 + 13 E2E</dd></div>
+      <div><dt>Estado</dt><dd>Estable</dd></div>
+    </dl>
+
+      <figure class="visor visor--hero revelar" data-lightbox="assets/img/nexus-proyecto@2x.webp">
+        <img src="assets/img/nexus-proyecto.webp"
+             srcset="assets/img/nexus-proyecto.webp 1400w, assets/img/nexus-proyecto@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Detalle del proyecto FitFuel en NEXUS: tarjetas de los agentes Architect, Frontend, Backend y AI/QA, panel de specs, niveles de confianza por agente e historial de tareas.">
+        <figcaption>Un proyecto por dentro: los cuatro agentes con su estado, sus specs, los niveles de confianza que tiene cada uno sobre el repo y el registro de decisiones.</figcaption>
+      </figure>
 
     <div class="proyecto__cuerpo">
-      <div class="proyecto__texto revelar">
-        <p>
-          Plataforma de desarrollo multi-agente: un orquestador que lanza
-          agentes especializados —Architect, Frontend, Backend, AI/QA y Runner—
-          contra un proyecto real, con memoria RAG compartida y un plano de
-          control en React.
-        </p>
-        <p>
-          Todos los agentes comparten un mismo ciclo de vida: instanciar,
-          consultar la memoria, ejecutar, registrar la decisión y cerrar la
-          tarea. Eso mantiene el comportamiento predecible por mucho que crezca
-          el catálogo de agentes.
-        </p>
+      <div class="columna">
+        <div class="parrafos revelar">
+          <p>Plataforma de desarrollo multi-agente: un orquestador que lanza agentes especializados —Architect, Frontend, Backend, AI/QA y Runner— contra un proyecto real, con memoria RAG compartida y un plano de control en React.</p>
+          <p>Todos los agentes comparten un mismo ciclo de vida: instanciar, consultar la memoria, ejecutar, registrar la decisión y cerrar la tarea. Eso mantiene el comportamiento predecible por mucho que crezca el catálogo de agentes.</p>
+        </div>
+        <div class="revelar"><ul class="stack"><li>Node 20</li><li>Express</li><li>MongoDB</li><li>ChromaDB</li><li>React 18</li><li>Vite</li><li>Three.js</li><li>JWT</li><li>Docker</li><li>OpenRouter</li></ul></div>
       </div>
-
       <ul class="claves revelar">
-        <li><b>Memoria RAG</b> en ChromaDB con embeddings de Ollama, compartida entre agentes.</li>
-        <li><b>Autenticación en tres modos</b> — abierta, API key o JWT con refresh rotativo y revocación.</li>
-        <li><b>261 tests</b> unitarios y de integración en 30 ficheros, más 13 escenarios E2E.</li>
-        <li><b>Backups EJSON</b> con restore en modo replace, skip o merge y snapshot de seguridad previo.</li>
-        <li><b>Fine-tuning</b> — captura automática de respuestas de alta confianza y pipeline LoRA sobre Qwen2.5.</li>
-        <li><b>Doble proveedor</b> — OpenRouter con throttling de capa gratuita y Ollama como respaldo.</li>
+        <li><b>Memoria RAG</b>en ChromaDB con embeddings de Ollama, compartida entre agentes.</li>
+        <li><b>Autenticación en tres modos</b>abierta, API key o JWT con refresh rotativo y revocación.</li>
+        <li><b>261 tests</b>unitarios y de integración en 30 ficheros, más 13 escenarios E2E.</li>
+        <li><b>Backups EJSON</b>con restore en modo replace, skip o merge y snapshot de seguridad previo.</li>
+        <li><b>Fine-tuning</b>captura automática de respuestas de alta confianza y pipeline LoRA sobre Qwen2.5.</li>
+        <li><b>Doble proveedor</b>OpenRouter con throttling de capa gratuita y Ollama como respaldo.</li>
       </ul>
     </div>
 
-    <ul class="stack revelar">
-      <li>Node 20</li><li>Express</li><li>MongoDB</li><li>ChromaDB</li><li>React 18</li>
-      <li>Vite</li><li>Three.js</li><li>JWT</li><li>Docker</li><li>OpenRouter</li>
-    </ul>
-
-    <div class="galeria galeria--rejilla revelar">
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/nexus-acceso@2x.webp">
-        <img src="assets/img/nexus-acceso.webp" width="1400" height="875" loading="lazy" decoding="async"
+    <div class="galeria">
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-acceso@2x.webp">
+        <img src="assets/img/nexus-acceso.webp"
+             srcset="assets/img/nexus-acceso.webp 1400w, assets/img/nexus-acceso@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Signal Deck de NEXUS: esfera de alambre violeta girando, medidores de canales por agente y panel de acceso.">
         <figcaption>Signal Deck — la pantalla de acceso, con los nueve canales de agente en línea.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/nexus-salud@2x.webp">
-        <img src="assets/img/nexus-salud.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-salud@2x.webp">
+        <img src="assets/img/nexus-salud.webp"
+             srcset="assets/img/nexus-salud.webp 1400w, assets/img/nexus-salud@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Panel de salud del sistema de NEXUS con tarjetas de MongoDB, ChromaDB, Ollama, LLM y GitHub, todas en OK.">
         <figcaption>Salud del sistema — Mongo, Chroma, Ollama, LLM y GitHub con su latencia real.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/nexus-registros@2x.webp">
-        <img src="assets/img/nexus-registros.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-registros@2x.webp">
+        <img src="assets/img/nexus-registros.webp"
+             srcset="assets/img/nexus-registros.webp 1400w, assets/img/nexus-registros@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Session Log de NEXUS con eventos de autenticación etiquetados y marca de tiempo, en directo.">
         <figcaption>Registro de sesión en directo, con pausa y ventana de líneas.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/nexus-ajustes@2x.webp">
-        <img src="assets/img/nexus-ajustes.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-ajustes@2x.webp">
+        <img src="assets/img/nexus-ajustes.webp"
+             srcset="assets/img/nexus-ajustes.webp 1400w, assets/img/nexus-ajustes@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Ajustes de NEXUS: complejidad por defecto, límites de tokens y panel de copias de seguridad firmadas por HMAC.">
         <figcaption>Configuración en caliente y copias firmadas por HMAC.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ══════════════════════════ 03 · ITERUM ══════════════════════════ -->
-  <section class="proyecto" id="iterum" data-acento="jade" data-rail-id="iterum">
+  <section class="proyecto" id="iterum" data-acento data-rail-id="iterum"
+           style="--acento-base:#5c9bff;--tinte-base:#08152e">
+
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">03</span>
-      <div>
+      <div class="proyecto__id">
         <h2 class="proyecto__titulo">Iterum</h2>
         <p class="proyecto__lema">Del PDF del cliente a un <em>plan de proyecto</em> completo.</p>
       </div>
     </div>
 
-    <figure class="visor revelar" data-lightbox="assets/img/iterum-app-dashboard@2x.webp">
-      <img src="assets/img/iterum-app-dashboard.webp"
-           srcset="assets/img/iterum-app-dashboard.webp 1400w, assets/img/iterum-app-dashboard@2x.webp 2400w"
-           sizes="(max-width: 1100px) 100vw, 1200px"
-           width="1400" height="875" loading="lazy" decoding="async"
-           alt="Aplicación de escritorio de ITERUM: saludo al usuario, contadores de proyectos activos, en riesgo y completados, aviso de proyecto fuera de plazo y tarjetas de proyectos recientes con su progreso.">
-      <figcaption>La app de escritorio, el puesto de trabajo del equipo: carga por estado, el proyecto que se ha salido de plazo y el progreso de cada uno.</figcaption>
-    </figure>
+    <dl class="spec revelar">
+      <div><dt>Año</dt><dd>2025 — 2026</dd></div>
+      <div><dt>Rol</dt><dd>Proyecto de fin de grado</dd></div>
+      <div><dt>Superficies</dt><dd>App + portal</dd></div>
+      <div><dt>Roles</dt><dd>3 (RBAC)</dd></div>
+      <div><dt>Estado</dt><dd>En entrega</dd></div>
+    </dl>
+
+      <figure class="visor visor--hero revelar" data-lightbox="assets/img/iterum-app-dashboard@2x.webp">
+        <img src="assets/img/iterum-app-dashboard.webp"
+             srcset="assets/img/iterum-app-dashboard.webp 1400w, assets/img/iterum-app-dashboard@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Aplicación de escritorio de ITERUM: contadores de proyectos activos, en riesgo y completados, aviso de proyecto fuera de plazo y tarjetas de proyectos recientes con su progreso.">
+        <figcaption>La app de escritorio, el puesto de trabajo del equipo: carga por estado, el proyecto que se ha salido de plazo y el progreso de cada uno.</figcaption>
+      </figure>
 
     <div class="proyecto__cuerpo">
-      <div class="proyecto__texto revelar">
-        <p>
-          Sistema de gestión de proyectos para equipos pequeños de desarrollo,
-          y el proyecto de fin de grado. El administrador sube el PDF o DOCX que
-          le manda el cliente y un LLM lo convierte en tareas, análisis DAFO,
-          hitos y resumen ejecutivo.
-        </p>
-        <p>
-          Las fechas no se inventan: las tareas se ordenan topológicamente según
-          sus dependencias y de ahí salen las estimaciones. Un cron diario
-          detecta los retrasos, propaga el desplazamiento por el grafo y marca el
-          proyecto en riesgo si alguna tarea se pasa de la fecha de entrega.
-        </p>
+      <div class="columna">
+        <div class="parrafos revelar">
+          <p>Sistema de gestión de proyectos para equipos pequeños de desarrollo, y el proyecto de fin de grado. El administrador sube el PDF o DOCX que le manda el cliente y un LLM lo convierte en tareas, análisis DAFO, hitos y resumen ejecutivo.</p>
+          <p>Las fechas no se inventan: las tareas se ordenan topológicamente según sus dependencias y de ahí salen las estimaciones. Un cron diario detecta los retrasos, propaga el desplazamiento por el grafo y marca el proyecto en riesgo si alguna tarea se pasa de la fecha de entrega.</p>
+        </div>
+        <div class="revelar"><ul class="stack"><li>React Native Windows</li><li>React</li><li>Vite</li><li>Tailwind</li><li>Express</li><li>MongoDB</li><li>JWT + RBAC</li><li>node-cron</li></ul></div>
       </div>
-
       <ul class="claves revelar">
-        <li><b>Generación por IA</b> desde PDF/DOCX — tareas, DAFO, hitos y resumen ejecutivo.</li>
-        <li><b>Orden topológico</b> de dependencias para calcular las fechas de cada tarea.</li>
-        <li><b>Scheduler diario</b> que detecta retrasos y los propaga por el grafo de dependencias.</li>
-        <li><b>Acceso de cliente por QR</b> con código de 6 caracteres sin caracteres ambiguos.</li>
-        <li><b>RBAC en tres roles</b> — admin, empleado y cliente, con JWT de 7 días.</li>
-        <li><b>App de escritorio nativa</b> en React Native for Windows, más portal web del cliente.</li>
+        <li><b>Generación por IA</b>desde PDF/DOCX — tareas, DAFO, hitos y resumen ejecutivo.</li>
+        <li><b>Orden topológico</b>de dependencias para calcular las fechas de cada tarea.</li>
+        <li><b>Scheduler diario</b>que detecta retrasos y los propaga por el grafo de dependencias.</li>
+        <li><b>Acceso de cliente por QR</b>con código de 6 caracteres sin caracteres ambiguos.</li>
+        <li><b>RBAC en tres roles</b>admin, empleado y cliente, con JWT de 7 días.</li>
+        <li><b>App de escritorio nativa</b>en React Native for Windows, más portal web del cliente.</li>
       </ul>
     </div>
 
-    <ul class="stack revelar">
-      <li>React Native Windows</li><li>React</li><li>Vite</li><li>Tailwind</li>
-      <li>Express</li><li>MongoDB</li><li>JWT + RBAC</li><li>node-cron</li>
-    </ul>
-
-    <div class="galeria galeria--rejilla revelar">
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/iterum-app-proyectos@2x.webp">
-        <img src="assets/img/iterum-app-proyectos.webp" width="1400" height="875" loading="lazy" decoding="async"
+    <div class="galeria">
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-app-proyectos@2x.webp">
+        <img src="assets/img/iterum-app-proyectos.webp"
+             srcset="assets/img/iterum-app-proyectos.webp 1400w, assets/img/iterum-app-proyectos@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Listado de proyectos de ITERUM agrupados en retrasados, activos e inactivos, cada uno con barra de progreso y días de retraso.">
         <figcaption>Los proyectos, ordenados por lo que arde: retrasados arriba.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/iterum-app-calendario@2x.webp">
-        <img src="assets/img/iterum-app-calendario.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-app-calendario@2x.webp">
+        <img src="assets/img/iterum-app-calendario.webp"
+             srcset="assets/img/iterum-app-calendario.webp 1400w, assets/img/iterum-app-calendario@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Calendario mensual de ITERUM con inicios y fines de tarea repartidos por días, y una lista lateral de próximos eventos.">
         <figcaption>Calendario — inicios y fines de tarea salidos del grafo de dependencias.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/iterum-proyecto@2x.webp">
-        <img src="assets/img/iterum-proyecto.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-proyecto@2x.webp">
+        <img src="assets/img/iterum-proyecto.webp"
+             srcset="assets/img/iterum-proyecto.webp 1400w, assets/img/iterum-proyecto@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Portal de cliente de ITERUM mostrando un proyecto al 33 % con el desglose de tareas por estado y los días de retraso.">
         <figcaption>La otra cara: lo que ve el cliente, en solo lectura.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/iterum-acceso@2x.webp">
-        <img src="assets/img/iterum-acceso.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-acceso@2x.webp">
+        <img src="assets/img/iterum-acceso.webp"
+             srcset="assets/img/iterum-acceso.webp 1400w, assets/img/iterum-acceso@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Pantalla de acceso del portal de ITERUM pidiendo un código de seis caracteres.">
         <figcaption>Entrada del cliente — un código, cero fricción.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ═════════════════════════ 04 · MESA D&D ═════════════════════════ -->
-  <section class="proyecto" id="mesa" data-acento="oro" data-rail-id="mesa">
+  <section class="proyecto" id="mesa" data-acento data-rail-id="mesa"
+           style="--acento-base:#e8b33d;--tinte-base:#1d1405">
+
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">04</span>
-      <div>
+      <div class="proyecto__id">
         <h2 class="proyecto__titulo">Mesa de D&amp;D <span class="etiqueta">En desarrollo temprano</span></h2>
-        <p class="proyecto__lema">Una mesa de rol entera en red local. <em>Sin nube, sin cuentas.</em></p>
+        <p class="proyecto__lema">Una mesa de rol entera en red local. <em>Sin cuentas, sin cuotas.</em></p>
       </div>
     </div>
 
-    <figure class="visor revelar" data-lightbox="assets/img/dnd-galeria-mapas@2x.webp">
-      <img src="assets/img/dnd-galeria-mapas.webp"
-           srcset="assets/img/dnd-galeria-mapas.webp 1400w, assets/img/dnd-galeria-mapas@2x.webp 2400w"
-           sizes="(max-width: 1100px) 100vw, 1200px"
-           width="1400" height="875" loading="lazy" decoding="async"
-           alt="Mapa de mazmorra generado proceduralmente: la Cripta de los Ahogados, con catorce salas etiquetadas, agua, mobiliario y tabla de medidas.">
-      <figcaption>Mazmorra generada por el pipeline real. El reparto BSP talla las salas; la tabla contrasta el tamaño pedido con el tallado.</figcaption>
-    </figure>
+    <dl class="spec revelar">
+      <div><dt>Año</dt><dd>2025 — hoy</dd></div>
+      <div><dt>Rol</dt><dd>Diseño y desarrollo</dd></div>
+      <div><dt>Red</dt><dd>LAN hoy</dd></div>
+      <div><dt>Salidas</dt><dd>SVG jugable</dd></div>
+      <div><dt>Estado</dt><dd>Piloto con jugadores</dd></div>
+    </dl>
+
+      <figure class="visor visor--hero revelar" data-lightbox="assets/img/dnd-galeria-mapas@2x.webp">
+        <img src="assets/img/dnd-galeria-mapas.webp"
+             srcset="assets/img/dnd-galeria-mapas.webp 1400w, assets/img/dnd-galeria-mapas@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="Mapa de mazmorra generado proceduralmente: la Cripta de los Ahogados, con catorce salas etiquetadas, agua, mobiliario y tabla de medidas.">
+        <figcaption>Mazmorra generada por el pipeline real. El reparto BSP talla las salas; la tabla contrasta el tamaño pedido con el tallado.</figcaption>
+      </figure>
 
     <div class="proyecto__cuerpo">
-      <div class="proyecto__texto revelar">
-        <p>
-          Herramienta de mesa para D&amp;D 5e pensada para una partida concreta
-          en red local: hojas de personaje sincronizadas, tablero táctico,
-          jukebox de ambiente y dos generadores con IA. Todo local — sin cuentas,
-          sin nube, sin telemetría.
-        </p>
-        <p>
-          Los mapas no son imágenes generadas: son SVG dibujados por el propio
-          código a partir de un guion estructurado que produce el modelo. El
-          criterio de diseño es que gane la lectura táctica — la rejilla queda de
-          fondo, el suelo jugable destaca y la decoración nunca tapa el nombre de
-          la sala ni las fichas.
-        </p>
+      <div class="columna">
+        <div class="parrafos revelar">
+          <p>Herramienta de mesa para D&amp;D 5e pensada para una partida concreta en red local: hojas de personaje sincronizadas, tablero táctico, jukebox de ambiente y dos generadores con IA. Todo local — sin cuentas, sin nube, sin telemetría.</p>
+          <p>Los mapas no son imágenes generadas: son SVG dibujados por el propio código a partir de un guion estructurado que produce el modelo. El criterio de diseño es que gane la lectura táctica — la rejilla queda de fondo, el suelo jugable destaca y la decoración nunca tapa el nombre de la sala ni las fichas.</p>
+          <p>Que hoy sea local es una decisión, no un límite. La primera prueba de verdad es mi propia partida, con los jugadores alrededor de la mesa, y esa restricción es la que fija el listón: cero fricción para entrar y latencia de red local. Si el piloto aguanta, el siguiente paso es una versión hospedada para mesas de fuera.</p>
+        </div>
+        <div class="revelar"><ul class="stack"><li>Next.js 14</li><li>TypeScript</li><li>SQLite</li><li>WebSocket</li><li>Ollama</li><li>Qwen2.5-VL</li><li>Framer Motion</li><li>Playwright</li></ul></div>
       </div>
-
       <ul class="claves revelar">
-        <li><b>Tablero táctico</b> con niebla de guerra, iniciativa y plantillas de área.</li>
-        <li><b>Generación procedural de mazmorras</b> por reparto BSP, renderizadas en SVG.</li>
-        <li><b>Visión por modelo</b> — extrae un mapa jugable desde la foto de un manual.</li>
-        <li><b>RAG sobre los manuales oficiales</b> para mantener la continuidad de la campaña.</li>
-        <li><b>Sincronía en tiempo real</b> por WebSocket entre máster, jugadores y pantalla compartida.</li>
-        <li><b>Pantalla compartida por QR</b> para el tablet que va en el centro de la mesa.</li>
+        <li><b>Tablero táctico</b>con niebla de guerra, iniciativa y plantillas de área.</li>
+        <li><b>Generación procedural de mazmorras</b>por reparto BSP, renderizadas en SVG.</li>
+        <li><b>Visión por modelo</b>extrae un mapa jugable desde la foto de un manual.</li>
+        <li><b>RAG sobre los manuales oficiales</b>para mantener la continuidad de la campaña.</li>
+        <li><b>Sincronía en tiempo real</b>por WebSocket entre máster, jugadores y pantalla compartida.</li>
+        <li><b>Pantalla compartida por QR</b>para el tablet que va en el centro de la mesa.</li>
       </ul>
     </div>
 
-    <ul class="stack revelar">
-      <li>Next.js 14</li><li>TypeScript</li><li>SQLite</li><li>WebSocket</li>
-      <li>Ollama</li><li>Qwen2.5-VL</li><li>Framer Motion</li><li>Playwright</li>
-    </ul>
-
-    <div class="galeria galeria--rejilla revelar">
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/dnd-tablero@2x.webp">
-        <img src="assets/img/dnd-tablero.webp" width="1400" height="875" loading="lazy" decoding="async"
+    <div class="galeria">
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-tablero@2x.webp">
+        <img src="assets/img/dnd-tablero.webp"
+             srcset="assets/img/dnd-tablero.webp 1400w, assets/img/dnd-tablero@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Tablero táctico del máster con el mapa del Castillo de Thalor, fichas de personaje y controles de combate.">
         <figcaption>Tablero del máster, en partida.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/dnd-previsualizacion-mapas@2x.webp">
-        <img src="assets/img/dnd-previsualizacion-mapas.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-previsualizacion-mapas@2x.webp">
+        <img src="assets/img/dnd-previsualizacion-mapas.webp"
+             srcset="assets/img/dnd-previsualizacion-mapas.webp 1400w, assets/img/dnd-previsualizacion-mapas@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Previsualización del componente de mapa con leyenda de mobiliario: mesa, cofre, barril, estantería, altar, columna.">
         <figcaption>El render, con su leyenda.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/dnd-master@2x.webp">
-        <img src="assets/img/dnd-master.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-master@2x.webp">
+        <img src="assets/img/dnd-master.webp"
+             srcset="assets/img/dnd-master.webp 1400w, assets/img/dnd-master@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Panel del máster listando campañas como Crisis en la Casa Noble o El Pantano Olvidado.">
         <figcaption>Panel del máster.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/dnd-personaje@2x.webp">
-        <img src="assets/img/dnd-personaje.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-personaje@2x.webp">
+        <img src="assets/img/dnd-personaje.webp"
+             srcset="assets/img/dnd-personaje.webp 1400w, assets/img/dnd-personaje@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Hoja de personaje con pestañas de general, características, combate, competencias, equipo, ataques y conjuros.">
         <figcaption>Hoja de personaje, en once pestañas.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/dnd-mapas@2x.webp">
-        <img src="assets/img/dnd-mapas.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-mapas@2x.webp">
+        <img src="assets/img/dnd-mapas.webp"
+             srcset="assets/img/dnd-mapas.webp 1400w, assets/img/dnd-mapas@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Lista de mapas de la campaña con opciones de regenerar, abrir y hacer mapa activo.">
         <figcaption>Mapas de la campaña.</figcaption>
       </figure>
-      <figure class="visor visor--pequeno" data-lightbox="assets/img/dnd-home@2x.webp">
-        <img src="assets/img/dnd-home.webp" width="1400" height="875" loading="lazy" decoding="async"
+      
+      <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-home@2x.webp">
+        <img src="assets/img/dnd-home.webp"
+             srcset="assets/img/dnd-home.webp 1400w, assets/img/dnd-home@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
              alt="Menú principal de la mesa con tres tarjetas: crear personaje, dungeon master y unirse a la partida.">
         <figcaption>Tres puertas de entrada.</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- ═══════════════════════════ Perfil ═══════════════════════════ -->
-  <section class="perfil" id="perfil" data-acento="cian">
+  <section class="perfil" id="perfil" data-acento data-rail-id="perfil"
+           style="--acento-base:#e9e5dd;--tinte-base:#08080a">
     <h2 class="perfil__titulo revelar">Sobre <span class="cursiva">mí</span></h2>
-
     <div class="perfil__rejilla">
       <div class="perfil__bloque revelar">
         <h3>Formación</h3>
         <dl class="datos">
-          <div>
-            <dt>Grado en Ingeniería de Software</dt>
-            <dd>U-tad · Centro Universitario de Tecnología y Arte Digital</dd>
-            <dd class="datos__fecha">2022 — 2026</dd>
-          </div>
-          <div>
-            <dt>High School, sophomore year</dt>
-            <dd>Jenks High School · Tulsa, Oklahoma</dd>
-            <dd class="datos__fecha">2018 — 2019</dd>
-          </div>
+          <div><dt>Grado en Ingeniería de Software</dt><dd>U-tad · Centro Universitario de Tecnología y Arte Digital</dd><dd class="datos__fecha">2022 — 2026</dd></div>
+          <div><dt>High School, sophomore year</dt><dd>Jenks High School · Tulsa, Oklahoma</dd><dd class="datos__fecha">2018 — 2019</dd></div>
         </dl>
       </div>
-
       <div class="perfil__bloque revelar">
         <h3>Otros proyectos</h3>
         <dl class="datos">
-          <div>
-            <dt>Robot de acompañamiento hospitalario</dt>
-            <dd>Gestión de equipos, diseño del robot, desarrollo de IA y ensamblado.</dd>
-            <dd class="datos__fecha">Diciembre 2025 — actualidad</dd>
-          </div>
-          <div>
-            <dt>Plataforma educativa de turismo local</dt>
-            <dd>Proyecto en grupo: reconocimiento fotográfico y recompensas virtuales, con foco en dirección de proyectos.</dd>
-            <dd class="datos__fecha">Septiembre — Diciembre 2024</dd>
-          </div>
+          <div><dt>Robot de acompañamiento hospitalario</dt><dd>Gestión de equipos, diseño del robot, desarrollo de IA y ensamblado.</dd><dd class="datos__fecha">Diciembre 2025 — actualidad</dd></div>
+          <div><dt>Plataforma educativa de turismo local</dt><dd>Proyecto en grupo: reconocimiento fotográfico y recompensas virtuales, con foco en dirección de proyectos.</dd><dd class="datos__fecha">Septiembre — Diciembre 2024</dd></div>
         </dl>
       </div>
 
       <div class="perfil__bloque revelar">
         <h3>Lenguajes y plataformas</h3>
-        <ul class="stack stack--suelto">
-          <li>Python</li><li>C</li><li>C#</li><li>C++</li><li>Java</li>
-          <li>JavaScript</li><li>Next.js</li><li>SQL</li><li>HTML</li><li>CSS</li>
-          <li>AWS</li><li>Linux</li>
-        </ul>
+        <ul class="stack stack--suelto"><li>Python</li><li>C</li><li>C#</li><li>C++</li><li>Java</li><li>JavaScript</li><li>Next.js</li><li>SQL</li><li>HTML</li><li>CSS</li><li>AWS</li><li>Linux</li></ul>
         <h3 class="perfil__subtitulo">Idiomas</h3>
-        <ul class="stack stack--suelto">
-          <li>Español — nativo</li><li>Inglés — C1</li>
-        </ul>
+        <ul class="stack stack--suelto"><li>Español — nativo</li><li>Inglés — C1</li></ul>
       </div>
 
       <div class="perfil__bloque revelar">
@@ -470,11 +510,10 @@
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- ═══════════════════════════ Contacto ═══════════════════════════ -->
-<footer class="contacto" id="contacto" data-acento="oro">
+<footer class="contacto" id="contacto" data-acento data-rail-id="contacto"
+        style="--acento-base:#e9e5dd;--tinte-base:#08080a">
   <p class="contacto__intro revelar">¿Hablamos?</p>
   <a class="contacto__correo revelar" href="mailto:jorgevalemarcos@gmail.com">jorgevalemarcos@gmail.com</a>
   <ul class="contacto__lista revelar">
@@ -482,12 +521,9 @@
     <li><span>Ubicación</span>Valdemoro, Madrid</li>
     <li><span>Nombre completo</span>Jorge Valero Marcos</li>
   </ul>
-  <p class="contacto__pie revelar">
-    Capturas tomadas de las aplicaciones reales en ejecución, no son maquetas.
-  </p>
+  <p class="contacto__pie revelar">Capturas tomadas de las aplicaciones reales en ejecución, no son maquetas.</p>
 </footer>
 
-<!-- Lupa a pantalla completa para las capturas -->
 <div class="lupa" id="lupa" role="dialog" aria-modal="true" aria-label="Captura ampliada" hidden>
   <button class="lupa__cerrar" type="button" aria-label="Cerrar">&times;</button>
   <img class="lupa__img" src="" alt="">

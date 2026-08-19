@@ -1,24 +1,23 @@
-/* Portfolio · Jorge Valero
-   Cuatro comportamientos, nada más: barra de progreso, revelado al entrar en
-   pantalla, rebindeo del color de acento por sección, y lupa de capturas. */
+/* Comportamiento común a las cinco versiones.
+   Cuatro cosas: barra de progreso, revelado al entrar en pantalla, promoción
+   del color de la sección activa a la raíz (para el raíl y la barra, que viven
+   fuera de las secciones) y lupa de capturas. */
 
 (() => {
   'use strict';
 
   const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const raiz = document.documentElement;
 
-  /* ── Barra de progreso de lectura ───────────────────────────────────── */
+  /* ── Progreso y raíl ─────────────────────────────────────────────── */
   const barra = document.querySelector('.progreso__barra');
   const rail = document.querySelector('.rail');
 
   function alScroll() {
     const alto = document.documentElement.scrollHeight - window.innerHeight;
-    const avance = alto > 0 ? window.scrollY / alto : 0;
-    barra.style.width = `${avance * 100}%`;
-    // El raíl solo aparece una vez has salido de la portada.
+    barra.style.width = `${(alto > 0 ? window.scrollY / alto : 0) * 100}%`;
     rail.classList.toggle('visible', window.scrollY > window.innerHeight * 0.6);
   }
-
   let pendiente = false;
   window.addEventListener('scroll', () => {
     if (pendiente) return;
@@ -27,101 +26,83 @@
   }, { passive: true });
   alScroll();
 
-  /* ── Revelado al entrar en pantalla ─────────────────────────────────── */
+  /* ── Revelado ────────────────────────────────────────────────────── */
   const porRevelar = document.querySelectorAll('.revelar');
-
   if (movimientoReducido || !('IntersectionObserver' in window)) {
     porRevelar.forEach((el) => el.classList.add('dentro'));
   } else {
-    const observador = new IntersectionObserver((entradas) => {
-      entradas.forEach((entrada) => {
-        if (!entrada.isIntersecting) return;
-        entrada.target.classList.add('dentro');
-        observador.unobserve(entrada.target);
+    const obs = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('dentro');
+        obs.unobserve(e.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-
-    porRevelar.forEach((el) => observador.observe(el));
+    porRevelar.forEach((el) => obs.observe(el));
   }
 
-  /* ── Color de acento por sección ────────────────────────────────────── */
-  // Cada sección declara su acento en data-acento; al entrar en el centro de
-  // la pantalla, lo promueve a las variables globales que usa todo el resto
-  // de la página (raíl, barra, numerales, bordes).
+  /* ── Color de la sección activa ──────────────────────────────────── */
+  // El raíl, la barra de progreso y el fondo del <body> están fuera de las
+  // secciones, así que no heredan su color: hay que promoverlo a la raíz.
   const secciones = document.querySelectorAll('[data-acento]');
   const enlacesRail = document.querySelectorAll('[data-rail]');
-  const raiz = document.documentElement;
 
-  function activarSeccion(seccion) {
-    const estilo = getComputedStyle(seccion);
-    const color = estilo.getPropertyValue('--acento-local').trim();
-    const rgb = estilo.getPropertyValue('--acento-rgb-local').trim();
-    if (color) raiz.style.setProperty('--acento', color);
-    if (rgb) raiz.style.setProperty('--acento-rgb', rgb);
-
+  function activar(seccion) {
+    const est = getComputedStyle(seccion);
+    const acento = est.getPropertyValue('--acento-base').trim();
+    const tinte = est.getPropertyValue('--tinte-base').trim();
+    if (acento) raiz.style.setProperty('--acento-base', acento);
+    if (tinte) raiz.style.setProperty('--tinte-base', tinte);
+    document.body.style.background = est.getPropertyValue('--fondo').trim() || '';
     const id = seccion.dataset.railId;
     enlacesRail.forEach((a) => a.classList.toggle('activo', a.dataset.rail === id));
   }
 
   if ('IntersectionObserver' in window) {
-    const observadorColor = new IntersectionObserver((entradas) => {
-      // Puede haber dos secciones cruzando la banda central a la vez; nos
-      // quedamos con la más visible para no parpadear entre dos colores.
+    const obsColor = new IntersectionObserver((entradas) => {
       const visible = entradas
         .filter((e) => e.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible) activarSeccion(visible.target);
+      if (visible) activar(visible.target);
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-
-    secciones.forEach((s) => observadorColor.observe(s));
+    secciones.forEach((s) => obsColor.observe(s));
   }
 
-  /* ── Lupa de capturas ───────────────────────────────────────────────── */
+  /* ── Lupa ────────────────────────────────────────────────────────── */
   const lupa = document.getElementById('lupa');
   const lupaImg = lupa.querySelector('.lupa__img');
   const lupaCerrar = lupa.querySelector('.lupa__cerrar');
-  let ultimoOrigen = null;
+  let origen = null;
 
-  function abrirLupa(figura) {
+  function abrir(figura) {
     const fuente = figura.dataset.lightbox;
     const img = figura.querySelector('img');
     if (!fuente || !img) return;
-
-    ultimoOrigen = figura;
+    origen = figura;
     lupaImg.src = fuente;
     lupaImg.alt = img.alt;
     lupa.hidden = false;
-    // Un frame de margen para que la transición de opacidad tenga de dónde salir.
     requestAnimationFrame(() => lupa.classList.add('abierta'));
     document.body.style.overflow = 'hidden';
     lupaCerrar.focus();
   }
-
-  function cerrarLupa() {
+  function cerrar() {
     lupa.classList.remove('abierta');
     document.body.style.overflow = '';
-    const finalizar = () => {
-      lupa.hidden = true;
-      lupaImg.src = '';
-      if (ultimoOrigen) { ultimoOrigen.focus?.(); ultimoOrigen = null; }
-    };
-    if (movimientoReducido) finalizar();
-    else setTimeout(finalizar, 350);
+    const fin = () => { lupa.hidden = true; lupaImg.src = ''; if (origen) { origen.focus?.(); origen = null; } };
+    movimientoReducido ? fin() : setTimeout(fin, 350);
   }
 
-  document.querySelectorAll('[data-lightbox]').forEach((figura) => {
-    figura.setAttribute('tabindex', '0');
-    figura.setAttribute('role', 'button');
-    figura.setAttribute('aria-label', 'Ampliar captura');
-    figura.addEventListener('click', () => abrirLupa(figura));
-    figura.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirLupa(figura); }
+  document.querySelectorAll('[data-lightbox]').forEach((f) => {
+    f.setAttribute('tabindex', '0');
+    f.setAttribute('role', 'button');
+    f.setAttribute('aria-label', 'Ampliar captura');
+    f.addEventListener('click', () => abrir(f));
+    f.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(f); }
     });
   });
-
-  lupaCerrar.addEventListener('click', cerrarLupa);
-  lupa.addEventListener('click', (e) => { if (e.target === lupa) cerrarLupa(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !lupa.hidden) cerrarLupa();
-  });
+  lupaCerrar.addEventListener('click', cerrar);
+  lupa.addEventListener('click', (e) => { if (e.target === lupa) cerrar(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lupa.hidden) cerrar(); });
 })();

@@ -1,765 +1,496 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Portfolio · Jorge Valero
-   Dirección: "Editorial Mission Control" — serif editorial sobre tinta casi
-   negra, mono de terminal para todo lo demás, y un color de acento que se
-   rebinda por proyecto según el scroll.
+   Dirección: composición editorial —márgenes anchos, folio fuera de la
+   columna, capturas sin marco— con tipografía técnica: escala contenida,
+   metadatos en mono y ficha de datos por proyecto.
+
+   El color no es decoración: cada proyecto trae el suyo y tiñe el suelo de su
+   sección, así que el scroll cambia de temperatura. Portada, perfil y
+   contacto van en negro con el acento en hueso, porque no son proyectos.
+
+   Generado por revision/v/publicar.mjs, pero editable a mano sin problema.
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Sistema ───────────────────────────────────────────────────────────── */
+/* ── Sistema: tokens, texturas, raíl, lupa, revelado y piezas de contenido ── */
+
 :root {
-  /* Neutros */
   --tinta:      #08080a;
-  --tinta-alta: #0e0e12;
   --papel:      #e9e5dd;
   --papel-mate: #a8a49c;
-  /* Aclarado desde #625f5a: aquel daba 3,15:1 contra la tinta y se usa en
-     textos pequeños (pies de foto, etiquetas). Este llega a 5,4:1. */
-  --susurro:    #85837d;
+  --susurro:    #8b8981;
   --linea:      #1c1c21;
 
-  /* Acento vivo: lo reescribe JS al entrar en cada sección. La transición
-     larga es lo que hace que la página "cambie de temperatura" al pasar de
-     un proyecto a otro en vez de dar un salto seco. */
-  --acento:     #2ed3ee;
-  --acento-rgb: 46, 211, 238;
-  transition: --acento 900ms ease;
+  /* Cada sección trae su --acento-base y su --tinte-base; de ahí salen estos. */
+  --acento-base: #ff7a2f;
+  --tinte-base:  #1c0e04;
+  --tinte-fuerza: 55;
 
-  /* Ritmo vertical: una sola escala, todo lo demás son múltiplos */
-  --ritmo: clamp(1.25rem, 2.2vw, 2rem);
+  --acento: var(--acento-base);
+  --fondo:  color-mix(in oklab, var(--tinta), var(--tinte-base) calc(var(--tinte-fuerza) * 1%));
+  --velo:   color-mix(in oklab, var(--fondo), var(--papel) 3.5%);
+  --hair:   color-mix(in oklab, var(--linea), var(--acento) 22%);
 
-  /* Márgenes laterales. El derecho es mayor a partir de 900px porque ahí
-     aparece el raíl fijo y el contenido no debe pasar por debajo. */
+  --ritmo:  clamp(1.25rem, 2.2vw, 2rem);
   --margen: clamp(1.5rem, 6vw, 8rem);
   --margen-dcho: var(--margen);
 
-  /* Tipografía */
   --display: "Instrument Serif", Georgia, serif;
-  --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --mono:    "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --cuerpo:  Georgia, "Instrument Serif", serif;
 
   --curva: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Registrar --acento como color permite interpolarlo de verdad. Donde no
-   esté soportado, el cambio es instantáneo en vez de degradado: aceptable. */
-@property --acento {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #2ed3ee;
-}
-
-[data-acento="cian"]    { --acento-local: #2ed3ee; --acento-rgb-local:  46, 211, 238; }
-[data-acento="violeta"] { --acento-local: #8b6bff; --acento-rgb-local: 139, 107, 255; }
-[data-acento="jade"]    { --acento-local: #3ddc97; --acento-rgb-local:  61, 220, 151; }
-[data-acento="oro"]     { --acento-local: #e0a838; --acento-rgb-local: 224, 168,  56; }
-
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  /* El raíl lateral y los anclas necesitan aire arriba al saltar */
-  scroll-padding-top: calc(var(--ritmo) * 2);
-}
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--ritmo) * 2); }
 
 body {
   margin: 0;
   background: var(--tinta);
   color: var(--papel);
-  font-family: var(--mono);
-  font-weight: 300;
-  font-size: clamp(0.875rem, 0.55vw + 0.72rem, 1rem);
-  line-height: 1.75;
+  font-family: var(--cuerpo);
+  font-size: clamp(0.95rem, 0.35vw + 0.86rem, 1.06rem);
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* El suelo cambia de temperatura al pasar de un proyecto a otro. Es lo que
+     convierte "un color por proyecto" en algo que se siente al hacer scroll. */
+  transition: background 900ms ease;
 }
-
 ::selection { background: var(--acento); color: var(--tinta); }
-
 a { color: inherit; }
+img { max-width: 100%; display: block; }
+.cursiva { font-style: italic; }
+:focus-visible { outline: 2px solid var(--acento); outline-offset: 4px; }
 
-:focus-visible {
-  outline: 2px solid var(--acento);
-  outline-offset: 4px;
+/* ── Secciones con color propio ──────────────────────────────────────── */
+[data-acento] {
+  --acento: var(--acento-base);
+  --fondo:  color-mix(in oklab, var(--tinta), var(--tinte-base) calc(var(--tinte-fuerza) * 1%));
+  --velo:   color-mix(in oklab, var(--fondo), var(--papel) 3.5%);
+  --hair:   color-mix(in oklab, var(--linea), var(--acento) 22%);
+  background: var(--fondo);
+  transition: background 900ms ease;
 }
 
-img { max-width: 100%; display: block; }
-
-.cursiva { font-style: italic; }
-
-/* ── Capas de textura ──────────────────────────────────────────────────── */
-
-/* Grano: rompe el negro plano. Es una sola imagen SVG repetida, sin coste
-   de red y sin animación (animarlo dispara la GPU sin aportar nada). */
+/* ── Texturas ────────────────────────────────────────────────────────── */
 .grano {
-  position: fixed;
-  inset: -50%;
-  z-index: 100;
-  pointer-events: none;
-  opacity: 0.035;
+  position: fixed; inset: -50%; z-index: 100; pointer-events: none; opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-
-.vineta {
-  position: fixed;
-  inset: 0;
-  z-index: 99;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.55) 100%);
-}
-
-.progreso {
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 2px;
-  z-index: 101;
-  background: var(--linea);
-}
-.progreso__barra {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: var(--acento);
-  box-shadow: 0 0 12px rgba(var(--acento-rgb), 0.8);
-}
+.progreso { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 101; background: var(--linea); }
+.progreso__barra { display: block; height: 100%; width: 0; background: var(--acento); }
 
 .saltar {
-  position: fixed;
-  top: 0; left: 50%;
-  transform: translate(-50%, -120%);
-  z-index: 200;
-  padding: 0.75rem 1.5rem;
-  background: var(--acento);
-  color: var(--tinta);
-  text-decoration: none;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  position: fixed; top: 0; left: 50%; transform: translate(-50%, -120%); z-index: 200;
+  padding: 0.75rem 1.5rem; background: var(--acento); color: var(--tinta);
+  text-decoration: none; font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
 }
 .saltar:focus { transform: translate(-50%, 0); }
 
-/* ── Raíl de navegación ────────────────────────────────────────────────── */
+/* ── Raíl ────────────────────────────────────────────────────────────── */
 .rail {
-  position: fixed;
-  right: clamp(1rem, 2.5vw, 2.5rem);
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 60;
-  opacity: 0;
-  transition: opacity 600ms ease;
+  position: fixed; right: clamp(1rem, 2.5vw, 2.5rem); top: 50%;
+  transform: translateY(-50%); z-index: 60; opacity: 0; transition: opacity 600ms ease;
 }
 .rail.visible { opacity: 1; }
-
-.rail__lista {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.9rem;
-  text-align: right;
-}
+.rail__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; text-align: right; }
 .rail__lista a {
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-end;
-  gap: 0.6rem;
-  text-decoration: none;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--susurro);
+  display: flex; align-items: baseline; justify-content: flex-end; gap: 0.6rem;
+  text-decoration: none; font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--susurro);
   transition: color 350ms ease;
 }
-.rail__num {
-  font-variant-numeric: tabular-nums;
-  opacity: 0.6;
-}
-.rail__nombre {
-  /* El nombre solo aparece en el proyecto activo: el raíl en reposo es una
-     columna de números, discreta, y se "abre" donde estás. */
-  max-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: max-width 500ms var(--curva), opacity 350ms ease;
-  opacity: 0;
-}
-.rail__lista a:hover,
-.rail__lista a.activo { color: var(--acento); }
-.rail__lista a:hover .rail__nombre,
-.rail__lista a.activo .rail__nombre { max-width: 9rem; opacity: 1; }
-
+.rail__num { font-variant-numeric: tabular-nums; opacity: 0.6; }
+.rail__nombre { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width 500ms var(--curva), opacity 350ms ease; }
+.rail__lista a:hover, .rail__lista a.activo { color: var(--acento); }
+.rail__lista a:hover .rail__nombre, .rail__lista a.activo .rail__nombre { max-width: 9rem; opacity: 1; }
 @media (max-width: 900px) { .rail { display: none; } }
+@media (min-width: 901px) { :root { --margen-dcho: clamp(9rem, 6vw + 7rem, 14rem); } }
 
-/* Reserva del carril: el ancho del raíl abierto más su separación del borde. */
-@media (min-width: 901px) {
-  :root { --margen-dcho: clamp(9rem, 6vw + 7rem, 14rem); }
-}
-
-/* ── Portada ───────────────────────────────────────────────────────────── */
+/* ── Portada (base; cada versión la recompone) ───────────────────────── */
 .portada {
-  position: relative;
-  min-height: 100svh;
+  position: relative; min-height: 100svh; overflow: hidden;
   padding: calc(var(--ritmo) * 2.5) var(--margen) calc(var(--ritmo) * 2);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
 }
-
-/* Malla de fondo: la referencia son las cuadrículas de los HUD de los propios
-   proyectos, no un degradado decorativo. */
 .portada__malla {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0; pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(var(--acento-rgb), 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(var(--acento-rgb), 0.055) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in oklab, transparent, var(--acento) 6%) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, transparent, var(--acento) 6%) 1px, transparent 1px);
   background-size: 5.5rem 5.5rem;
   mask-image: radial-gradient(ellipse 80% 65% at 20% 40%, #000 0%, transparent 75%);
   animation: deriva 40s linear infinite;
 }
-@keyframes deriva {
-  to { background-position: 5.5rem 5.5rem; }
-}
+@keyframes deriva { to { background-position: 5.5rem 5.5rem; } }
+.portada > *:not(.portada__malla) { position: relative; z-index: 2; }
+.portada > .portada__indice { position: absolute; z-index: 2; }
 
 .portada__meta {
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--papel-mate);
-  margin: 0 0 clamp(1rem, 3vh, 2rem);
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--papel-mate); margin: 0 0 clamp(1rem, 3vh, 2rem);
+  display: flex; align-items: center; gap: 0.7rem;
 }
 .punto {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--acento);
-  box-shadow: 0 0 0 0 rgba(var(--acento-rgb), 0.7);
+  width: 6px; height: 6px; border-radius: 50%; background: var(--acento);
+  box-shadow: 0 0 0 0 color-mix(in oklab, transparent, var(--acento) 70%);
   animation: latido 2.6s ease-out infinite;
 }
 @keyframes latido {
-  70%  { box-shadow: 0 0 0 10px rgba(var(--acento-rgb), 0); }
-  100% { box-shadow: 0 0 0 0   rgba(var(--acento-rgb), 0); }
+  70%  { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
-
 .portada__nombre {
-  font-family: var(--display);
-  font-weight: 400;
-  /* Acotado también por la altura: en pantallas bajas el nombre se encoge en
-     vez de empujar el resto de la portada fuera del viewport. */
-  font-size: clamp(3.5rem, min(13vw, 19vh), 11rem);
-  line-height: 0.86;
-  letter-spacing: -0.02em;
-  margin: 0;
-  display: grid;
-  /* La "J" de Instrument Serif vuela hacia la izquierda: se compensa para que
-     el bloque quede ópticamente alineado con el resto del texto. */
-  margin-left: -0.045em;
+  font-family: var(--display); font-weight: 400; margin: 0 0 0 -0.045em;
+  font-size: clamp(3.5rem, min(13vw, 19vh), 11rem); line-height: 0.86;
+  letter-spacing: -0.02em; display: grid;
 }
 .portada__nombre .cursiva { color: var(--acento); }
-
-/* Máscara de revelado: el texto sube desde detrás de su propio recorte. */
 .mascara { display: block; overflow: hidden; }
-.mascara > span {
-  display: block;
-  transform: translateY(105%);
-  animation: subir 1.15s var(--curva) forwards;
-  animation-delay: var(--retraso, 0ms);
-}
+.mascara > span { display: block; transform: translateY(105%); animation: subir 1.15s var(--curva) forwards; animation-delay: var(--retraso, 0ms); }
 @keyframes subir { to { transform: translateY(0); } }
 
 .portada__rol {
-  margin: clamp(0.9rem, 2.4vh, 1.8rem) 0 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--papel-mate);
+  margin: clamp(0.9rem, 2.4vh, 1.8rem) 0 0; font-family: var(--mono);
+  font-size: 0.76rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--papel-mate);
 }
-
-.portada__pitch {
-  max-width: 46ch;
-  margin: clamp(0.9rem, 2.4vh, 1.8rem) 0 0;
-  color: var(--papel-mate);
-}
+.portada__pitch { max-width: 50ch; margin: clamp(0.9rem, 2.4vh, 1.8rem) 0 0; color: var(--papel-mate); }
 .portada__pitch em { color: var(--papel); font-style: normal; }
 
 .portada__cifras {
-  list-style: none;
-  margin: clamp(1.5rem, 4.5vh, 3rem) 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  list-style: none; margin: clamp(1.5rem, 4.5vh, 3rem) 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 4vw, 3.5rem);
 }
 .portada__cifras li { display: grid; gap: 0.2rem; }
-.portada__cifras b {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: 2.2rem;
-  line-height: 1;
-  color: var(--acento);
-}
-.portada__cifras span {
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--susurro);
-}
+.portada__cifras b { font-family: var(--display); font-weight: 400; font-size: 2.2rem; line-height: 1; color: var(--acento); }
+.portada__cifras span { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--susurro); }
 
 .portada__bajar {
-  margin-top: clamp(1.5rem, 4.5vh, 3rem);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  text-decoration: none;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--papel-mate);
-  width: fit-content;
-  transition: color 300ms ease;
+  margin-top: clamp(1.5rem, 4.5vh, 3rem); display: inline-flex; align-items: center; gap: 0.9rem;
+  text-decoration: none; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--papel-mate); width: fit-content; transition: color 300ms ease;
 }
 .portada__bajar:hover { color: var(--acento); }
-.portada__bajar svg {
-  width: 12px; height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  animation: flotar 2.4s ease-in-out infinite;
-}
-@keyframes flotar {
-  50% { transform: translateY(5px); }
-}
+.portada__bajar svg { width: 12px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; animation: flotar 2.4s ease-in-out infinite; }
+@keyframes flotar { 50% { transform: translateY(5px); } }
 
-/* Índice adelantado de la portada: llena la mitad derecha y adelanta la
-   paleta de los cuatro proyectos. Se retira en cuanto no hay sitio de sobra. */
 .portada__indice {
-  position: absolute;
-  right: var(--margen-dcho);
-  bottom: clamp(3rem, 12vh, 8rem);
-  margin: 0;
-  padding: 0 0 0 clamp(1.5rem, 2.5vw, 2.5rem);
-  list-style: none;
-  border-left: 1px solid var(--linea);
-  display: grid;
-  gap: clamp(0.9rem, 2.2vh, 1.6rem);
-  max-width: 22rem;
+  position: absolute; right: var(--margen-dcho); bottom: clamp(3rem, 12vh, 8rem);
+  margin: 0; padding: 0 0 0 clamp(1.5rem, 2.5vw, 2.5rem); list-style: none;
+  border-left: 1px solid var(--linea); display: grid; gap: clamp(0.9rem, 2.2vh, 1.6rem); max-width: 22rem;
 }
-.portada__indice a {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0 0.9rem;
-  text-decoration: none;
-  align-items: baseline;
-}
-.portada__indice span {
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  color: var(--susurro);
-  font-variant-numeric: tabular-nums;
-  transition: color 350ms ease;
-}
-.portada__indice b {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1.15;
-  color: var(--papel);
-  transition: color 350ms ease;
-}
-.portada__indice em {
-  grid-column: 2;
-  font-style: normal;
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  color: var(--susurro);
-}
-.portada__indice a:hover b,
-.portada__indice a:hover span { color: var(--c); }
+.portada__indice a { display: grid; grid-template-columns: auto 1fr; gap: 0 0.9rem; text-decoration: none; align-items: baseline; }
+.portada__indice span { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; color: var(--susurro); font-variant-numeric: tabular-nums; transition: color 350ms ease; }
+.portada__indice b { font-family: var(--display); font-weight: 400; font-size: 1.5rem; line-height: 1.15; color: var(--papel); transition: color 350ms ease; }
+.portada__indice em { grid-column: 2; font-style: normal; font-family: var(--mono); font-size: 0.64rem; color: var(--susurro); }
+.portada__indice a:hover b, .portada__indice a:hover span { color: var(--c); }
+@media (max-width: 1180px), (max-height: 640px) { .portada__indice { display: none; } }
 
-@media (max-width: 1180px), (max-height: 640px) {
-  .portada__indice { display: none; }
-}
-
-/* Entrada escalonada compartida por los elementos de portada */
-.linea {
-  opacity: 0;
-  animation: aparecer 1s var(--curva) forwards;
-  animation-delay: var(--retraso, 0ms);
-}
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(1.4rem); }
-  to   { opacity: 1; transform: none; }
-}
+.linea { opacity: 0; animation: aparecer 1s var(--curva) forwards; animation-delay: var(--retraso, 0ms); }
+@keyframes aparecer { from { opacity: 0; transform: translateY(1.4rem); } to { opacity: 1; transform: none; } }
 .portada__nombre .linea { animation: none; opacity: 1; }
 
-/* ── Proyecto ──────────────────────────────────────────────────────────── */
-.proyecto {
-  padding: clamp(5rem, 14vh, 11rem) var(--margen-dcho) clamp(5rem, 14vh, 11rem) var(--margen);
-  border-top: 1px solid var(--linea);
-  position: relative;
-}
+/* ── Proyecto: piezas de contenido ───────────────────────────────────── */
+.proyecto { position: relative; padding: clamp(5rem, 14vh, 11rem) var(--margen-dcho) clamp(5rem, 14vh, 11rem) var(--margen); }
+.proyecto__cabecera { display: flex; align-items: flex-start; gap: clamp(1rem, 3vw, 3rem); }
+.proyecto__indice { font-family: var(--display); font-variant-numeric: tabular-nums; flex-shrink: 0; line-height: 0.8; }
+.proyecto__titulo { font-family: var(--display); font-weight: 400; margin: 0; line-height: 0.92; letter-spacing: -0.015em; }
+.proyecto__lema { margin: 0.9rem 0 0; max-width: 44ch; color: var(--papel-mate); }
+.proyecto__lema em { font-style: normal; color: var(--acento); }
+.proyecto__masthead { display: none; }
 
-.proyecto__cabecera {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(1rem, 3vw, 3rem);
-  margin-bottom: calc(var(--ritmo) * 2);
-}
-
-/* El numeral es el ancla visual del proyecto: enorme, en serif, y en el color
-   de la sección. Es lo que hace reconocible la página sin logotipo. */
-.proyecto__indice {
-  font-family: var(--display);
-  font-size: clamp(3.5rem, 9vw, 8rem);
-  line-height: 0.8;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(var(--acento-rgb), 0.55);
-  flex-shrink: 0;
-  font-variant-numeric: tabular-nums;
-}
-
-.proyecto__titulo {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.6rem, 7vw, 6rem);
-  line-height: 0.92;
-  letter-spacing: -0.015em;
-  margin: 0;
-}
-
-/* Marca de estado del proyecto. Va dentro del <h2>, así que se separa de la
-   escala del display y vuelve al mono, alineada con la primera línea del
-   título en vez de con su base. */
 .etiqueta {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 0.9rem;
-  transform: translateY(-0.35em);
-  padding: 0.3rem 0.7rem;
-  border: 1px solid rgba(var(--acento-rgb), 0.45);
-  border-radius: 2px;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--acento);
-  white-space: nowrap;
+  display: inline-block; vertical-align: middle; margin-left: 0.9rem; transform: translateY(-0.35em);
+  padding: 0.3rem 0.7rem; border: 1px solid color-mix(in oklab, transparent, var(--acento) 45%);
+  border-radius: 2px; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--acento); white-space: nowrap;
 }
-/* El punto que late delante deja claro que es un estado vivo, no una etiqueta
-   decorativa. */
 .etiqueta::before {
-  content: "";
-  display: inline-block;
-  width: 5px; height: 5px;
-  margin-right: 0.55rem;
-  border-radius: 50%;
-  background: var(--acento);
-  vertical-align: middle;
-  animation: latido 2.6s ease-out infinite;
+  content: ""; display: inline-block; width: 5px; height: 5px; margin-right: 0.55rem;
+  border-radius: 50%; background: var(--acento); vertical-align: middle; animation: latido 2.6s ease-out infinite;
 }
 
-.proyecto__lema {
-  margin: 0.9rem 0 0;
-  max-width: 42ch;
-  color: var(--papel-mate);
-  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
-}
-.proyecto__lema em {
-  font-style: normal;
-  color: var(--acento);
-}
+.spec, .medidores { display: none; margin: 0; }
+.spec dt, .medidores dt { font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--susurro); }
+.spec dd, .medidores dd { margin: 0.35rem 0 0; font-family: var(--mono); font-size: 0.8rem; color: var(--papel); font-variant-numeric: tabular-nums; }
+.barra { height: 2px; margin-top: 0.45rem; background: var(--linea); overflow: hidden; }
+.barra i { display: block; height: 100%; background: var(--acento); }
 
-.proyecto__cuerpo {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  margin: calc(var(--ritmo) * 2.2) 0;
-  align-items: start;
-}
-@media (max-width: 860px) {
-  .proyecto__cuerpo { grid-template-columns: 1fr; }
-}
+.proyecto__cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); margin: calc(var(--ritmo) * 2.2) 0; align-items: start; }
+@media (max-width: 900px) { .proyecto__cuerpo { grid-template-columns: 1fr; } }
+/* La columna de texto lleva prosa y stack: dos párrafos contra nueve claves
+   dejaban un agujero de media pantalla en la mitad izquierda de la sección. */
+.columna { display: grid; align-content: start; gap: calc(var(--ritmo) * 1.8); }
+.columna .stack { margin-top: 0; }
 
-.proyecto__texto p {
-  margin: 0 0 1.2em;
-  color: var(--papel-mate);
-  max-width: 52ch;
-}
+.parrafos p { margin: 0 0 1.1em; color: var(--papel-mate); max-width: 56ch; }
+.parrafos p:last-child { margin-bottom: 0; }
 
-.claves {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.1rem;
-}
-.claves li {
-  padding: 0.85rem 0;
-  border-top: 1px solid var(--linea);
-  font-size: 0.84rem;
-  color: var(--papel-mate);
-  transition: border-color 400ms ease, color 300ms ease;
-}
+.claves { list-style: none; margin: 0; padding: 0; }
+.claves li { padding: 0.8rem 0; border-top: 1px solid var(--linea); font-size: 0.92rem; color: var(--papel-mate); transition: border-color 400ms ease, color 300ms ease; }
 .claves li:last-child { border-bottom: 1px solid var(--linea); }
-.claves li:hover { color: var(--papel); border-top-color: rgba(var(--acento-rgb), 0.5); }
-.claves b {
-  display: block;
-  font-weight: 500;
-  color: var(--papel);
-  letter-spacing: 0.02em;
-}
-.claves--simple li b { display: inline; }
+.claves li:hover { color: var(--papel); border-top-color: color-mix(in oklab, transparent, var(--acento) 50%); }
+.claves b { display: block; color: var(--papel); font-weight: 700; letter-spacing: 0.01em; }
 
-.stack {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+.stack { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .stack li {
-  padding: 0.32rem 0.75rem;
-  border: 1px solid var(--linea);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--susurro);
+  padding: 0.3rem 0.72rem; border: 1px solid var(--linea); font-family: var(--mono);
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--susurro);
   transition: border-color 300ms ease, color 300ms ease;
 }
-.stack li:hover { border-color: rgba(var(--acento-rgb), 0.6); color: var(--acento); }
+.stack li:hover { border-color: color-mix(in oklab, transparent, var(--acento) 60%); color: var(--acento); }
 .stack--suelto { margin-top: 0.9rem; }
 
-/* ── Visor de capturas ─────────────────────────────────────────────────── */
-.visor {
-  margin: 0;
-  position: relative;
-  cursor: zoom-in;
-}
+/* ── Visor ───────────────────────────────────────────────────────────── */
+.visor { margin: 0; position: relative; cursor: zoom-in; }
 .visor img {
-  width: 100%;
-  /* Los atributos width/height del <img> se mapean a estilo de presentación y
-     fijarían la altura en 875px, ganando a aspect-ratio y recortando los lados.
-     height:auto devuelve el control a la proporción. */
-  height: auto;
-  aspect-ratio: 8 / 5;
-  object-fit: cover;
-  object-position: top center;
-  border: 1px solid var(--linea);
-  background: var(--tinta-alta);
+  width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; object-position: top center;
+  border: 1px solid var(--linea); background: var(--velo);
   transition: border-color 500ms ease, transform 700ms var(--curva);
 }
-.visor:hover img {
-  border-color: rgba(var(--acento-rgb), 0.45);
-  transform: translateY(-4px);
-}
+.visor:hover img { border-color: color-mix(in oklab, transparent, var(--acento) 45%); transform: translateY(-4px); }
+.visor figcaption { margin-top: 0.9rem; font-family: var(--mono); font-size: 0.68rem; line-height: 1.6; color: var(--susurro); max-width: 62ch; }
 
-/* Barrido de luz al pasar por encima: un guiño a los HUD de los proyectos,
-   una sola pasada y sin repetir. */
-.visor::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(105deg, transparent 35%, rgba(var(--acento-rgb), 0.14) 50%, transparent 65%);
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-.visor:hover::after {
-  opacity: 1;
-  animation: barrido 1.1s var(--curva);
-}
-@keyframes barrido {
-  from { transform: translateX(-30%); }
-  to   { transform: translateX(30%); }
-}
+.galeria { margin-top: calc(var(--ritmo) * 1.5); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: clamp(1rem, 2.5vw, 2rem); }
 
-.visor figcaption {
-  margin-top: 0.9rem;
-  font-size: 0.72rem;
-  line-height: 1.6;
-  color: var(--susurro);
-  max-width: 60ch;
-}
-.visor--pequeno figcaption { font-size: 0.68rem; }
-
-.galeria { margin-top: calc(var(--ritmo) * 1.5); }
-.galeria--rejilla {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-  gap: clamp(1rem, 2.5vw, 2rem);
-}
-.galeria:not(.galeria--rejilla) .visor--pequeno { max-width: 34rem; }
-
-/* ── Perfil ────────────────────────────────────────────────────────────── */
-.perfil {
-  padding: clamp(5rem, 14vh, 11rem) var(--margen-dcho) clamp(5rem, 14vh, 11rem) var(--margen);
-  border-top: 1px solid var(--linea);
-}
-.perfil__titulo {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.6rem, 7vw, 5.5rem);
-  line-height: 1;
-  margin: 0 0 calc(var(--ritmo) * 2.5);
-}
+/* ── Perfil ──────────────────────────────────────────────────────────── */
+.perfil { padding: clamp(5rem, 14vh, 11rem) var(--margen-dcho) clamp(5rem, 14vh, 11rem) var(--margen); border-top: 1px solid var(--linea); }
+.perfil__titulo { font-family: var(--display); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1; margin: 0 0 calc(var(--ritmo) * 2.5); }
 .perfil__titulo .cursiva { color: var(--acento); }
-
-.perfil__rejilla {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-  gap: clamp(2rem, 4vw, 4rem);
-}
+.perfil__rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: clamp(2rem, 4vw, 4rem); }
 .perfil__bloque h3 {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--acento);
-  margin: 0 0 1.2rem;
-  padding-bottom: 0.7rem;
-  border-bottom: 1px solid var(--linea);
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--acento); margin: 0 0 1.2rem;
+  padding-bottom: 0.7rem; border-bottom: 1px solid var(--linea);
 }
 .perfil__subtitulo { margin-top: 2rem !important; }
-
 .datos { margin: 0; display: grid; gap: 1.6rem; }
-.datos dt {
-  font-weight: 500;
-  color: var(--papel);
-  font-size: 0.88rem;
-}
-.datos dd {
-  margin: 0.3rem 0 0;
-  color: var(--papel-mate);
-  font-size: 0.8rem;
-}
-.datos__fecha {
-  color: var(--susurro) !important;
-  font-size: 0.7rem !important;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 0.5rem !important;
-}
+.datos dt { font-weight: 700; color: var(--papel); font-size: 0.96rem; }
+.datos dd { margin: 0.3rem 0 0; color: var(--papel-mate); font-size: 0.9rem; }
+.datos__fecha { color: var(--susurro) !important; font-family: var(--mono); font-size: 0.68rem !important; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.5rem !important; }
 
-/* ── Contacto ──────────────────────────────────────────────────────────── */
-.contacto {
-  padding: clamp(5rem, 16vh, 12rem) var(--margen-dcho) clamp(5rem, 16vh, 12rem) var(--margen);
-  border-top: 1px solid var(--linea);
-  text-align: center;
-}
-.contacto__intro {
-  font-family: var(--display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin: 0 0 var(--ritmo);
-  font-style: italic;
-  color: var(--papel-mate);
-}
+/* ── Contacto ────────────────────────────────────────────────────────── */
+.contacto { padding: clamp(5rem, 16vh, 12rem) var(--margen-dcho) clamp(5rem, 16vh, 12rem) var(--margen); border-top: 1px solid var(--linea); text-align: center; }
+.contacto__intro { font-family: var(--display); font-size: clamp(2rem, 5vw, 3.5rem); margin: 0 0 var(--ritmo); font-style: italic; color: var(--papel-mate); }
 .contacto__correo {
-  display: inline-block;
-  font-family: var(--display);
-  font-size: clamp(1.6rem, 6vw, 4.5rem);
-  line-height: 1.1;
-  text-decoration: none;
-  color: var(--papel);
-  word-break: break-word;
-  /* Subrayado que se dibuja al pasar por encima */
-  background-image: linear-gradient(var(--acento), var(--acento));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 2px;
+  display: inline-block; font-family: var(--display); font-size: clamp(1.6rem, 6vw, 4.5rem);
+  line-height: 1.1; text-decoration: none; color: var(--papel); word-break: break-word;
+  background-image: linear-gradient(var(--acento), var(--acento)); background-repeat: no-repeat;
+  background-position: 0 100%; background-size: 0% 2px;
   transition: background-size 700ms var(--curva), color 400ms ease;
 }
 .contacto__correo:hover { background-size: 100% 2px; color: var(--acento); }
-
-.contacto__lista {
-  list-style: none;
-  margin: calc(var(--ritmo) * 2.5) 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(2rem, 6vw, 6rem);
-}
-.contacto__lista li {
-  display: grid;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  color: var(--papel-mate);
-}
-.contacto__lista span {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--susurro);
-}
+.contacto__lista { list-style: none; margin: calc(var(--ritmo) * 2.5) 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(2rem, 6vw, 6rem); }
+.contacto__lista li { display: grid; gap: 0.35rem; font-size: 0.92rem; color: var(--papel-mate); }
+.contacto__lista span { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--susurro); }
 .contacto__lista a { text-decoration: none; transition: color 300ms ease; }
 .contacto__lista a:hover { color: var(--acento); }
+.contacto__pie { margin: calc(var(--ritmo) * 3) 0 0; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--susurro); }
 
-.contacto__pie {
-  margin: calc(var(--ritmo) * 3) 0 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--susurro);
-}
-
-/* ── Lupa ──────────────────────────────────────────────────────────────── */
-.lupa {
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-  background: rgba(4, 4, 6, 0.94);
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 4vw, 4rem);
-  opacity: 0;
-  transition: opacity 350ms ease;
-}
-/* `display:grid` pisa el `display:none` que el navegador aplica a [hidden]:
-   sin esto, la capa cerrada sigue cubriendo la página y se traga los clics. */
+/* ── Lupa ────────────────────────────────────────────────────────────── */
+.lupa { position: fixed; inset: 0; z-index: 150; background: rgba(4,4,6,0.94); display: grid; place-items: center; padding: clamp(1rem, 4vw, 4rem); opacity: 0; transition: opacity 350ms ease; }
 .lupa[hidden] { display: none; }
 .lupa.abierta { opacity: 1; }
-.lupa__img {
-  max-width: 100%;
-  max-height: 90svh;
-  object-fit: contain;
-  border: 1px solid rgba(var(--acento-rgb), 0.35);
-  transform: scale(0.97);
-  transition: transform 450ms var(--curva);
-}
+.lupa__img { max-width: 100%; max-height: 90svh; object-fit: contain; border: 1px solid color-mix(in oklab, transparent, var(--acento) 35%); transform: scale(0.97); transition: transform 450ms var(--curva); }
 .lupa.abierta .lupa__img { transform: scale(1); }
-.lupa__cerrar {
-  position: absolute;
-  top: clamp(1rem, 3vw, 2.5rem);
-  right: clamp(1rem, 3vw, 2.5rem);
-  width: 3rem; height: 3rem;
-  background: none;
-  border: 1px solid var(--linea);
-  color: var(--papel);
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: border-color 300ms ease, color 300ms ease;
-}
+.lupa__cerrar { position: absolute; top: clamp(1rem,3vw,2.5rem); right: clamp(1rem,3vw,2.5rem); width: 3rem; height: 3rem; background: none; border: 1px solid var(--linea); color: var(--papel); font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .lupa__cerrar:hover { border-color: var(--acento); color: var(--acento); }
 
-/* ── Revelado al hacer scroll ──────────────────────────────────────────── */
-.revelar {
-  opacity: 0;
-  transform: translateY(2rem);
-  transition: opacity 900ms var(--curva), transform 900ms var(--curva);
-}
+/* ── Revelado ────────────────────────────────────────────────────────── */
+.revelar { opacity: 0; transform: translateY(2rem); transition: opacity 900ms var(--curva), transform 900ms var(--curva); }
 .revelar.dentro { opacity: 1; transform: none; }
 
-/* ── Movimiento reducido ───────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .revelar, .linea, .mascara > span { opacity: 1; transform: none; }
   .visor:hover img { transform: none; }
 }
+
+
+/* ── Composición: márgenes anchos, folio fuera de la columna de texto,
+      lema como entradilla y capturas sin marco. ── */
+
+:root { --margen: clamp(1.5rem, 9vw, 12rem); }
+
+.proyecto { padding-top: clamp(6rem, 18vh, 13rem); border-top: 1px solid var(--linea); }
+
+/* El folio vive en el margen izquierdo, fuera de la columna de texto. */
+.proyecto__cabecera { display: block; position: relative; }
+.proyecto__indice {
+  position: absolute; left: clamp(-5rem, -6vw, -3.2rem); top: 0.42em;
+  font-size: clamp(2rem, 3vw, 2.8rem); color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, transparent, var(--acento) 75%);
+}
+.proyecto__titulo { font-size: clamp(3rem, 8vw, 7rem); line-height: 0.88; letter-spacing: -0.025em; }
+.proyecto__lema {
+  font-family: var(--display); font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  line-height: 1.26; max-width: 32ch; margin-top: 1.4rem; color: var(--papel-mate);
+}
+.proyecto__lema em { font-style: italic; color: var(--acento); }
+
+/* Los datos vuelven como pie de cabecera, en una línea fina. */
+.spec {
+  display: flex; flex-wrap: wrap; gap: clamp(1.4rem, 3vw, 3rem);
+  margin-top: calc(var(--ritmo) * 1.6); padding-top: 0.9rem;
+  border-top: 1px solid var(--hair);
+}
+.spec > div { display: grid; gap: 0.15rem; }
+.spec dd { font-size: 0.74rem; color: var(--papel-mate); }
+
+.visor--hero { margin-top: calc(var(--ritmo) * 2.4); }
+.visor--hero img { border: 0; }
+
+.proyecto__cuerpo { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(2.5rem, 6vw, 6rem); }
+/* Capitular: el gesto de revista que ancla el bloque de texto. */
+.proyecto__cuerpo .parrafos p:first-child::first-letter {
+  font-family: var(--display); float: left; font-size: 3.3em; line-height: 0.76;
+  padding: 0.06em 0.14em 0 0; color: var(--acento);
+}
+.claves li { border-top-color: color-mix(in oklab, var(--linea), var(--papel) 8%); }
+
+.galeria { gap: clamp(1.4rem, 3vw, 2.6rem); }
+.galeria .visor img { border: 0; }
+
+
+.perfil__titulo, .contacto__intro { font-style: italic; }
+
+
+/* ── Voz tipográfica: escala contenida, folio y metadatos en mono, ficha de
+      datos por proyecto, sin capitular ni cursivas de sección. ── */
+
+/* ── El folio, en mono ── */
+.proyecto__indice {
+  /* Se alinea por la derecha contra la columna de texto para que el borde del
+     numeral quede a plomo con el margen, no el principio del texto. */
+  width: 5.5rem;
+  left: clamp(-6.8rem, -8vw, -4.6rem);
+  top: 0.9em;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: var(--acento);
+  -webkit-text-stroke: 0;
+}
+.proyecto__indice::after { content: " / 04"; color: var(--susurro); }
+
+/* ── Escala del titular y del lema ── */
+.proyecto__titulo { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 0.94; letter-spacing: -0.015em; }
+.proyecto__lema {
+  font-family: var(--cuerpo);
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
+  line-height: 1.55;
+  max-width: 46ch;
+  margin-top: 1.1rem;
+}
+.proyecto__lema em { font-style: normal; color: var(--acento); }
+
+/* ── La ficha vuelve a ser tabla, no línea ── */
+.spec {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0;
+  border: 1px solid var(--hair);
+  padding-top: 0;
+  margin-top: calc(var(--ritmo) * 1.6);
+}
+.spec > div { padding: 0.85rem 1rem; border-right: 1px solid var(--linea); background: var(--velo); }
+.spec > div:last-child { border-right: 0; }
+.spec dd { font-family: var(--mono); font-size: 0.8rem; color: var(--papel); }
+.spec > div:last-child dd { color: var(--acento); }
+
+/* ── Sin gestos de revista ── */
+.proyecto__cuerpo .parrafos p:first-child::first-letter {
+  font-family: inherit; float: none; font-size: inherit; line-height: inherit;
+  padding: 0; color: inherit;
+}
+.claves li { font-size: 0.9rem; }
+.perfil__titulo, .contacto__intro { font-style: normal; }
+.perfil__titulo .cursiva { font-style: italic; }
+
+/* Bajo el punto en que el margen se encoge, el folio no cabe fuera: entra en
+   el flujo. Es el mismo arreglo que lleva B. */
+@media (max-width: 1000px) {
+  .proyecto__indice { position: static; width: auto; text-align: left; display: block; margin-bottom: 0.7rem; }
+}
+
+
+/* ── Pase móvil ───────────────────────────────────────────────────────────
+   El criterio no es encoger: es decidir qué deja de tener sentido en 393 px.
+   Lo que se cae en pantalla estrecha son los gestos que dependen de márgenes
+   anchos —el folio fuera de la columna, las dos columnas de cuerpo— porque
+   ahí ya no comunican estructura, sólo aprietan el texto.
+   ─────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+  :root {
+    --margen: clamp(1.15rem, 5vw, 3rem);
+    --margen-dcho: var(--margen);
+    --ritmo: clamp(1rem, 3.5vw, 1.6rem);
+  }
+
+  /* El folio deja de caber fuera de la columna de texto: entra en el flujo. */
+  .proyecto__cabecera { position: relative; }
+  .proyecto__indice {
+    position: static; width: auto; text-align: left;
+    display: block; margin-bottom: 0.7rem;
+  }
+
+  .galeria { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .proyecto__cuerpo,
+  .perfil__rejilla { grid-template-columns: 1fr; gap: calc(var(--ritmo) * 1.6); }
+  .galeria { grid-template-columns: 1fr; gap: calc(var(--ritmo) * 1.4); }
+
+  /* Sin altura mínima de pantalla completa: en un móvil la barra del navegador
+     entra y sale, y esa reserva obliga a un scroll vacío. */
+  .portada { min-height: auto; padding-block: clamp(4.5rem, 16vh, 7rem); }
+  .portada__nombre { font-size: clamp(3rem, 17vw, 5.5rem); }
+  .portada__pitch { max-width: none; }
+  .portada__cifras { gap: 1.2rem 1.8rem; }
+  .portada__cifras b { font-size: 1.75rem; }
+  .portada__rol { letter-spacing: 0.22em; }
+
+  .proyecto, .perfil, .contacto { padding-block: clamp(3.5rem, 10vh, 5.5rem); }
+  .proyecto__titulo { font-size: clamp(2.1rem, 11vw, 3.4rem); line-height: 0.96; }
+  .proyecto__lema { font-size: 1.05rem; max-width: none; }
+
+  /* Colgada del h2 con transform, la etiqueta se salía de la línea del título. */
+  .etiqueta { display: inline-block; margin: 0.7rem 0 0; transform: none; }
+
+  .spec { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* Suelo de legibilidad: nada por debajo de ~11 px. En pantalla pequeña y a
+     un brazo de distancia, una etiqueta de 9 px deja de ser información. */
+  .spec dt,
+  .contacto__lista span,
+  .portada__cifras span { font-size: 0.7rem; }
+  .etiqueta { font-size: 0.68rem; }
+  .stack li { font-size: 0.68rem; }
+  .visor figcaption { font-size: 0.7rem; }
+  .claves li { font-size: 0.92rem; }
+
+  .contacto__correo { font-size: clamp(1.35rem, 7.5vw, 2.2rem); }
+  .contacto__lista { gap: 1.5rem; }
+  .perfil__titulo { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+}
+
+@media (max-width: 400px) {
+  .spec { grid-template-columns: 1fr; }
+  .portada__cifras { gap: 1rem 1.5rem; }
+  .stack li { font-size: 0.66rem; padding: 0.26rem 0.55rem; }
+}
+
+/* En un teléfono no hay hover: el desplazamiento al pasar por encima se queda
+   pegado tras el toque y se lee como un fallo de maquetación. */
+@media (hover: none) {
+  .visor:hover img { transform: none; }
+}
+
