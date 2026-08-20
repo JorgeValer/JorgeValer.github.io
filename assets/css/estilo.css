@@ -145,12 +145,23 @@ img { max-width: 100%; display: block; }
 }
 .portada__nombre {
   font-family: var(--display); font-weight: 400; margin: 0 0 0 -0.045em;
-  font-size: clamp(3.5rem, min(13vw, 19vh), 11rem); line-height: 0.86;
+  /* 0.86 dejaba las dos líneas pegadas: la g de "Jorge" tocaba la V de
+     "Valero". El aire perdido se recupera con el margen negativo de .mascara. */
+  font-size: clamp(3.5rem, min(13vw, 19vh), 11rem); line-height: 0.94;
   letter-spacing: -0.02em; display: grid;
 }
 .portada__nombre .cursiva { color: var(--acento); }
-.mascara { display: block; overflow: hidden; }
-.mascara > span { display: block; transform: translateY(105%); animation: subir 1.15s var(--curva) forwards; animation-delay: var(--retraso, 0ms); }
+
+/* Ventana del revelado. La J y la g de Instrument Serif bajan por debajo de la
+   caja de línea, así que con line-height ajustado el overflow:hidden les
+   cortaba la cola y la J se leía como una l. Se abre la ventana por abajo y se
+   recupera parte del espacio con margen negativo, para que el bloque siga
+   compacto sin recortar ningún glifo. */
+.mascara { display: block; overflow: hidden; padding-bottom: 0.22em; margin-bottom: -0.1em; }
+/* 130% y no 105%: el desplazamiento de partida tiene que despejar también el
+   relleno de la máscara, o el texto asoma por debajo antes de empezar a subir.
+   Todo va en em, así que la proporción se mantiene en cualquier tamaño. */
+.mascara > span { display: block; transform: translateY(130%); animation: subir 1.15s var(--curva) forwards; animation-delay: var(--retraso, 0ms); }
 @keyframes subir { to { transform: translateY(0); } }
 
 .portada__rol {
