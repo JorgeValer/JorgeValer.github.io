@@ -180,7 +180,12 @@ img { max-width: 100%; display: block; }
 .portada__cifras span { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--susurro); }
 
 .portada__bajar {
-  margin-top: clamp(1.5rem, 4.5vh, 3rem); display: inline-flex; align-items: center; gap: 0.9rem;
+  /* Medía 22 px de alto, por debajo del mínimo de 24 para pulsar con el dedo.
+     El relleno agranda la zona de toque y el margen reducido devuelve la
+     posición: crece el área pulsable, no se mueve la composición. */
+  padding-block: 0.4rem;
+  margin-top: calc(clamp(1.5rem, 4.5vh, 3rem) - 0.4rem);
+  display: inline-flex; align-items: center; gap: 0.9rem;
   text-decoration: none; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--papel-mate); width: fit-content; transition: color 300ms ease;
 }
@@ -304,7 +309,10 @@ img { max-width: 100%; display: block; }
 .contacto__lista { list-style: none; margin: calc(var(--ritmo) * 2.5) 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(2rem, 6vw, 6rem); }
 .contacto__lista li { display: grid; gap: 0.35rem; font-size: 0.92rem; color: var(--papel-mate); }
 .contacto__lista span { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--susurro); }
-.contacto__lista a { text-decoration: none; transition: color 300ms ease; }
+/* El teléfono es un enlace tel: — se pulsa desde el móvil, y ahí medía 24 px
+   justos. Mismo truco: relleno para la zona de toque, margen negativo para que
+   la lista no se descuadre. */
+.contacto__lista a { text-decoration: none; transition: color 300ms ease; padding-block: 0.4rem; margin-block: -0.4rem; }
 .contacto__lista a:hover { color: var(--acento); }
 .contacto__pie { margin: calc(var(--ritmo) * 3) 0 0; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--susurro); }
 
