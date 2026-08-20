@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "shots": "node scripts/shoot.mjs",
-    "serve": "npx --yes serve -l 4321 ."
+    "serve": "npx --yes serve -l 4321 .",
+    "auditar": "node scripts/auditar.mjs"
   },
   "dependencies": {
     "playwright": "^1.62.1",

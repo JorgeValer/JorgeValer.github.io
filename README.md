@@ -128,6 +128,7 @@ node scripts/shoot-iterum.mjs EA0BE2   # portal de cliente con un código
 node scripts/shoot.mjs                 # capturas sueltas por grupo
 node scripts/optimizar.mjs             # PNG -> WebP (1x y 2x)
 node scripts/revisar.mjs               # revisión visual del sitio + errores de consola
+npm run auditar                        # auditoría de composición (ver más abajo)
 ```
 
 Los puertos están al principio de cada script: hay que ajustarlos si levantas
@@ -136,13 +137,57 @@ una captura nueva, mételo ahí o no se convertirá.
 
 ## Notas de diseño
 
-- **Tipografía**: Instrument Serif (display) y JetBrains Mono (todo lo demás).
-  Vendorizadas en local, sin peticiones a CDN.
-- **Color**: un acento por proyecto (cian, violeta, jade, oro) que se rebinda
-  en `:root` al entrar cada sección en pantalla, así que la página entera
-  cambia de temperatura según por dónde vas.
+- **Tipografía**: Instrument Serif para el display y Georgia para el cuerpo de
+  texto; JetBrains Mono queda para metadatos, etiquetas y fichas de datos. El
+  cuerpo en mono ligero se leía a web de dev, no a portfolio profesional.
+  Instrument Serif y JetBrains Mono van vendorizadas en local, sin CDN.
+- **Composición**: márgenes anchos, el numeral de cada proyecto fuera de la
+  columna de texto como folio de revista, capturas sin marco y una ficha de
+  datos por proyecto (año, rol, superficie, estado).
+- **Color**: un acento por proyecto —Prometeo naranja, Nexus morado, Iterum
+  azul marino, Mesa de D&D oro— que además **tiñe el suelo de su sección**, así
+  que la página cambia de temperatura al bajar en vez de cambiar sólo cuatro
+  detalles. El acento vivo se promueve a `:root` desde JS, porque el raíl y la
+  barra de progreso viven fuera de las secciones y no lo heredarían.
+  Portada, perfil y contacto van en negro con el acento en hueso: no son
+  proyectos y no deben vestir el color de ninguno.
+- **El azul marino de Iterum**: un azul oscuro de verdad da ~2:1 de contraste
+  contra la tinta y no puede escribir. Por eso el color tiene dos papeles
+  separados: el tono oscuro tiñe el fondo, donde lo oscuro suma profundidad, y
+  el que escribe y subraya es una variante más brillante de la misma familia.
+  Los cuatro acentos pasan AA contra su propio fondo.
 - **Movimiento**: entrada escalonada en portada, revelado por
-  `IntersectionObserver`, y barrido de luz al pasar sobre una captura. Todo se
-  desactiva con `prefers-reduced-motion`.
+  `IntersectionObserver`. Todo se desactiva con `prefers-reduced-motion`, y el
+  desplazamiento al pasar sobre una captura también con `hover: none`, porque
+  en un teléfono se queda pegado tras el toque y parece un fallo.
 - **Contenido**: los textos salen de los README de cada proyecto y del CV; los
   datos de formación y contacto, del CV.
+
+## Auditoría de composición
+
+```bash
+npm run auditar                                    # cuatro anchos, con el sitio en :4321
+node scripts/auditar.mjs --anchos 393,1680         # sólo los que interesen
+node scripts/auditar.mjs --url https://otro/ --json
+```
+
+Busca los fallos que se ven mal pero no rompen nada, así que ninguna prueba
+normal los detecta: tinta recortada por un `overflow: hidden`, líneas apiladas
+cuyas letras se tocan, contraste por debajo de AA, imágenes recortadas por
+`object-fit`, capas fijas que tapan texto, zonas de toque por debajo de 24 px,
+texto por debajo de 10 px, desbordes horizontales y accesibilidad básica.
+
+Nació de un fallo real: la máscara del revelado recortaba la cola de la J del
+nombre y se leía como una l. Devuelve 0 si está limpio y 1 si hay fallos.
+
+**Por qué se autocomprueba**: antes de auditar inyecta un elemento con ese
+mismo fallo y verifica que salta. Un «cero hallazgos» de una sonda rota es
+indistinguible de una página limpia, y esa es justo la forma en la que una
+herramienta así deja de servir sin que nadie se entere. Si el cebo no se caza,
+sale con código 2 y no llega a auditar.
+
+Dos avisos si tocas la sonda: mide **tinta** con `measureText`, no la caja de
+`Range` —que incluye el hueco que la fuente reserva y no pinta, y da falsos
+positivos constantes—, y recorre los **descendientes** del elemento que
+recorta, porque en el fallo original quien recortaba era la máscara mientras el
+texto vivía en un `span` de dentro.
