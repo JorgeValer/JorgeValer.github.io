@@ -18,9 +18,6 @@ assets/shots/
 # desde index.html, el CSS ni el JS. Son 19 MB, el 85% del peso del repo.
 assets/shots-old/
 
-# Grafo de conocimiento: util en local, ruido en el repo publico.
-graphify-out/
-
 # Salida de scripts/revisar.mjs: capturas de la propia revision visual.
 revision/
 
