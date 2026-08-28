@@ -33,7 +33,16 @@ await pagina.goto('http://127.0.0.1:3000/', { waitUntil: 'domcontentloaded' });
 // El overlay de arranque se retira solo en cuanto falla el primer fetch a
 // /api/web/boot, que aquí no existe.
 await pagina.waitForTimeout(6000);
-const ARRASTRE = Number(process.env.ARRASTRE || 150);
+//: Sora ENTERO. Antes entraba un busto y lo que se veia era la cara, que
+//: es justo lo que peor sale del generador. Esta ademas se apoya en su
+//: base, asi que la rejilla del suelo no la atraviesa.
+const MALLA = process.env.MALLA || '8b0905d6a7ad6a8e';
+const PREGUNTA = process.env.PREGUNTA || 'Resume en dos frases que eres y que sabes hacer.';
+//: pares dx,dy de arrastre sobre el lienzo. Agumon entero ya viene en Z
+//: arriba, asi que por defecto no se gira nada.
+const GIROS = JSON.parse(process.env.GIROS || '[[0,-45]]');
+//: clics de rueda para alejar la camara tras cargar la malla.
+const ALEJAR = Number(process.env.ALEJAR ?? 0);
 const MEDIO_CICLO = 2850;   // media vuelta del ciclo de apertura del núcleo
 
 async function capturarPar(nombre) {
@@ -42,6 +51,16 @@ async function capturarPar(nombre) {
   await pagina.screenshot({ path: join(destino, `${nombre}-b.png`) });
   console.log(`✓ ${nombre} (a/b)`);
 }
+
+// El transcript guarda lo ultimo que se hablo con PROMETEO, y en la portada
+// salia una NEGATIVA de una prueba vieja ("no tengo acceso a las camaras").
+// Se limpia y se hace UNA pregunta de verdad por la interfaz, para que lo que
+// se vea sea el sistema respondiendo, no excusandose.
+await pagina.evaluate(() => document.getElementById('msgs')?.replaceChildren());
+await pagina.fill('#cmd', PREGUNTA);
+await pagina.keyboard.press('Enter');
+// La respuesta la da un modelo local; el p50 medido ronda los 8 s.
+await pagina.waitForTimeout(30000);
 
 await capturarPar('prometeo-inicio');
 
@@ -56,19 +75,31 @@ for (const modo of MODOS) {
     if (modo === '3d') {
       // Solo las fichas STL traen boton "Ver": el visor usa STLLoader y un
       // .3mf no lo carga. Por eso se busca el boton y no la tarjeta.
-      const ver = pagina.locator('.mod3d-tarjeta .mod3d-accion', { hasText: 'Ver' }).first();
+      // Se carga por id y no pulsando la primera tarjeta: la primera es un
+      // busto, y la CARA es justo lo que peor sale del generador. Aqui entra
+      // la figura entera, que es la que se imprimio.
       try {
-        await ver.click({ timeout: 8000 });
+        await pagina.evaluate(async (u) => {
+          window.Viewport3D.init();
+          window.Viewport3D.clear();
+          await window.Viewport3D.loadSTL([u]);
+        }, `/api/web/gen3d/modelo/${MALLA}`);
         await pagina.waitForTimeout(12000);  // cargar y encuadrar la malla
-      } catch { console.error('  (ninguna malla cargable en el visor)'); }
-      // La malla entra tumbada (el visor orienta por caja envolvente y en un
-      // busto con melena el fondo gana al alto). Un arrastre vertical sobre el
-      // lienzo gira la orbita hasta ponerla de frente.
-      // Dos arrastres, elegidos barriendo y mirando (scripts/_barrido3d.mjs):
-      // el vertical lleva la camara al polo, el horizontal rueda la cara hasta
-      // dejarla de frente. La malla sale tumbada porque el visor gira -90
-      // suponiendo STL en Z arriba y el exportador no fija convencion.
-      for (const [dx, dy] of [[0, 120], [120, 0]]) {
+      } catch { console.error('  (no se pudo cargar la malla)'); }
+      // Orientacion: el visor gira -90 dando por hecho STL en Z arriba, y el
+      // exportador NO fija convencion (hay mallas mas largas en X, en Y y en
+      // Z). Una que ya viene en Z arriba entra derecha y no hay que tocarla;
+      // una tumbada se endereza girando la orbita. Los arrastres se pasan por
+      // entorno para no cocinar en el guion el caso de una malla concreta.
+      // El encuadre automatico deja la figura entera demasiado cerca y le
+      // corta el cuerpo; unos clics de rueda la meten completa.
+      for (let i = 0; i < ALEJAR; i++) {
+        await pagina.mouse.move(808, 470);
+        await pagina.mouse.wheel(0, 240);
+        await pagina.waitForTimeout(250);
+      }
+      await pagina.waitForTimeout(800);
+      for (const [dx, dy] of GIROS) {
         await pagina.mouse.move(808, 470);
         await pagina.mouse.down();
         await pagina.mouse.move(808 + dx, 470 + dy, { steps: 16 });

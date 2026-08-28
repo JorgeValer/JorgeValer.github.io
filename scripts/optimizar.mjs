@@ -22,7 +22,6 @@ const INCLUIR = new Set([
   'iterum-proyecto', 'iterum-acceso',
   'dnd-galeria-mapas', 'dnd-previsualizacion-mapas', 'dnd-tablero',
   'dnd-master', 'dnd-mapas', 'dnd-home', 'dnd-personaje',
-  'vgcfantasy-liga',
 ]);
 
 const ANCHOS = [{ sufijo: '', ancho: 1400 }, { sufijo: '@2x', ancho: 2400 }];
