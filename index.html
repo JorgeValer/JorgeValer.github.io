@@ -22,6 +22,7 @@
     <li><a href="#nexus" data-rail="nexus"><span class="rail__num">02</span><span class="rail__nombre">Nexus</span></a></li>
     <li><a href="#iterum" data-rail="iterum"><span class="rail__num">03</span><span class="rail__nombre">Iterum</span></a></li>
     <li><a href="#mesa" data-rail="mesa"><span class="rail__num">04</span><span class="rail__nombre">Mesa de D&amp;D</span></a></li>
+    <li><a href="#vgcfantasy" data-rail="vgcfantasy"><span class="rail__num">05</span><span class="rail__nombre">VGCfantasy</span></a></li>
   </ul>
 </nav>
 
@@ -37,10 +38,10 @@
   </h1>
 
   <p class="portada__rol linea" style="--retraso:340ms">Ingeniero de software</p>
-  <p class="portada__pitch linea" style="--retraso:440ms">Especializado en <em>datos e inteligencia artificial</em>. Construyo sistemas que corren enteros en local: asistentes de voz, orquestadores de agentes y generadores con modelos propios. Cuatro de ellos están más abajo, con capturas de las aplicaciones reales funcionando.</p>
+  <p class="portada__pitch linea" style="--retraso:440ms">Especializado en <em>datos e inteligencia artificial</em>. Construyo sistemas que corren enteros en local: asistentes de voz, orquestadores de agentes y generadores con modelos propios. Cinco de ellos están más abajo, con capturas de las aplicaciones reales funcionando.</p>
 
   <ul class="portada__cifras linea" style="--retraso:560ms">
-    <li><b>4</b><span>proyectos</span></li>
+    <li><b>5</b><span>proyectos</span></li>
     <li><b>2026</b><span>Grado U-tad</span></li>
     <li><b>C1</b><span>inglés</span></li>
     <li><b>100%</b><span>local-first</span></li>
@@ -58,6 +59,7 @@
     <li style="--c:#a97bff"><a href="#nexus"><span>02</span><b>Nexus</b><em>Plataforma multi-agente</em></a></li>
     <li style="--c:#5c9bff"><a href="#iterum"><span>03</span><b>Iterum</b><em>Gestión de proyectos con IA</em></a></li>
     <li style="--c:#e8b33d"><a href="#mesa"><span>04</span><b>Mesa de D&amp;D</b><em>Rol en red local</em></a></li>
+    <li style="--c:#f5c518"><a href="#vgcfantasy"><span>05</span><b>VGCfantasy</b><em>Fantasy sobre resultados reales</em></a></li>
   </ol>
 </header>
 
@@ -471,6 +473,58 @@
              alt="Menú principal de la mesa con tres tarjetas: crear personaje, dungeon master y unirse a la partida.">
         <figcaption>Tres puertas de entrada.</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="proyecto" id="vgcfantasy" data-acento data-rail-id="vgcfantasy"
+           style="--acento-base:#f5c518;--tinte-base:#0d1030">
+
+    <div class="proyecto__cabecera revelar">
+      <span class="proyecto__indice" aria-hidden="true">05</span>
+      <div class="proyecto__id">
+        <h2 class="proyecto__titulo">VGCfantasy <span class="etiqueta">Prototipo jugable</span></h2>
+        <p class="proyecto__lema">Un fantasy deportivo sobre torneos que <em>ya se jugaron</em>.</p>
+      </div>
+    </div>
+
+    <dl class="spec revelar">
+      <div><dt>Año</dt><dd>2026</dd></div>
+      <div><dt>Rol</dt><dd>Diseño y desarrollo</dd></div>
+      <div><dt>Fichas</dt><dd>208 criaturas · 225 entrenadores</dd></div>
+      <div><dt>Tests</dt><dd>197 en verde</dd></div>
+      <div><dt>Estado</dt><dd>Prototipo jugable</dd></div>
+    </dl>
+
+      <figure class="visor visor--hero revelar" data-lightbox="assets/img/vgcfantasy-liga@2x.webp">
+        <img src="assets/img/vgcfantasy-liga.webp"
+             srcset="assets/img/vgcfantasy-liga.webp 1400w, assets/img/vgcfantasy-liga@2x.webp 2400w"
+             sizes="(max-width: 1100px) 100vw, 1200px"
+             width="1400" height="875" loading="lazy" decoding="async"
+             alt="VGCfantasy en tres pantallas de teléfono: la lista de ligas con sus códigos de invitación, la clasificación de los cinco participantes con su saldo, y el chat de la liga.">
+        <figcaption>Tres pantallas de la liga — alta por código de invitación, clasificación con el saldo de cada plantilla, y el chat donde se cierra el mercado.</figcaption>
+      </figure>
+
+    <div class="proyecto__cuerpo">
+      <div class="columna">
+        <div class="parrafos revelar">
+          <p>Un fantasy al estilo de los de fútbol, pero sobre torneos reales de un juego competitivo por equipos: fichas criaturas y entrenadores con moneda virtual, los alineas cada jornada, y puntúan según lo que hicieron de verdad en el Internacional de Norteamérica 2026. No hay combates simulados — es gestión de plantilla y mercado sobre resultados que ya ocurrieron.</p>
+          <p>Arranca recién clonado sin configurar nada: guarda la partida en el navegador. Con credenciales de Supabase la misma aplicación pasa a ligas entre varias personas, y ahí lo que protege los datos es RLS en la base, no esconder la clave pública.</p>
+          <p>La decisión de diseño que más cambia el juego es que el precio sale del <em>uso</em>, no del poder: el uso en el Top 64 pesa cuatro veces más que las estadísticas. En un fantasy lo que importa es lo que la gente jugó, no lo que en teoría es bueno.</p>
+        </div>
+        <div class="revelar"><ul class="stack"><li>React</li><li>Vite</li><li>React Router</li><li>Supabase</li><li>PostgreSQL RLS</li><li>Vitest</li><li>oxlint</li></ul></div>
+      </div>
+      <ul class="claves revelar">
+        <li><b>Los roles se calculan, no se asignan</b>salen de percentiles dentro del propio grupo de fichas, así que cada regulación nueva se reequilibra sola en vez de pedir revisar 200 fichas a mano.</li>
+        <li><b>Dos monedas con reglas opuestas</b>una se genera cada jornada y la otra no se genera nunca; esa segunda es la que hace que una compra instantánea duela.</li>
+        <li><b>Una jornada es un día de torneo</b>no una ronda: dos días de suizo y el corte final.</li>
+        <li><b>Propiedad exclusiva por liga</b>cada ficha tiene un solo dueño, y las evoluciones no son un activo aparte.</li>
+        <li><b>Sin servidor por defecto</b>localStorage recién clonado; Supabase solo si quieres liga compartida.</li>
+        <li><b>197 tests en verde</b>sobre la economía, el motor de puntuación y el repositorio de datos.</li>
+      </ul>
+    </div>
+
+    <div class="galeria">
+      
     </div>
   </section>
 

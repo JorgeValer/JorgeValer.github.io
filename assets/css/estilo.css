@@ -403,7 +403,7 @@ img { max-width: 100%; display: block; }
   color: var(--acento);
   -webkit-text-stroke: 0;
 }
-.proyecto__indice::after { content: " / 04"; color: var(--susurro); }
+.proyecto__indice::after { content: " / 05"; color: var(--susurro); }
 
 /* ── Escala del titular y del lema ── */
 .proyecto__titulo { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 0.94; letter-spacing: -0.015em; }
