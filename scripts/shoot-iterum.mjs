@@ -5,13 +5,17 @@ import { fileURLToPath } from 'node:url';
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const destino = join(raiz, 'assets', 'shots');
-const PORTAL = 'http://localhost:5176';
+const PORTAL = 'http://localhost:5173';
 const CODIGO = process.argv[2] ?? '1E3AA7';
 
 const navegador = await chromium.launch();
 const contexto = await navegador.newContext({
-  viewport: { width: 1600, height: 1000 },
-  deviceScaleFactor: 2,
+  // El portal centra una columna de ancho fijo: a 1600 px de viewport la
+  // captura salia medio vacia. Un lienzo mas estrecho da la MISMA imagen final
+  // de 3200x2000 (el 8:5 que pide la rejilla del portfolio) con la columna
+  // ocupando bastante mas.
+  viewport: { width: 1200, height: 750 },
+  deviceScaleFactor: 8 / 3,
   colorScheme: 'dark',
 });
 const pagina = await contexto.newPage();
