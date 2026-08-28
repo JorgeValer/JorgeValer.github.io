@@ -33,10 +33,14 @@ await pagina.goto('http://127.0.0.1:3000/', { waitUntil: 'domcontentloaded' });
 // El overlay de arranque se retira solo en cuanto falla el primer fetch a
 // /api/web/boot, que aquí no existe.
 await pagina.waitForTimeout(6000);
-//: Sora ENTERO. Antes entraba un busto y lo que se veia era la cara, que
-//: es justo lo que peor sale del generador. Esta ademas se apoya en su
-//: base, asi que la rejilla del suelo no la atraviesa.
-const MALLA = process.env.MALLA || '8b0905d6a7ad6a8e';
+//: Goku ENTERO (goku_entero_mv_o320_p50_s12345, 692.994 caras), exportado a
+//: STL en Z arriba con `a_z_arriba` para que el visor no lo tumbe. Es el unico
+//: Goku que es figura completa: los demas son bustos donde lo grande de la
+//: imagen es la cara, que es justo lo que peor sale del generador.
+//: Vive en Goku/entero/ y no en la raiz del proyecto a proposito: el listado
+//: reparte a vueltas entre carpetas con un tope de 2 por carpeta, y en la raiz
+//: hay un .ply que se reescribe solo y se queda siempre con el hueco.
+const MALLA = process.env.MALLA || '361275be21809280';
 const PREGUNTA = process.env.PREGUNTA || 'Resume en dos frases que eres y que sabes hacer.';
 //: pares dx,dy de arrastre sobre el lienzo. Agumon entero ya viene en Z
 //: arriba, asi que por defecto no se gira nada.
@@ -78,6 +82,9 @@ for (const modo of MODOS) {
       // Se carga por id y no pulsando la primera tarjeta: la primera es un
       // busto, y la CARA es justo lo que peor sale del generador. Aqui entra
       // la figura entera, que es la que se imprimio.
+      // El visor se instancia al entrar en el modo, no al cargar la pagina:
+      // sin esperarlo, `window.Viewport3D` puede no existir todavia.
+      await pagina.waitForFunction(() => !!window.Viewport3D, null, { timeout: 20000 });
       try {
         await pagina.evaluate(async (u) => {
           window.Viewport3D.init();
@@ -85,7 +92,7 @@ for (const modo of MODOS) {
           await window.Viewport3D.loadSTL([u]);
         }, `/api/web/gen3d/modelo/${MALLA}`);
         await pagina.waitForTimeout(12000);  // cargar y encuadrar la malla
-      } catch { console.error('  (no se pudo cargar la malla)'); }
+      } catch (e) { console.error('  (no se pudo cargar la malla):', String(e).slice(0, 160)); }
       // Orientacion: el visor gira -90 dando por hecho STL en Z arriba, y el
       // exportador NO fija convencion (hay mallas mas largas en X, en Y y en
       // Z). Una que ya viene en Z arriba entra derecha y no hay que tocarla;
