@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const destino = join(raiz, 'assets', 'shots');
-const BASE = 'http://localhost:3011';
+const BASE = 'http://localhost:3010';   // server.js escucha en 3010 (PORT), no 3011
 
 // Identificadores de sesión de la mesa. Fuera del fichero a propósito: este
 // repo se publica en GitHub Pages, y un token de sesión commiteado sigue

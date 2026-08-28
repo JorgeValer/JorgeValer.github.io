@@ -14,11 +14,11 @@ const archivo = (p) => pathToFileURL(join(PROYECTOS, p)).href;
 
 const GRUPOS = {
   dnd: [
-    { id: 'dnd-home', url: 'http://localhost:3011/' },
-    { id: 'dnd-mapa', url: 'http://localhost:3011/mapa' },
-    { id: 'dnd-master', url: 'http://localhost:3011/master' },
-    { id: 'dnd-crear-personaje', url: 'http://localhost:3011/personajes/crear' },
-    { id: 'dnd-mis-personajes', url: 'http://localhost:3011/mis-personajes' },
+    { id: 'dnd-home', url: 'http://localhost:3010/' },
+    { id: 'dnd-mapa', url: 'http://localhost:3010/mapa' },
+    { id: 'dnd-master', url: 'http://localhost:3010/master' },
+    { id: 'dnd-crear-personaje', url: 'http://localhost:3010/personajes/crear' },
+    { id: 'dnd-mis-personajes', url: 'http://localhost:3010/mis-personajes' },
     { id: 'dnd-galeria-mapas', url: archivo('dnd/galeria-mapas.html') },
     { id: 'dnd-previsualizacion-mapas', url: archivo('dnd/previsualizacion-mapas.html') },
   ],
