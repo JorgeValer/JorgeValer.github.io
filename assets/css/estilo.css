@@ -249,7 +249,7 @@ img { max-width: 100%; display: block; }
 .claves li { padding: 0.8rem 0; border-top: 1px solid var(--linea); font-size: 0.92rem; color: var(--papel-mate); transition: border-color 400ms ease, color 300ms ease; }
 .claves li:last-child { border-bottom: 1px solid var(--linea); }
 .claves li:hover { color: var(--papel); border-top-color: color-mix(in oklab, transparent, var(--acento) 50%); }
-.claves b { display: block; color: var(--papel); font-weight: 700; letter-spacing: 0.01em; }
+.claves b { display: block; color: var(--acento); font-weight: 700; letter-spacing: 0.01em; }
 
 .stack { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .stack li {
@@ -264,13 +264,48 @@ img { max-width: 100%; display: block; }
 .visor { margin: 0; position: relative; cursor: zoom-in; }
 .visor img {
   width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; object-position: top center;
-  border: 1px solid var(--linea); background: var(--velo);
-  transition: border-color 500ms ease, transform 700ms var(--curva);
+  border: 1px solid color-mix(in oklab, var(--linea), var(--acento) 28%);
+  border-radius: 3px; background: var(--velo);
+  box-shadow: 0 1.4rem 3rem -1.6rem rgba(0, 0, 0, 0.95);
+  transition: border-color 500ms ease, box-shadow 500ms ease, transform 700ms var(--curva);
 }
-.visor:hover img { border-color: color-mix(in oklab, transparent, var(--acento) 45%); transform: translateY(-4px); }
+.visor:hover img {
+  border-color: color-mix(in oklab, transparent, var(--acento) 60%);
+  box-shadow: 0 1.8rem 3.4rem -1.4rem rgba(0, 0, 0, 0.95),
+              0 0 0 1px color-mix(in oklab, transparent, var(--acento) 18%);
+  transform: translateY(-4px);
+}
 .visor figcaption { margin-top: 0.9rem; font-family: var(--mono); font-size: 0.68rem; line-height: 1.6; color: var(--susurro); max-width: 62ch; }
 
 .galeria { margin-top: calc(var(--ritmo) * 1.5); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: clamp(1rem, 2.5vw, 2rem); }
+
+/* ── CV ──────────────────────────────────────────────────────────────────
+   Lo único de la página que pide ser pulsado, así que es lo único relleno de
+   color. El resto de enlaces son texto con subrayado o cambio de tinta: si
+   esto fuera igual, no se distinguiría de ellos. */
+.cv {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.75rem 1.25rem; border-radius: 2px;
+  border: 1px solid color-mix(in oklab, transparent, var(--acento) 55%);
+  background: color-mix(in oklab, transparent, var(--acento) 10%);
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; text-decoration: none; color: var(--acento);
+  transition: background 320ms ease, border-color 320ms ease, color 320ms ease, transform 320ms var(--curva);
+}
+.cv svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cv:hover, .cv:focus-visible {
+  background: var(--acento); color: var(--tinta);
+  border-color: var(--acento); transform: translateY(-2px);
+}
+/* La flecha baja al pasar por encima: el gesto del propio botón. */
+.cv:hover svg { animation: bajar 900ms ease-in-out infinite; }
+@keyframes bajar { 50% { transform: translateY(3px); } }
+
+/* Alineados por la línea de texto, no por la caja: "ver el trabajo" lleva
+   debajo una flecha de 40 px que, centrada, dejaba los dos rótulos a distinta
+   altura. */
+.portada__acciones { display: flex; flex-wrap: wrap; align-items: baseline; gap: clamp(1.2rem, 3vw, 2.4rem); }
+.contacto__acciones { margin: calc(var(--ritmo) * 2.5) 0 0; }
 
 /* ── Perfil ──────────────────────────────────────────────────────────── */
 .perfil { padding: clamp(5rem, 14vh, 11rem) var(--margen-dcho) clamp(5rem, 14vh, 11rem) var(--margen); border-top: 1px solid var(--linea); }
@@ -326,7 +361,11 @@ img { max-width: 100%; display: block; }
 .lupa__cerrar:hover { border-color: var(--acento); color: var(--acento); }
 
 /* ── Revelado ────────────────────────────────────────────────────────── */
-.revelar { opacity: 0; transform: translateY(2rem); transition: opacity 900ms var(--curva), transform 900ms var(--curva); }
+.revelar {
+  opacity: 0; transform: translateY(1.4rem);
+  transition: opacity 620ms var(--curva), transform 620ms var(--curva);
+  transition-delay: var(--retraso, 0ms);
+}
 .revelar.dentro { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -334,6 +373,8 @@ img { max-width: 100%; display: block; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .revelar, .linea, .mascara > span { opacity: 1; transform: none; }
   .visor:hover img { transform: none; }
+  .cv:hover { transform: none; }
+  .cv:hover svg { animation: none; }
 }
 
 
@@ -519,4 +560,53 @@ img { max-width: 100%; display: block; }
 @media (hover: none) {
   .visor:hover img { transform: none; }
 }
+
+
+/* ── Botón de idioma ──────────────────────────────────────────────────────
+   Arriba a la derecha y fijo, para que esté a mano en cualquier punto del
+   scroll. Toma el acento de la sección en la que estés —main.js promueve ese
+   color a la raíz— así que cambia de temperatura con la página en vez de ser
+   una pieza pegada encima.
+
+   Sólo existe en la página publicada: las maquetas de revision/v no lo llevan.
+   ─────────────────────────────────────────────────────────────────────── */
+
+.idioma {
+  position: fixed;
+  top: clamp(0.9rem, 2vw, 1.6rem);
+  right: clamp(1rem, 2.5vw, 2.5rem);
+  z-index: 120;
+
+  padding: 0.5rem 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+
+  color: var(--papel-mate);
+  background: color-mix(in oklab, var(--tinta) 72%, transparent);
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: color 300ms ease, border-color 300ms ease, background 300ms ease;
+}
+
+.idioma:hover,
+.idioma:focus-visible {
+  color: var(--acento);
+  border-color: var(--hair);
+  background: color-mix(in oklab, var(--tinta) 88%, transparent);
+}
+
+/* El raíl vive en el borde derecho a media altura y el botón arriba del todo,
+   así que no se pisan; en pantalla corta se aprieta el botón, no el raíl. */
+@media (max-width: 720px) {
+  .idioma { padding: 0.42rem 0.7rem; font-size: 0.64rem; letter-spacing: 0.1em; }
+}
+
+/* Sin JavaScript no hay cambio de idioma posible: el botón sale con el
+   atributo hidden y es el propio script quien se lo quita. */
 

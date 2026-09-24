@@ -14,14 +14,19 @@
 
 <div class="grano" aria-hidden="true"></div>
 <div class="progreso" aria-hidden="true"><span class="progreso__barra"></span></div>
-<a class="saltar" href="#proyectos">Saltar al trabajo</a>
+<a class="saltar" href="#proyectos" data-en="Skip to the work">Saltar al trabajo</a>
 
-<nav class="rail" aria-label="Índice de proyectos">
+<!-- Sale oculto: sin JavaScript no hay cambio de idioma que ofrecer, y el
+     propio script es quien lo destapa. -->
+<button class="idioma" id="idioma" type="button" lang="en"
+        aria-label="Read this portfolio in English" hidden>English</button>
+
+<nav class="rail" aria-label="Índice de proyectos" data-en-aria="Project index">
   <ul class="rail__lista">
-    <li><a href="#prometeo" data-rail="prometeo"><span class="rail__num">01</span><span class="rail__nombre">Prometeo</span></a></li>
-    <li><a href="#nexus" data-rail="nexus"><span class="rail__num">02</span><span class="rail__nombre">Nexus</span></a></li>
-    <li><a href="#iterum" data-rail="iterum"><span class="rail__num">03</span><span class="rail__nombre">Iterum</span></a></li>
-    <li><a href="#mesa" data-rail="mesa"><span class="rail__num">04</span><span class="rail__nombre">Mesa de D&amp;D</span></a></li>
+    <li><a href="#prometeo" data-rail="prometeo"><span class="rail__num">01</span><span class="rail__nombre" data-en="Prometeo">Prometeo</span></a></li>
+    <li><a href="#nexus" data-rail="nexus"><span class="rail__num">02</span><span class="rail__nombre" data-en="Nexus">Nexus</span></a></li>
+    <li><a href="#iterum" data-rail="iterum"><span class="rail__num">03</span><span class="rail__nombre" data-en="Iterum">Iterum</span></a></li>
+    <li><a href="#mesa" data-rail="mesa"><span class="rail__num">04</span><span class="rail__nombre" data-en="D&amp;amp;D Table">Mesa de D&amp;D</span></a></li>
   </ul>
 </nav>
 
@@ -29,35 +34,42 @@
         style="--acento-base:#e9e5dd;--tinte-base:#08080a">
   <div class="portada__malla" aria-hidden="true"></div>
 
-  <p class="portada__meta linea" style="--retraso:0ms"><span class="punto"></span> Valdemoro, Madrid · disponible</p>
+  <p class="portada__meta linea" style="--retraso:0ms" data-en="<span class=&quot;punto&quot;></span> Valdemoro, Madrid · open to work"><span class="punto"></span> Valdemoro, Madrid · disponible</p>
 
   <h1 class="portada__nombre">
     <span class="mascara linea" style="--retraso:120ms"><span>Jorge</span></span>
     <span class="mascara linea" style="--retraso:220ms"><span class="cursiva">Valero</span></span>
   </h1>
 
-  <p class="portada__rol linea" style="--retraso:340ms">Ingeniero de software</p>
-  <p class="portada__pitch linea" style="--retraso:440ms">Especializado en <em>datos e inteligencia artificial</em>. Construyo sistemas que corren enteros en local: asistentes de voz, orquestadores de agentes y generadores con modelos propios. Cuatro de ellos están más abajo, con capturas de las aplicaciones reales funcionando.</p>
+  <p class="portada__rol linea" style="--retraso:340ms" data-en="Software engineer">Ingeniero de software</p>
+  <p class="portada__pitch linea" style="--retraso:440ms" data-en="Focused on <em>data and artificial intelligence</em>. I build systems that run end to end on your own hardware: voice assistants, agent orchestrators and generators driven by models I train myself. Four of them are below, with screenshots of the real applications running.">Especializado en <em>datos e inteligencia artificial</em>. Construyo sistemas que corren enteros en local: asistentes de voz, orquestadores de agentes y generadores con modelos propios. Cuatro de ellos están más abajo, con capturas de las aplicaciones reales funcionando.</p>
 
   <ul class="portada__cifras linea" style="--retraso:560ms">
-    <li><b>4</b><span>proyectos</span></li>
-    <li><b>2026</b><span>Grado U-tad</span></li>
-    <li><b>C1</b><span>inglés</span></li>
-    <li><b>100%</b><span>local-first</span></li>
+    <li data-en="<b>4</b><span>projects</span>"><b>4</b><span>proyectos</span></li>
+    <li data-en="<b>2026</b><span>U-tad degree</span>"><b>2026</b><span>Grado U-tad</span></li>
+    <li data-en="<b>C1</b><span>English</span>"><b>C1</b><span>inglés</span></li>
+    <li data-en="<b>100%</b><span>local-first</span>"><b>100%</b><span>local-first</span></li>
   </ul>
 
-  <a class="portada__bajar linea" href="#prometeo" style="--retraso:680ms">
-    <span>Ver el trabajo</span>
-    <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 0v34M4 26l8 8 8-8"/></svg>
-  </a>
+  <div class="portada__acciones linea" style="--retraso:680ms">
+    <a class="portada__bajar" href="#prometeo">
+      <span data-en="See the work">Ver el trabajo</span>
+      <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 0v34M4 26l8 8 8-8"/></svg>
+    </a>
+    <a class="cv cv--portada" href="assets/cv/CV_Jorge_Valero.pdf" data-en-href="assets/cv/CV_Jorge_Valero_EN.pdf" download
+        aria-label="Descargar el CV de Jorge Valero en PDF" data-en-aria="Download the CV of Jorge Valero as a PDF">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M6.5 10.5 12 16l5.5-5.5M4 20h16"/></svg>
+        <span data-en="Download CV">Descargar CV</span>
+      </a>
+  </div>
 
   <!-- El índice adelantado es el único sitio de la portada donde asoman los
        cuatro colores: cada proyecto conserva el suyo, el resto va en negro. -->
   <ol class="portada__indice linea" style="--retraso:780ms">
-    <li style="--c:#ff7a2f"><a href="#prometeo"><span>01</span><b>Prometeo</b><em>Asistente de voz 100 % local</em></a></li>
-    <li style="--c:#a97bff"><a href="#nexus"><span>02</span><b>Nexus</b><em>Plataforma multi-agente</em></a></li>
-    <li style="--c:#5c9bff"><a href="#iterum"><span>03</span><b>Iterum</b><em>Gestión de proyectos con IA</em></a></li>
-    <li style="--c:#e8b33d"><a href="#mesa"><span>04</span><b>Mesa de D&amp;D</b><em>Rol en red local</em></a></li>
+    <li style="--c:#ff7a2f"><a href="#prometeo" data-en="<span>01</span><b>Prometeo</b><em>100% local voice assistant</em>"><span>01</span><b>Prometeo</b><em>Asistente de voz 100 % local</em></a></li>
+    <li style="--c:#a97bff"><a href="#nexus" data-en="<span>02</span><b>Nexus</b><em>Multi-agent platform</em>"><span>02</span><b>Nexus</b><em>Plataforma multi-agente</em></a></li>
+    <li style="--c:#5c9bff"><a href="#iterum" data-en="<span>03</span><b>Iterum</b><em>AI project management</em>"><span>03</span><b>Iterum</b><em>Gestión de proyectos con IA</em></a></li>
+    <li style="--c:#e8b33d"><a href="#mesa" data-en="<span>04</span><b>D&amp;amp;D Table</b><em>Role-playing over LAN</em>"><span>04</span><b>Mesa de D&amp;D</b><em>Rol en red local</em></a></li>
   </ol>
 </header>
 
@@ -69,17 +81,17 @@
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">01</span>
       <div class="proyecto__id">
-        <h2 class="proyecto__titulo">Prometeo <span class="etiqueta">En desarrollo temprano</span></h2>
-        <p class="proyecto__lema">Un asistente de voz que corre <em>entero</em> en tu máquina.</p>
+        <h2 class="proyecto__titulo" data-en="Prometeo <span class=&quot;etiqueta&quot;>Early development</span>">Prometeo <span class="etiqueta">En desarrollo temprano</span></h2>
+        <p class="proyecto__lema" data-en="A voice assistant that runs <em>entirely</em> on your own machine.">Un asistente de voz que corre <em>entero</em> en tu máquina.</p>
       </div>
     </div>
 
     <dl class="spec revelar">
-      <div><dt>Año</dt><dd>2025 — hoy</dd></div>
-      <div><dt>Rol</dt><dd>Diseño y desarrollo</dd></div>
-      <div><dt>Superficie</dt><dd>7 modos</dd></div>
-      <div><dt>Servidores MCP</dt><dd>6</dd></div>
-      <div><dt>Estado</dt><dd>Activo</dd></div>
+      <div><dt data-en="Year">Año</dt><dd data-en="2025 — present">2025 — hoy</dd></div>
+      <div><dt data-en="Role">Rol</dt><dd data-en="Design and development">Diseño y desarrollo</dd></div>
+      <div><dt data-en="Scope">Superficie</dt><dd data-en="7 modes">7 modos</dd></div>
+      <div><dt data-en="MCP servers">Servidores MCP</dt><dd data-en="6">6</dd></div>
+      <div><dt data-en="Status">Estado</dt><dd data-en="Active">Activo</dd></div>
     </dl>
 
       <figure class="visor visor--hero revelar" data-lightbox="assets/img/prometeo-inicio@2x.webp">
@@ -87,28 +99,28 @@
              srcset="assets/img/prometeo-inicio.webp 1400w, assets/img/prometeo-inicio@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Interfaz de PROMETEO: en el centro un núcleo 3D con forma de diamante facetado naranja, partido en placas separadas con textura de circuito, rodeado de tarjetas de telemetría y con paneles laterales de modos, agentes, memoria y herramientas.">
-        <figcaption>Neural Command Interface — el núcleo se abre y se cierra soltando descargas por las juntas, con los agentes Planner/Executor/Critic y el estado de memoria en vivo.</figcaption>
+             alt="Interfaz de PROMETEO: en el centro un núcleo 3D con forma de diamante facetado naranja, partido en placas separadas con textura de circuito, rodeado de tarjetas de telemetría y con paneles laterales de modos, agentes, memoria y herramientas." data-en-alt="The PROMETEO interface: at the center, a 3D core shaped like a faceted orange diamond, split into separate plates with a circuit texture, ringed by telemetry cards, with side panels for modes, agents, memory and tools.">
+        <figcaption data-en="Neural Command Interface — the core opens and closes, throwing sparks across the seams, with the Planner/Executor/Critic agents and the state of memory live.">Neural Command Interface — el núcleo se abre y se cierra soltando descargas por las juntas, con los agentes Planner/Executor/Critic y el estado de memoria en vivo.</figcaption>
       </figure>
 
     <div class="proyecto__cuerpo">
       <div class="columna">
         <div class="parrafos revelar">
-          <p>Asistente personal completo —wake word, voz, memoria y herramientas— sin una sola llamada a un servicio de pago. El modelo es Ollama en local, la transcripción es Whisper, la voz es Piper y la memoria vive en ChromaDB sobre disco. Nada sale de la máquina y no hay telemetría.</p>
-          <p>Por encima del modelo hay un sistema multi-agente que descompone la petición (Planner), la ejecuta (Executor) y valida el resultado (Critic), con reintentos cuando la calidad no da la talla.</p>
+          <p data-en="A complete personal assistant — wake word, speech, memory and tools — without a single call to a paid service. The model is Ollama running locally, transcription is Whisper, the voice is Piper, and the memory lives in ChromaDB on disk. Nothing leaves the machine, and there is no telemetry.">Asistente personal completo —wake word, voz, memoria y herramientas— sin una sola llamada a un servicio de pago. El modelo es Ollama en local, la transcripción es Whisper, la voz es Piper y la memoria vive en ChromaDB sobre disco. Nada sale de la máquina y no hay telemetría.</p>
+          <p data-en="On top of the model sits a multi-agent system that breaks the request down (Planner), carries it out (Executor) and checks the result (Critic), retrying whenever the quality falls short.">Por encima del modelo hay un sistema multi-agente que descompone la petición (Planner), la ejecuta (Executor) y valida el resultado (Critic), con reintentos cuando la calidad no da la talla.</p>
         </div>
-        <div class="revelar"><ul class="stack"><li>Python</li><li>Ollama</li><li>Whisper</li><li>ChromaDB</li><li>Piper TTS</li><li>aiohttp</li><li>MCP</li><li>Docker</li><li>TRELLIS</li><li>Three.js</li><li>Oracle Cloud</li></ul></div>
+        <div class="revelar"><ul class="stack"><li class="revelar">Python</li><li class="revelar">Ollama</li><li class="revelar">Whisper</li><li class="revelar">ChromaDB</li><li class="revelar">Piper TTS</li><li class="revelar">aiohttp</li><li class="revelar">MCP</li><li class="revelar">Docker</li><li class="revelar">TRELLIS</li><li class="revelar">Three.js</li><li class="revelar">Oracle Cloud</li></ul></div>
       </div>
-      <ul class="claves revelar">
-        <li><b>Multi-agente</b>Planner · Executor · Critic con bucle de reintento por calidad.</li>
-        <li><b>RAG con aprendizaje continuo</b>y feedback loop sobre SQLite + ChromaDB.</li>
-        <li><b>6 servidores MCP</b>filesystem, git, base de datos, memoria, búsqueda y seguridad.</li>
-        <li><b>Generación 3D paramétrica</b>con exportación STL validada para impresión.</li>
-        <li><b>Malla 3D a partir de imágenes</b>TRELLIS en contenedor, alimentado con tres vistas ortogonales en vez de una. El experimento controlado contra la vista única salió más rápido y con mejor fidelidad de grosor.</li>
-        <li><b>Sandbox propio para el código que escribe el modelo</b>dos niveles reales —contenedor sin red ni disco, o proceso acotado por job object— y el resultado declara siempre cuál de los dos corrió.</li>
-        <li><b>WhatsApp</b>con texto y notas de voz, sesión persistente vía Baileys.</li>
-        <li><b>AES-256-GCM</b>rate limiting, sanitización de entradas y auditoría de acciones.</li>
-        <li><b>Grafo de conocimiento propio</b>14.889 nodos que enlazan las notas del segundo cerebro con el código de siete proyectos, navegable en 3D desde la propia interfaz.</li>
+      <ul class="claves">
+        <li class="revelar" data-en="<b>Multi-agent</b>Planner · Executor · Critic, with a retry loop driven by quality."><b>Multi-agente</b>Planner · Executor · Critic con bucle de reintento por calidad.</li>
+        <li class="revelar" data-en="<b>RAG with continuous learning</b>and a feedback loop over SQLite + ChromaDB."><b>RAG con aprendizaje continuo</b>y feedback loop sobre SQLite + ChromaDB.</li>
+        <li class="revelar" data-en="<b>Six MCP servers</b>filesystem, git, database, memory, search and security."><b>6 servidores MCP</b>filesystem, git, base de datos, memoria, búsqueda y seguridad.</li>
+        <li class="revelar" data-en="<b>Parametric 3D generation</b>with STL export validated for printing."><b>Generación 3D paramétrica</b>con exportación STL validada para impresión.</li>
+        <li class="revelar" data-en="<b>3D mesh from photographs</b>TRELLIS in a container, fed three orthogonal views instead of one. Run as a controlled experiment against the single-view baseline, it came out faster and truer to thickness."><b>Malla 3D a partir de imágenes</b>TRELLIS en contenedor, alimentado con tres vistas ortogonales en vez de una. El experimento controlado contra la vista única salió más rápido y con mejor fidelidad de grosor.</li>
+        <li class="revelar" data-en="<b>A sandbox of its own for the code the model writes</b>two real levels — a container with no network and no disk, or a process fenced in by a job object — and the result always states which of the two it actually ran under."><b>Sandbox propio para el código que escribe el modelo</b>dos niveles reales —contenedor sin red ni disco, o proceso acotado por job object— y el resultado declara siempre cuál de los dos corrió.</li>
+        <li class="revelar" data-en="<b>WhatsApp</b>text and voice notes, with a persistent session through Baileys."><b>WhatsApp</b>con texto y notas de voz, sesión persistente vía Baileys.</li>
+        <li class="revelar" data-en="<b>AES-256-GCM</b>rate limiting, input sanitization and an audit trail for every action."><b>AES-256-GCM</b>rate limiting, sanitización de entradas y auditoría de acciones.</li>
+        <li class="revelar" data-en="<b>A knowledge graph of its own</b>14,889 nodes tying the notes of a second brain to the code of seven projects, navigable in 3D from the interface itself."><b>Grafo de conocimiento propio</b>14.889 nodos que enlazan las notas del segundo cerebro con el código de siete proyectos, navegable en 3D desde la propia interfaz.</li>
       </ul>
     </div>
 
@@ -119,8 +131,8 @@
              srcset="assets/img/prometeo-modo-investigacion.webp 1400w, assets/img/prometeo-modo-investigacion@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Investigación de PROMETEO en tema cian, con el panel para lanzar una investigación por tema.">
-        <figcaption>Modo Investigación — cada modo repinta la interfaz entera con su propio color.</figcaption>
+             alt="Modo Investigación de PROMETEO en tema cian, con el panel para lanzar una investigación por tema." data-en-alt="PROMETEO Research mode in a cyan theme, with the panel for launching research on a topic.">
+        <figcaption data-en="Research mode — every mode repaints the whole interface in its own color.">Modo Investigación — cada modo repinta la interfaz entera con su propio color.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-entrenamiento@2x.webp">
@@ -128,8 +140,8 @@
              srcset="assets/img/prometeo-modo-entrenamiento.webp 1400w, assets/img/prometeo-modo-entrenamiento@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Entrenamiento de PROMETEO con el panel de fine-tuning: modelos base y code, regeneración de dataset, held-out ratio y control de etapas.">
-        <figcaption>Modo Entrenamiento — el bucle de fine-tuning, con held-out ratio y etapas.</figcaption>
+             alt="Modo Entrenamiento de PROMETEO con el panel de fine-tuning: modelos base y code, regeneración de dataset, held-out ratio y control de etapas." data-en-alt="PROMETEO Training mode with the fine-tuning panel: base and code models, dataset regeneration, held-out ratio and stage controls.">
+        <figcaption data-en="Training mode — the fine-tuning loop, with held-out ratio and stages.">Modo Entrenamiento — el bucle de fine-tuning, con held-out ratio y etapas.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-3d@2x.webp">
@@ -137,8 +149,8 @@
              srcset="assets/img/prometeo-modo-3d.webp 1400w, assets/img/prometeo-modo-3d@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo 3D de PROMETEO con la malla de una figura completa cargada en el visor de Three.js, reconstruida a partir de fotografías.">
-        <figcaption>Modo 3D — figura completa reconstruida a partir de fotografías. Se describe la pieza o se suelta una imagen; los generadores paramétricos quedan detrás.</figcaption>
+             alt="Modo 3D de PROMETEO con la malla de una figura completa cargada en el visor de Three.js, reconstruida a partir de fotografías." data-en-alt="PROMETEO 3D mode with the mesh of a complete figure loaded into the Three.js viewer, reconstructed from photographs.">
+        <figcaption data-en="3D mode — a complete figure rebuilt from photographs. Describe the part or drop in an image; the parametric generators sit behind it.">Modo 3D — figura completa reconstruida a partir de fotografías. Se describe la pieza o se suelta una imagen; los generadores paramétricos quedan detrás.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-agentes@2x.webp">
@@ -146,8 +158,8 @@
              srcset="assets/img/prometeo-modo-agentes.webp 1400w, assets/img/prometeo-modo-agentes@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Agentes de PROMETEO, con el panel para crear agentes personalizados y su editor.">
-        <figcaption>Modo Agentes — agentes propios sobre el mismo núcleo.</figcaption>
+             alt="Modo Agentes de PROMETEO, con el panel para crear agentes personalizados y su editor." data-en-alt="PROMETEO Agents mode, with the panel for creating custom agents and its editor.">
+        <figcaption data-en="Agents mode — agents of your own on the same core.">Modo Agentes — agentes propios sobre el mismo núcleo.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-imagenes@2x.webp">
@@ -155,8 +167,8 @@
              srcset="assets/img/prometeo-modo-imagenes.webp 1400w, assets/img/prometeo-modo-imagenes@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Imágenes de PROMETEO en tema magenta, con el panel Generar imagen y la galería de últimas imágenes generadas.">
-        <figcaption>Modo Imágenes — Stable Diffusion 1.5 en disco, sin ninguna llamada a un servicio de pago.</figcaption>
+             alt="Modo Imágenes de PROMETEO en tema magenta, con el panel Generar imagen y la galería de últimas imágenes generadas." data-en-alt="PROMETEO Images mode in a magenta theme, with the Generate image panel and the gallery of the latest output.">
+        <figcaption data-en="Images mode — Stable Diffusion 1.5 on disk, without a single call to a paid service.">Modo Imágenes — Stable Diffusion 1.5 en disco, sin ninguna llamada a un servicio de pago.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-codigo@2x.webp">
@@ -164,8 +176,8 @@
              srcset="assets/img/prometeo-modo-codigo.webp 1400w, assets/img/prometeo-modo-codigo@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Código de PROMETEO en tema verde, con el aviso de aislamiento real sobre el editor y el panel de auto-mejora.">
-        <figcaption>Modo Código — el código corre aislado, y la auto-mejora no toca nada sin que se apruebe.</figcaption>
+             alt="Modo Código de PROMETEO en tema verde, con el aviso de aislamiento real sobre el editor y el panel de auto-mejora." data-en-alt="PROMETEO Code mode in a green theme, with the real-isolation notice above the editor and the self-improvement panel.">
+        <figcaption data-en="Code mode — the code runs isolated, and self-improvement changes nothing without approval.">Modo Código — el código corre aislado, y la auto-mejora no toca nada sin que se apruebe.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-modo-sistema@2x.webp">
@@ -173,8 +185,8 @@
              srcset="assets/img/prometeo-modo-sistema.webp 1400w, assets/img/prometeo-modo-sistema@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Modo Sistema de PROMETEO en tema oro, con telemetría real de la máquina y el estado de cada servicio.">
-        <figcaption>Modo Sistema — telemetría real de la máquina y el estado de cada pieza: qué responde, qué está parado y por qué.</figcaption>
+             alt="Modo Sistema de PROMETEO en tema oro, con telemetría real de la máquina y el estado de cada servicio." data-en-alt="PROMETEO System mode in a gold theme, with real machine telemetry and the status of every service.">
+        <figcaption data-en="System mode — real telemetry from the machine and the state of every piece: what answers, what is down, and why.">Modo Sistema — telemetría real de la máquina y el estado de cada pieza: qué responde, qué está parado y por qué.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-movil@2x.webp">
@@ -182,8 +194,8 @@
              srcset="assets/img/prometeo-movil.webp 1400w, assets/img/prometeo-movil@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="PROMETEO en un teléfono, cuatro pantallas seguidas: portada, menú desplegado, modo 3D a pantalla completa y modo Código.">
-        <figcaption>En el teléfono — la misma interfaz reflowada. No es una app aparte: son las mismas media queries.</figcaption>
+             alt="PROMETEO en un teléfono, cuatro pantallas seguidas: portada, menú desplegado, modo 3D a pantalla completa y modo Código." data-en-alt="PROMETEO on a phone, four screens in a row: cover, open menu, full-screen 3D mode and Code mode.">
+        <figcaption data-en="On a phone — the same interface reflowed. It is not a separate app: they are the same media queries.">En el teléfono — la misma interfaz reflowada. No es una app aparte: son las mismas media queries.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/prometeo-cerebro@2x.webp">
@@ -191,8 +203,8 @@
              srcset="assets/img/prometeo-cerebro.webp 1400w, assets/img/prometeo-cerebro@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="PROMETEO BRAIN: el grafo de conocimiento dibujado sobre un atractor de Aizawa, con 14.889 nodos y 33.768 aristas.">
-        <figcaption>PROMETEO BRAIN — 14.889 nodos y 33.768 aristas de ocho proyectos sobre un atractor de Aizawa, navegable en vivo.</figcaption>
+             alt="PROMETEO BRAIN: el grafo de conocimiento dibujado sobre un atractor de Aizawa, con 14.889 nodos y 33.768 aristas." data-en-alt="PROMETEO BRAIN: the knowledge graph drawn over an Aizawa attractor, with 14,889 nodes and 33,768 edges.">
+        <figcaption data-en="PROMETEO BRAIN — 14,889 nodes and 33,768 edges across eight projects, drawn over an Aizawa attractor and navigable live.">PROMETEO BRAIN — 14.889 nodos y 33.768 aristas de ocho proyectos sobre un atractor de Aizawa, navegable en vivo.</figcaption>
       </figure>
     </div>
   </section>
@@ -203,17 +215,17 @@
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">02</span>
       <div class="proyecto__id">
-        <h2 class="proyecto__titulo">Nexus</h2>
-        <p class="proyecto__lema">Un equipo de agentes <em>especializados</em> trabajando sobre tus repos.</p>
+        <h2 class="proyecto__titulo" data-en="Nexus">Nexus</h2>
+        <p class="proyecto__lema" data-en="A team of <em>specialized</em> agents working on your repos.">Un equipo de agentes <em>especializados</em> trabajando sobre tus repos.</p>
       </div>
     </div>
 
     <dl class="spec revelar">
-      <div><dt>Año</dt><dd>2025</dd></div>
-      <div><dt>Rol</dt><dd>Arquitectura y desarrollo</dd></div>
-      <div><dt>Agentes</dt><dd>5 roles</dd></div>
-      <div><dt>Tests</dt><dd>261 + 13 E2E</dd></div>
-      <div><dt>Estado</dt><dd>Estable</dd></div>
+      <div><dt data-en="Year">Año</dt><dd data-en="2025">2025</dd></div>
+      <div><dt data-en="Role">Rol</dt><dd data-en="Architecture and development">Arquitectura y desarrollo</dd></div>
+      <div><dt data-en="Agents">Agentes</dt><dd data-en="5 roles">5 roles</dd></div>
+      <div><dt data-en="Tests">Tests</dt><dd data-en="261 + 13 E2E">261 + 13 E2E</dd></div>
+      <div><dt data-en="Status">Estado</dt><dd data-en="Stable">Estable</dd></div>
     </dl>
 
       <figure class="visor visor--hero revelar" data-lightbox="assets/img/nexus-proyecto@2x.webp">
@@ -221,25 +233,25 @@
              srcset="assets/img/nexus-proyecto.webp 1400w, assets/img/nexus-proyecto@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Detalle del proyecto FitFuel en NEXUS: tarjetas de los agentes Architect, Frontend, Backend y AI/QA, panel de specs, niveles de confianza por agente e historial de tareas.">
-        <figcaption>Un proyecto por dentro: los cuatro agentes con su estado, sus specs, los niveles de confianza que tiene cada uno sobre el repo y el registro de decisiones.</figcaption>
+             alt="Detalle del proyecto FitFuel en NEXUS: tarjetas de los agentes Architect, Frontend, Backend y AI/QA, panel de specs, niveles de confianza por agente e historial de tareas." data-en-alt="The FitFuel project inside NEXUS: cards for the Architect, Frontend, Backend and AI/QA agents, a spec panel, confidence levels per agent, and task history.">
+        <figcaption data-en="A project from the inside: the four agents with their status, their specs, how much confidence each one has earned on the repo, and the record of decisions.">Un proyecto por dentro: los cuatro agentes con su estado, sus specs, los niveles de confianza que tiene cada uno sobre el repo y el registro de decisiones.</figcaption>
       </figure>
 
     <div class="proyecto__cuerpo">
       <div class="columna">
         <div class="parrafos revelar">
-          <p>Plataforma de desarrollo multi-agente: un orquestador que lanza agentes especializados —Architect, Frontend, Backend, AI/QA y Runner— contra un proyecto real, con memoria RAG compartida y un plano de control en React.</p>
-          <p>Todos los agentes comparten un mismo ciclo de vida: instanciar, consultar la memoria, ejecutar, registrar la decisión y cerrar la tarea. Eso mantiene el comportamiento predecible por mucho que crezca el catálogo de agentes.</p>
+          <p data-en="A multi-agent development platform: an orchestrator that turns specialized agents — Architect, Frontend, Backend, AI/QA and Runner — loose on a real project, with shared RAG memory and a control plane in React.">Plataforma de desarrollo multi-agente: un orquestador que lanza agentes especializados —Architect, Frontend, Backend, AI/QA y Runner— contra un proyecto real, con memoria RAG compartida y un plano de control en React.</p>
+          <p data-en="Every agent shares the same life cycle: instantiate, query the memory, execute, record the decision, close the task. That is what keeps behavior predictable however far the catalog of agents grows.">Todos los agentes comparten un mismo ciclo de vida: instanciar, consultar la memoria, ejecutar, registrar la decisión y cerrar la tarea. Eso mantiene el comportamiento predecible por mucho que crezca el catálogo de agentes.</p>
         </div>
-        <div class="revelar"><ul class="stack"><li>Node 20</li><li>Express</li><li>MongoDB</li><li>ChromaDB</li><li>React 18</li><li>Vite</li><li>Three.js</li><li>JWT</li><li>Docker</li><li>OpenRouter</li></ul></div>
+        <div class="revelar"><ul class="stack"><li class="revelar">Node 20</li><li class="revelar">Express</li><li class="revelar">MongoDB</li><li class="revelar">ChromaDB</li><li class="revelar">React 18</li><li class="revelar">Vite</li><li class="revelar">Three.js</li><li class="revelar">JWT</li><li class="revelar">Docker</li><li class="revelar">OpenRouter</li></ul></div>
       </div>
-      <ul class="claves revelar">
-        <li><b>Memoria RAG</b>en ChromaDB con embeddings de Ollama, compartida entre agentes.</li>
-        <li><b>Autenticación en tres modos</b>abierta, API key o JWT con refresh rotativo y revocación.</li>
-        <li><b>261 tests</b>unitarios y de integración en 30 ficheros, más 13 escenarios E2E.</li>
-        <li><b>Backups EJSON</b>con restore en modo replace, skip o merge y snapshot de seguridad previo.</li>
-        <li><b>Fine-tuning</b>captura automática de respuestas de alta confianza y pipeline LoRA sobre Qwen2.5.</li>
-        <li><b>Doble proveedor</b>OpenRouter con throttling de capa gratuita y Ollama como respaldo.</li>
+      <ul class="claves">
+        <li class="revelar" data-en="<b>RAG memory</b>in ChromaDB with Ollama embeddings, shared across agents."><b>Memoria RAG</b>en ChromaDB con embeddings de Ollama, compartida entre agentes.</li>
+        <li class="revelar" data-en="<b>Three authentication modes</b>open, API key, or JWT with rotating refresh and revocation."><b>Autenticación en tres modos</b>abierta, API key o JWT con refresh rotativo y revocación.</li>
+        <li class="revelar" data-en="<b>261 tests</b>unit and integration across 30 files, plus 13 end-to-end scenarios."><b>261 tests</b>unitarios y de integración en 30 ficheros, más 13 escenarios E2E.</li>
+        <li class="revelar" data-en="<b>EJSON backups</b>restored in replace, skip or merge mode, with a safety snapshot taken first."><b>Backups EJSON</b>con restore en modo replace, skip o merge y snapshot de seguridad previo.</li>
+        <li class="revelar" data-en="<b>Fine-tuning</b>automatic capture of high-confidence answers and a LoRA pipeline over Qwen2.5."><b>Fine-tuning</b>captura automática de respuestas de alta confianza y pipeline LoRA sobre Qwen2.5.</li>
+        <li class="revelar" data-en="<b>Two providers</b>OpenRouter with free-tier throttling, and Ollama as the fallback."><b>Doble proveedor</b>OpenRouter con throttling de capa gratuita y Ollama como respaldo.</li>
       </ul>
     </div>
 
@@ -250,8 +262,8 @@
              srcset="assets/img/nexus-acceso.webp 1400w, assets/img/nexus-acceso@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Signal Deck de NEXUS: esfera de alambre violeta girando, medidores de canales por agente y panel de acceso.">
-        <figcaption>Signal Deck — la pantalla de acceso, con los nueve canales de agente en línea.</figcaption>
+             alt="Signal Deck de NEXUS: esfera de alambre violeta girando, medidores de canales por agente y panel de acceso." data-en-alt="The NEXUS Signal Deck: a violet wireframe sphere turning, channel meters for each agent, and the access panel.">
+        <figcaption data-en="Signal Deck — the login screen, with all nine agent channels online.">Signal Deck — la pantalla de acceso, con los nueve canales de agente en línea.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-salud@2x.webp">
@@ -259,8 +271,8 @@
              srcset="assets/img/nexus-salud.webp 1400w, assets/img/nexus-salud@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Panel de salud del sistema de NEXUS con tarjetas de MongoDB, ChromaDB, Ollama, LLM y GitHub, todas en OK.">
-        <figcaption>Salud del sistema — Mongo, Chroma, Ollama, LLM y GitHub con su latencia real.</figcaption>
+             alt="Panel de salud del sistema de NEXUS con tarjetas de MongoDB, ChromaDB, Ollama, LLM y GitHub, todas en OK." data-en-alt="The NEXUS system health panel with cards for MongoDB, ChromaDB, Ollama, LLM and GitHub, all reporting OK.">
+        <figcaption data-en="System health — Mongo, Chroma, Ollama, LLM and GitHub with their real latency.">Salud del sistema — Mongo, Chroma, Ollama, LLM y GitHub con su latencia real.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-registros@2x.webp">
@@ -268,8 +280,8 @@
              srcset="assets/img/nexus-registros.webp 1400w, assets/img/nexus-registros@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Session Log de NEXUS con eventos de autenticación etiquetados y marca de tiempo, en directo.">
-        <figcaption>Registro de sesión en directo, con pausa y ventana de líneas.</figcaption>
+             alt="Session Log de NEXUS con eventos de autenticación etiquetados y marca de tiempo, en directo." data-en-alt="The NEXUS session log with tagged, timestamped authentication events, updating live.">
+        <figcaption data-en="The session log, live, with pause and a line window.">Registro de sesión en directo, con pausa y ventana de líneas.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/nexus-ajustes@2x.webp">
@@ -277,8 +289,8 @@
              srcset="assets/img/nexus-ajustes.webp 1400w, assets/img/nexus-ajustes@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Ajustes de NEXUS: complejidad por defecto, límites de tokens y panel de copias de seguridad firmadas por HMAC.">
-        <figcaption>Configuración en caliente y copias firmadas por HMAC.</figcaption>
+             alt="Ajustes de NEXUS: complejidad por defecto, límites de tokens y panel de copias de seguridad firmadas por HMAC." data-en-alt="NEXUS settings: default complexity, token limits, and the panel for HMAC-signed backups.">
+        <figcaption data-en="Settings changed on the fly, and backups signed with HMAC.">Configuración en caliente y copias firmadas por HMAC.</figcaption>
       </figure>
     </div>
   </section>
@@ -289,17 +301,17 @@
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">03</span>
       <div class="proyecto__id">
-        <h2 class="proyecto__titulo">Iterum</h2>
-        <p class="proyecto__lema">Del PDF del cliente a un <em>plan de proyecto</em> completo.</p>
+        <h2 class="proyecto__titulo" data-en="Iterum">Iterum</h2>
+        <p class="proyecto__lema" data-en="From the client's PDF to a full <em>project plan</em>.">Del PDF del cliente a un <em>plan de proyecto</em> completo.</p>
       </div>
     </div>
 
     <dl class="spec revelar">
-      <div><dt>Año</dt><dd>2025 — 2026</dd></div>
-      <div><dt>Rol</dt><dd>Proyecto de fin de grado</dd></div>
-      <div><dt>Superficies</dt><dd>App + portal</dd></div>
-      <div><dt>Roles</dt><dd>3 (RBAC)</dd></div>
-      <div><dt>Estado</dt><dd>En entrega</dd></div>
+      <div><dt data-en="Year">Año</dt><dd data-en="2025 — 2026">2025 — 2026</dd></div>
+      <div><dt data-en="Role">Rol</dt><dd data-en="Final-year project">Proyecto de fin de grado</dd></div>
+      <div><dt data-en="Surfaces">Superficies</dt><dd data-en="App + portal">App + portal</dd></div>
+      <div><dt data-en="Roles">Roles</dt><dd data-en="3 (RBAC)">3 (RBAC)</dd></div>
+      <div><dt data-en="Status">Estado</dt><dd data-en="In delivery">En entrega</dd></div>
     </dl>
 
       <figure class="visor visor--hero revelar" data-lightbox="assets/img/iterum-app-dashboard@2x.webp">
@@ -307,25 +319,25 @@
              srcset="assets/img/iterum-app-dashboard.webp 1400w, assets/img/iterum-app-dashboard@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Aplicación de escritorio de ITERUM: contadores de proyectos activos, en riesgo y completados, aviso de proyecto fuera de plazo y tarjetas de proyectos recientes con su progreso.">
-        <figcaption>La app de escritorio, el puesto de trabajo del equipo: carga por estado, el proyecto que se ha salido de plazo y el progreso de cada uno.</figcaption>
+             alt="Aplicación de escritorio de ITERUM: contadores de proyectos activos, en riesgo y completados, aviso de proyecto fuera de plazo y tarjetas de proyectos recientes con su progreso." data-en-alt="The ITERUM desktop application: counters for active, at-risk and completed projects, a warning about a project past its deadline, and cards for recent projects with their progress.">
+        <figcaption data-en="The desktop app, the team's workstation: load by status, the project that has slipped past its deadline, and how far along each one is.">La app de escritorio, el puesto de trabajo del equipo: carga por estado, el proyecto que se ha salido de plazo y el progreso de cada uno.</figcaption>
       </figure>
 
     <div class="proyecto__cuerpo">
       <div class="columna">
         <div class="parrafos revelar">
-          <p>Sistema de gestión de proyectos para equipos pequeños de desarrollo, y el proyecto de fin de grado. El administrador sube el PDF o DOCX que le manda el cliente y un LLM lo convierte en tareas, análisis DAFO, hitos y resumen ejecutivo.</p>
-          <p>Las fechas no se inventan: las tareas se ordenan topológicamente según sus dependencias y de ahí salen las estimaciones. Un cron diario detecta los retrasos, propaga el desplazamiento por el grafo y marca el proyecto en riesgo si alguna tarea se pasa de la fecha de entrega.</p>
+          <p data-en="A project management system for small development teams, and my final-year project. The administrator uploads the PDF or DOCX the client sent over, and an LLM turns it into tasks, a SWOT analysis, milestones and an executive summary.">Sistema de gestión de proyectos para equipos pequeños de desarrollo, y el proyecto de fin de grado. El administrador sube el PDF o DOCX que le manda el cliente y un LLM lo convierte en tareas, análisis DAFO, hitos y resumen ejecutivo.</p>
+          <p data-en="The dates are not guesswork: tasks are sorted topologically by their dependencies, and the estimates fall out of that order. A daily cron job catches the delays, propagates the slippage through the graph, and flags the project at risk as soon as a task runs past the delivery date.">Las fechas no se inventan: las tareas se ordenan topológicamente según sus dependencias y de ahí salen las estimaciones. Un cron diario detecta los retrasos, propaga el desplazamiento por el grafo y marca el proyecto en riesgo si alguna tarea se pasa de la fecha de entrega.</p>
         </div>
-        <div class="revelar"><ul class="stack"><li>React Native Windows</li><li>React</li><li>Vite</li><li>Tailwind</li><li>Express</li><li>MongoDB</li><li>JWT + RBAC</li><li>node-cron</li></ul></div>
+        <div class="revelar"><ul class="stack"><li class="revelar">React Native Windows</li><li class="revelar">React</li><li class="revelar">Vite</li><li class="revelar">Tailwind</li><li class="revelar">Express</li><li class="revelar">MongoDB</li><li class="revelar">JWT + RBAC</li><li class="revelar">node-cron</li></ul></div>
       </div>
-      <ul class="claves revelar">
-        <li><b>Generación por IA</b>desde PDF/DOCX — tareas, DAFO, hitos y resumen ejecutivo.</li>
-        <li><b>Orden topológico</b>de dependencias para calcular las fechas de cada tarea.</li>
-        <li><b>Scheduler diario</b>que detecta retrasos y los propaga por el grafo de dependencias.</li>
-        <li><b>Acceso de cliente por QR</b>con código de 6 caracteres sin caracteres ambiguos.</li>
-        <li><b>RBAC en tres roles</b>admin, empleado y cliente, con JWT de 7 días.</li>
-        <li><b>App de escritorio nativa</b>en React Native for Windows, más portal web del cliente.</li>
+      <ul class="claves">
+        <li class="revelar" data-en="<b>AI generation</b>from PDF or DOCX — tasks, SWOT, milestones and an executive summary."><b>Generación por IA</b>desde PDF/DOCX — tareas, DAFO, hitos y resumen ejecutivo.</li>
+        <li class="revelar" data-en="<b>Topological ordering</b>of dependencies, to work out the dates of every task."><b>Orden topológico</b>de dependencias para calcular las fechas de cada tarea.</li>
+        <li class="revelar" data-en="<b>Daily scheduler</b>that catches delays and propagates them through the dependency graph."><b>Scheduler diario</b>que detecta retrasos y los propaga por el grafo de dependencias.</li>
+        <li class="revelar" data-en="<b>Client access by QR</b>with a 6-character code that leaves out ambiguous characters."><b>Acceso de cliente por QR</b>con código de 6 caracteres sin caracteres ambiguos.</li>
+        <li class="revelar" data-en="<b>RBAC across three roles</b>admin, employee and client, on a 7-day JWT."><b>RBAC en tres roles</b>admin, empleado y cliente, con JWT de 7 días.</li>
+        <li class="revelar" data-en="<b>Native desktop app</b>in React Native for Windows, plus a web portal for the client."><b>App de escritorio nativa</b>en React Native for Windows, más portal web del cliente.</li>
       </ul>
     </div>
 
@@ -336,8 +348,8 @@
              srcset="assets/img/iterum-app-proyectos.webp 1400w, assets/img/iterum-app-proyectos@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Listado de proyectos de ITERUM agrupados en retrasados, activos e inactivos, cada uno con barra de progreso y días de retraso.">
-        <figcaption>Los proyectos, ordenados por lo que arde: retrasados arriba.</figcaption>
+             alt="Listado de proyectos de ITERUM agrupados en retrasados, activos e inactivos, cada uno con barra de progreso y días de retraso." data-en-alt="The ITERUM project list grouped into delayed, active and inactive, each with a progress bar and its days of delay.">
+        <figcaption data-en="Projects, sorted by what is on fire: the late ones on top.">Los proyectos, ordenados por lo que arde: retrasados arriba.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-app-calendario@2x.webp">
@@ -345,8 +357,8 @@
              srcset="assets/img/iterum-app-calendario.webp 1400w, assets/img/iterum-app-calendario@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Calendario mensual de ITERUM con inicios y fines de tarea repartidos por días, y una lista lateral de próximos eventos.">
-        <figcaption>Calendario — inicios y fines de tarea salidos del grafo de dependencias.</figcaption>
+             alt="Calendario mensual de ITERUM con inicios y fines de tarea repartidos por días, y una lista lateral de próximos eventos." data-en-alt="The ITERUM monthly calendar with task starts and ends spread across the days, and a side list of upcoming events.">
+        <figcaption data-en="Calendar — task starts and ends, straight out of the dependency graph.">Calendario — inicios y fines de tarea salidos del grafo de dependencias.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-proyecto@2x.webp">
@@ -354,8 +366,8 @@
              srcset="assets/img/iterum-proyecto.webp 1400w, assets/img/iterum-proyecto@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Portal de cliente de ITERUM mostrando un proyecto al 33 % con el desglose de tareas por estado y los días de retraso.">
-        <figcaption>La otra cara: lo que ve el cliente, en solo lectura.</figcaption>
+             alt="Portal de cliente de ITERUM mostrando un proyecto al 33 % con el desglose de tareas por estado y los días de retraso." data-en-alt="The ITERUM client portal showing a project at 33% with its tasks broken down by status and the days of delay.">
+        <figcaption data-en="The other side: what the client sees, read-only.">La otra cara: lo que ve el cliente, en solo lectura.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/iterum-acceso@2x.webp">
@@ -363,8 +375,8 @@
              srcset="assets/img/iterum-acceso.webp 1400w, assets/img/iterum-acceso@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Pantalla de acceso del portal de ITERUM pidiendo un código de seis caracteres.">
-        <figcaption>Entrada del cliente — un código, cero fricción.</figcaption>
+             alt="Pantalla de acceso del portal de ITERUM pidiendo un código de seis caracteres." data-en-alt="The login screen of the ITERUM portal, asking for a six-character code.">
+        <figcaption data-en="The client way in — one code, zero friction.">Entrada del cliente — un código, cero fricción.</figcaption>
       </figure>
     </div>
   </section>
@@ -375,17 +387,17 @@
     <div class="proyecto__cabecera revelar">
       <span class="proyecto__indice" aria-hidden="true">04</span>
       <div class="proyecto__id">
-        <h2 class="proyecto__titulo">Mesa de D&amp;D <span class="etiqueta">En desarrollo temprano</span></h2>
-        <p class="proyecto__lema">Una mesa de rol entera en red local. <em>Sin cuentas, sin cuotas.</em></p>
+        <h2 class="proyecto__titulo" data-en="D&amp;amp;D Table <span class=&quot;etiqueta&quot;>Early development</span>">Mesa de D&amp;D <span class="etiqueta">En desarrollo temprano</span></h2>
+        <p class="proyecto__lema" data-en="A whole role-playing table on the local network. <em>No accounts, no subscriptions.</em>">Una mesa de rol entera en red local. <em>Sin cuentas, sin cuotas.</em></p>
       </div>
     </div>
 
     <dl class="spec revelar">
-      <div><dt>Año</dt><dd>2025 — hoy</dd></div>
-      <div><dt>Rol</dt><dd>Diseño y desarrollo</dd></div>
-      <div><dt>Red</dt><dd>LAN hoy</dd></div>
-      <div><dt>Salidas</dt><dd>SVG jugable</dd></div>
-      <div><dt>Estado</dt><dd>Piloto con jugadores</dd></div>
+      <div><dt data-en="Year">Año</dt><dd data-en="2025 — present">2025 — hoy</dd></div>
+      <div><dt data-en="Role">Rol</dt><dd data-en="Design and development">Diseño y desarrollo</dd></div>
+      <div><dt data-en="Network">Red</dt><dd data-en="LAN for now">LAN hoy</dd></div>
+      <div><dt data-en="Output">Salidas</dt><dd data-en="Playable SVG">SVG jugable</dd></div>
+      <div><dt data-en="Status">Estado</dt><dd data-en="Piloting with players">Piloto con jugadores</dd></div>
     </dl>
 
       <figure class="visor visor--hero revelar" data-lightbox="assets/img/dnd-galeria-mapas@2x.webp">
@@ -393,26 +405,26 @@
              srcset="assets/img/dnd-galeria-mapas.webp 1400w, assets/img/dnd-galeria-mapas@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Mapa de mazmorra generado proceduralmente: la Cripta de los Ahogados, con catorce salas etiquetadas, agua, mobiliario y tabla de medidas.">
-        <figcaption>Mazmorra generada por el pipeline real. El reparto BSP talla las salas; la tabla contrasta el tamaño pedido con el tallado.</figcaption>
+             alt="Mapa de mazmorra generado proceduralmente: la Cripta de los Ahogados, con catorce salas etiquetadas, agua, mobiliario y tabla de medidas." data-en-alt="A procedurally generated dungeon map: the Crypt of the Drowned, with fourteen labelled rooms, water, furniture and a table of measurements.">
+        <figcaption data-en="A dungeon out of the real pipeline. BSP partitioning carves the rooms; the table sets the size asked for against the size actually carved.">Mazmorra generada por el pipeline real. El reparto BSP talla las salas; la tabla contrasta el tamaño pedido con el tallado.</figcaption>
       </figure>
 
     <div class="proyecto__cuerpo">
       <div class="columna">
         <div class="parrafos revelar">
-          <p>Herramienta de mesa para D&amp;D 5e pensada para una partida concreta en red local: hojas de personaje sincronizadas, tablero táctico, jukebox de ambiente y dos generadores con IA. Todo local — sin cuentas, sin nube, sin telemetría.</p>
-          <p>Los mapas no son imágenes generadas: son SVG dibujados por el propio código a partir de un guion estructurado que produce el modelo. El criterio de diseño es que gane la lectura táctica — la rejilla queda de fondo, el suelo jugable destaca y la decoración nunca tapa el nombre de la sala ni las fichas.</p>
-          <p>Que hoy sea local es una decisión, no un límite. La primera prueba de verdad es mi propia partida, con los jugadores alrededor de la mesa, y esa restricción es la que fija el listón: cero fricción para entrar y latencia de red local. Si el piloto aguanta, el siguiente paso es una versión hospedada para mesas de fuera.</p>
+          <p data-en="A table tool for D&amp;amp;D 5e built around one specific game on the local network: character sheets kept in sync, a tactical board, an ambience jukebox and two AI generators. All of it local — no accounts, no cloud, no telemetry.">Herramienta de mesa para D&amp;D 5e pensada para una partida concreta en red local: hojas de personaje sincronizadas, tablero táctico, jukebox de ambiente y dos generadores con IA. Todo local — sin cuentas, sin nube, sin telemetría.</p>
+          <p data-en="The maps are not generated images: they are SVG drawn by the code itself, from a structured script the model writes. The design rule is that tactical readability wins — the grid stays in the background, the playable floor stands out, and decoration never covers a room name or a token.">Los mapas no son imágenes generadas: son SVG dibujados por el propio código a partir de un guion estructurado que produce el modelo. El criterio de diseño es que gane la lectura táctica — la rejilla queda de fondo, el suelo jugable destaca y la decoración nunca tapa el nombre de la sala ni las fichas.</p>
+          <p data-en="Being local today is a decision, not a limitation. The first real test is my own campaign, with the players around the table, and that constraint is what sets the bar: zero friction to get in, and local-network latency. If the pilot holds up, the next step is a hosted version for tables other than mine.">Que hoy sea local es una decisión, no un límite. La primera prueba de verdad es mi propia partida, con los jugadores alrededor de la mesa, y esa restricción es la que fija el listón: cero fricción para entrar y latencia de red local. Si el piloto aguanta, el siguiente paso es una versión hospedada para mesas de fuera.</p>
         </div>
-        <div class="revelar"><ul class="stack"><li>Next.js 14</li><li>TypeScript</li><li>SQLite</li><li>WebSocket</li><li>Ollama</li><li>Qwen2.5-VL</li><li>Framer Motion</li><li>Playwright</li></ul></div>
+        <div class="revelar"><ul class="stack"><li class="revelar">Next.js 14</li><li class="revelar">TypeScript</li><li class="revelar">SQLite</li><li class="revelar">WebSocket</li><li class="revelar">Ollama</li><li class="revelar">Qwen2.5-VL</li><li class="revelar">Framer Motion</li><li class="revelar">Playwright</li></ul></div>
       </div>
-      <ul class="claves revelar">
-        <li><b>Tablero táctico</b>con niebla de guerra, iniciativa y plantillas de área.</li>
-        <li><b>Generación procedural de mazmorras</b>por reparto BSP, renderizadas en SVG.</li>
-        <li><b>Visión por modelo</b>extrae un mapa jugable desde la foto de un manual.</li>
-        <li><b>RAG sobre los manuales oficiales</b>para mantener la continuidad de la campaña.</li>
-        <li><b>Sincronía en tiempo real</b>por WebSocket entre máster, jugadores y pantalla compartida.</li>
-        <li><b>Pantalla compartida por QR</b>para el tablet que va en el centro de la mesa.</li>
+      <ul class="claves">
+        <li class="revelar" data-en="<b>Tactical board</b>with fog of war, initiative order and area templates."><b>Tablero táctico</b>con niebla de guerra, iniciativa y plantillas de área.</li>
+        <li class="revelar" data-en="<b>Procedural dungeon generation</b>by BSP partitioning, rendered as SVG."><b>Generación procedural de mazmorras</b>por reparto BSP, renderizadas en SVG.</li>
+        <li class="revelar" data-en="<b>Vision model</b>that pulls a playable map out of a photograph of a rulebook."><b>Visión por modelo</b>extrae un mapa jugable desde la foto de un manual.</li>
+        <li class="revelar" data-en="<b>RAG over the official rulebooks</b>to keep the campaign consistent from session to session."><b>RAG sobre los manuales oficiales</b>para mantener la continuidad de la campaña.</li>
+        <li class="revelar" data-en="<b>Real-time sync</b>over WebSocket between the DM, the players and the shared screen."><b>Sincronía en tiempo real</b>por WebSocket entre máster, jugadores y pantalla compartida.</li>
+        <li class="revelar" data-en="<b>Shared screen by QR</b>for the tablet that sits in the middle of the table."><b>Pantalla compartida por QR</b>para el tablet que va en el centro de la mesa.</li>
       </ul>
     </div>
 
@@ -423,8 +435,8 @@
              srcset="assets/img/dnd-tablero.webp 1400w, assets/img/dnd-tablero@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Tablero táctico del máster con el mapa del Castillo de Thalor, fichas de personaje y controles de combate.">
-        <figcaption>Tablero del máster, en partida.</figcaption>
+             alt="Tablero táctico del máster con el mapa del Castillo de Thalor, fichas de personaje y controles de combate." data-en-alt="The dungeon master's tactical board with the map of Thalor Castle, character tokens and combat controls.">
+        <figcaption data-en="The DM's board, mid-game.">Tablero del máster, en partida.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-previsualizacion-mapas@2x.webp">
@@ -432,8 +444,8 @@
              srcset="assets/img/dnd-previsualizacion-mapas.webp 1400w, assets/img/dnd-previsualizacion-mapas@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Previsualización del componente de mapa con leyenda de mobiliario: mesa, cofre, barril, estantería, altar, columna.">
-        <figcaption>El render, con su leyenda.</figcaption>
+             alt="Previsualización del componente de mapa con leyenda de mobiliario: mesa, cofre, barril, estantería, altar, columna." data-en-alt="Preview of the map component with its furniture legend: table, chest, barrel, shelf, altar, column.">
+        <figcaption data-en="The render, with its legend.">El render, con su leyenda.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-master@2x.webp">
@@ -441,8 +453,8 @@
              srcset="assets/img/dnd-master.webp 1400w, assets/img/dnd-master@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Panel del máster listando campañas como Crisis en la Casa Noble o El Pantano Olvidado.">
-        <figcaption>Panel del máster.</figcaption>
+             alt="Panel del máster listando campañas como Crisis en la Casa Noble o El Pantano Olvidado." data-en-alt="The dungeon master panel listing campaigns such as Crisis at the Noble House or The Forgotten Swamp.">
+        <figcaption data-en="The dungeon master's panel.">Panel del máster.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-personaje@2x.webp">
@@ -450,8 +462,8 @@
              srcset="assets/img/dnd-personaje.webp 1400w, assets/img/dnd-personaje@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Hoja de personaje con pestañas de general, características, combate, competencias, equipo, ataques y conjuros.">
-        <figcaption>Hoja de personaje, en once pestañas.</figcaption>
+             alt="Hoja de personaje con pestañas de general, características, combate, competencias, equipo, ataques y conjuros." data-en-alt="A character sheet with tabs for general, ability scores, combat, proficiencies, equipment, attacks and spells.">
+        <figcaption data-en="The character sheet, across eleven tabs.">Hoja de personaje, en once pestañas.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-mapas@2x.webp">
@@ -459,8 +471,8 @@
              srcset="assets/img/dnd-mapas.webp 1400w, assets/img/dnd-mapas@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Lista de mapas de la campaña con opciones de regenerar, abrir y hacer mapa activo.">
-        <figcaption>Mapas de la campaña.</figcaption>
+             alt="Lista de mapas de la campaña con opciones de regenerar, abrir y hacer mapa activo." data-en-alt="The list of campaign maps, with options to regenerate, open, and set as the active map.">
+        <figcaption data-en="The maps of the campaign.">Mapas de la campaña.</figcaption>
       </figure>
       
       <figure class="visor visor--pequeno revelar" data-lightbox="assets/img/dnd-home@2x.webp">
@@ -468,61 +480,61 @@
              srcset="assets/img/dnd-home.webp 1400w, assets/img/dnd-home@2x.webp 2400w"
              sizes="(max-width: 1100px) 100vw, 1200px"
              width="1400" height="875" loading="lazy" decoding="async"
-             alt="Menú principal de la mesa con tres tarjetas: crear personaje, dungeon master y unirse a la partida.">
-        <figcaption>Tres puertas de entrada.</figcaption>
+             alt="Menú principal de la mesa con tres tarjetas: crear personaje, dungeon master y unirse a la partida." data-en-alt="The main menu of the table with three cards: create a character, dungeon master, and join the game.">
+        <figcaption data-en="Three ways in.">Tres puertas de entrada.</figcaption>
       </figure>
     </div>
   </section>
 
   <section class="perfil" id="perfil" data-acento data-rail-id="perfil"
            style="--acento-base:#e9e5dd;--tinte-base:#08080a">
-    <h2 class="perfil__titulo revelar">Sobre <span class="cursiva">mí</span></h2>
+    <h2 class="perfil__titulo revelar" data-en="About <span class=&quot;cursiva&quot;>me</span>">Sobre <span class="cursiva">mí</span></h2>
     <div class="perfil__rejilla">
 
       <!-- Va a todo el ancho y en primer lugar: es lo que los cuatro proyectos
            de arriba demuestran, y conviene leerlo justo después de verlos. -->
       <div class="perfil__bloque perfil__bloque--ancho revelar">
-        <h3>IA y sistemas de agentes</h3>
-        <p class="perfil__intro">Un modelo no es una caja negra a la que se le pide texto. El trabajo de verdad está en lo que va alrededor: repartir la tarea entre agentes, darles memoria, medir si lo que devuelven vale y acotar lo que pueden tocar.</p>
+        <h3 data-en="AI and agent systems">IA y sistemas de agentes</h3>
+        <p class="perfil__intro" data-en="A model is not a black box you ask for text. The real work is everything around it: splitting the task across agents, giving them memory, measuring whether what comes back is worth anything, and fencing in what they are allowed to touch.">Un modelo no es una caja negra a la que se le pide texto. El trabajo de verdad está en lo que va alrededor: repartir la tarea entre agentes, darles memoria, medir si lo que devuelven vale y acotar lo que pueden tocar.</p>
         <ul class="claves">
-          <li><b>Orquestación multi-agente</b>Reparto por roles con un ciclo de vida común —instanciar, consultar la memoria, ejecutar, registrar la decisión y cerrar—, con validación del resultado y reintento cuando la calidad no da la talla.</li>
-          <li><b>RAG y memoria</b>Bases vectoriales con embeddings locales, memoria compartida entre agentes y bucle de realimentación para que lo aprendido vuelva a entrar en las respuestas siguientes.</li>
-          <li><b>Modelos corriendo en local</b>Lenguaje, transcripción, voz, visión e imagen en la propia máquina, sin llamadas a servicios de pago y sin que los datos salgan de ella.</li>
-          <li><b>Fine-tuning</b>Captura automática de los ejemplos de alta confianza y pipeline LoRA, con partición held-out para distinguir si el modelo mejora o sólo está memorizando.</li>
-          <li><b>MCP</b>Servidores propios que dan a un modelo acceso controlado a ficheros, git, base de datos, memoria y búsqueda, en vez de barra libre.</li>
-          <li><b>Ejecución acotada</b>El código que escribe un modelo corre aislado, y el resultado declara siempre bajo qué nivel de aislamiento corrió en lugar de prometer uno que no tiene.</li>
-          <li><b>n8n</b>Automatización de flujos: disparadores, encadenado de servicios y pasos con lógica propia. Es la herramienta a la que voy cuando el problema es conectar sistemas, no escribir un agente desde cero.</li>
+          <li class="revelar" data-en="<b>Multi-agent orchestration</b>Work split by role over a shared life cycle — instantiate, query the memory, execute, record the decision, close — with the result validated and retried when the quality falls short."><b>Orquestación multi-agente</b>Reparto por roles con un ciclo de vida común —instanciar, consultar la memoria, ejecutar, registrar la decisión y cerrar—, con validación del resultado y reintento cuando la calidad no da la talla.</li>
+          <li class="revelar" data-en="<b>RAG and memory</b>Vector stores with local embeddings, memory shared between agents, and a feedback loop so that what has been learned feeds back into the answers that come next."><b>RAG y memoria</b>Bases vectoriales con embeddings locales, memoria compartida entre agentes y bucle de realimentación para que lo aprendido vuelva a entrar en las respuestas siguientes.</li>
+          <li class="revelar" data-en="<b>Models running locally</b>Language, transcription, speech, vision and image on the machine itself, with no calls to paid services and no data leaving it."><b>Modelos corriendo en local</b>Lenguaje, transcripción, voz, visión e imagen en la propia máquina, sin llamadas a servicios de pago y sin que los datos salgan de ella.</li>
+          <li class="revelar" data-en="<b>Fine-tuning</b>Automatic capture of the high-confidence examples and a LoRA pipeline, with a held-out split to tell whether the model is improving or only memorizing."><b>Fine-tuning</b>Captura automática de los ejemplos de alta confianza y pipeline LoRA, con partición held-out para distinguir si el modelo mejora o sólo está memorizando.</li>
+          <li class="revelar" data-en="<b>MCP</b>Servers of my own that give a model controlled access to files, git, databases, memory and search, instead of a free run."><b>MCP</b>Servidores propios que dan a un modelo acceso controlado a ficheros, git, base de datos, memoria y búsqueda, en vez de barra libre.</li>
+          <li class="revelar" data-en="<b>Bounded execution</b>Code written by a model runs isolated, and the result always states which level of isolation it ran under, rather than promising one it does not have."><b>Ejecución acotada</b>El código que escribe un modelo corre aislado, y el resultado declara siempre bajo qué nivel de aislamiento corrió en lugar de prometer uno que no tiene.</li>
+          <li class="revelar" data-en="<b>n8n</b>Workflow automation: triggers, chained services, and steps with logic of their own. It is the tool I reach for when the problem is connecting systems rather than writing an agent from scratch."><b>n8n</b>Automatización de flujos: disparadores, encadenado de servicios y pasos con lógica propia. Es la herramienta a la que voy cuando el problema es conectar sistemas, no escribir un agente desde cero.</li>
         </ul>
       </div>
 
       <div class="perfil__bloque revelar">
-        <h3>Formación</h3>
+        <h3 data-en="Education">Formación</h3>
         <dl class="datos">
-          <div><dt>Grado en Ingeniería de Software</dt><dd>U-tad · Centro Universitario de Tecnología y Arte Digital</dd><dd class="datos__fecha">2022 — 2026</dd></div>
-          <div><dt>High School, sophomore year</dt><dd>Jenks High School · Tulsa, Oklahoma</dd><dd class="datos__fecha">2018 — 2019</dd></div>
+          <div><dt data-en="BSc in Software Engineering">Grado en Ingeniería de Software</dt><dd data-en="U-tad · University College of Technology and Digital Art, Madrid">U-tad · Centro Universitario de Tecnología y Arte Digital</dd><dd class="datos__fecha" data-en="2022 — 2026">2022 — 2026</dd></div>
+          <div><dt data-en="High school, sophomore year">High School, sophomore year</dt><dd data-en="Jenks High School · Tulsa, Oklahoma">Jenks High School · Tulsa, Oklahoma</dd><dd class="datos__fecha" data-en="2018 — 2019">2018 — 2019</dd></div>
         </dl>
       </div>
       <div class="perfil__bloque revelar">
-        <h3>Otros proyectos</h3>
+        <h3 data-en="Other projects">Otros proyectos</h3>
         <dl class="datos">
-          <div><dt>Robot de acompañamiento hospitalario</dt><dd>Gestión de equipos, diseño del robot, desarrollo de IA y ensamblado.</dd><dd class="datos__fecha">Diciembre 2025 — actualidad</dd></div>
-          <div><dt>Plataforma educativa de turismo local</dt><dd>Proyecto en grupo: reconocimiento fotográfico y recompensas virtuales, con foco en dirección de proyectos.</dd><dd class="datos__fecha">Septiembre — Diciembre 2024</dd></div>
+          <div><dt data-en="Hospital companion robot">Robot de acompañamiento hospitalario</dt><dd data-en="Team management, robot design, AI development and assembly.">Gestión de equipos, diseño del robot, desarrollo de IA y ensamblado.</dd><dd class="datos__fecha" data-en="December 2025 — present">Diciembre 2025 — actualidad</dd></div>
+          <div><dt data-en="Educational platform for local tourism">Plataforma educativa de turismo local</dt><dd data-en="Group project: photo recognition and virtual rewards, with the focus on project management.">Proyecto en grupo: reconocimiento fotográfico y recompensas virtuales, con foco en dirección de proyectos.</dd><dd class="datos__fecha" data-en="September — December 2024">Septiembre — Diciembre 2024</dd></div>
         </dl>
       </div>
 
       <div class="perfil__bloque revelar">
-        <h3>Lenguajes y plataformas</h3>
-        <ul class="stack stack--suelto"><li>Python</li><li>C</li><li>C#</li><li>C++</li><li>Java</li><li>JavaScript</li><li>Next.js</li><li>SQL</li><li>HTML</li><li>CSS</li><li>n8n</li><li>AWS</li><li>Linux</li></ul>
-        <h3 class="perfil__subtitulo">Idiomas</h3>
-        <ul class="stack stack--suelto"><li>Español — nativo</li><li>Inglés — C1</li></ul>
+        <h3 data-en="Languages and platforms">Lenguajes y plataformas</h3>
+        <ul class="stack stack--suelto"><li class="revelar">Python</li><li class="revelar">C</li><li class="revelar">C#</li><li class="revelar">C++</li><li class="revelar">Java</li><li class="revelar">JavaScript</li><li class="revelar">Next.js</li><li class="revelar">SQL</li><li class="revelar">HTML</li><li class="revelar">CSS</li><li class="revelar">n8n</li><li class="revelar">AWS</li><li class="revelar">Linux</li></ul>
+        <h3 class="perfil__subtitulo" data-en="Spoken languages">Idiomas</h3>
+        <ul class="stack stack--suelto"><li class="revelar" data-en="Spanish — native">Español — nativo</li><li class="revelar" data-en="English — C1">Inglés — C1</li></ul>
       </div>
 
       <div class="perfil__bloque revelar">
-        <h3>Cómo trabajo</h3>
+        <h3 data-en="How I work">Cómo trabajo</h3>
         <ul class="claves claves--simple">
-          <li>Trabajo en equipo y liderazgo en grupos multidisciplinares.</li>
-          <li>Resolución de problemas y aprendizaje rápido.</li>
-          <li>Adaptabilidad y facilidad comunicativa.</li>
+          <li class="revelar" data-en="Teamwork and leadership in multidisciplinary groups.">Trabajo en equipo y liderazgo en grupos multidisciplinares.</li>
+          <li class="revelar" data-en="Problem solving, and picking things up fast.">Resolución de problemas y aprendizaje rápido.</li>
+          <li class="revelar" data-en="Adaptable, and easy to work with.">Adaptabilidad y facilidad comunicativa.</li>
         </ul>
       </div>
     </div>
@@ -531,21 +543,122 @@
 
 <footer class="contacto" id="contacto" data-acento data-rail-id="contacto"
         style="--acento-base:#e9e5dd;--tinte-base:#08080a">
-  <p class="contacto__intro revelar">¿Hablamos?</p>
+  <p class="contacto__intro revelar" data-en="Shall we talk?">¿Hablamos?</p>
   <a class="contacto__correo revelar" href="mailto:jorgevalemarcos@gmail.com">jorgevalemarcos@gmail.com</a>
   <ul class="contacto__lista revelar">
-    <li><span>Teléfono</span><a href="tel:+34618917179">+34 618 917 179</a></li>
-    <li><span>Ubicación</span>Valdemoro, Madrid</li>
-    <li><span>Nombre completo</span>Jorge Valero Marcos</li>
+    <li><span data-en="Phone">Teléfono</span><a href="tel:+34618917179">+34 618 917 179</a></li>
+    <li><span data-en="Location">Ubicación</span>Valdemoro, Madrid</li>
+    <li><span data-en="Full name">Nombre completo</span>Jorge Valero Marcos</li>
   </ul>
-  <p class="contacto__pie revelar">Capturas tomadas de las aplicaciones reales en ejecución, no son maquetas.</p>
+  <p class="contacto__acciones revelar"><a class="cv cv--contacto" href="assets/cv/CV_Jorge_Valero.pdf" data-en-href="assets/cv/CV_Jorge_Valero_EN.pdf" download
+        aria-label="Descargar el CV de Jorge Valero en PDF" data-en-aria="Download the CV of Jorge Valero as a PDF">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M6.5 10.5 12 16l5.5-5.5M4 20h16"/></svg>
+        <span data-en="Download CV">Descargar CV</span>
+      </a></p>
+  <p class="contacto__pie revelar" data-en="Screenshots taken from the real applications while running. They are not mockups.">Capturas tomadas de las aplicaciones reales en ejecución, no son maquetas.</p>
 </footer>
 
-<div class="lupa" id="lupa" role="dialog" aria-modal="true" aria-label="Captura ampliada" hidden>
-  <button class="lupa__cerrar" type="button" aria-label="Cerrar">&times;</button>
+<div class="lupa" id="lupa" role="dialog" aria-modal="true" aria-label="Captura ampliada" data-en-aria="Enlarged screenshot" hidden>
+  <button class="lupa__cerrar" type="button" aria-label="Cerrar" data-en-aria="Close">&times;</button>
   <img class="lupa__img" src="" alt="">
 </div>
 
+<script>
+var T = {"es":{"titulo":"Jorge Valero — Ingeniero de Software","descripcion":"Portfolio de Jorge Valero Marcos, ingeniero de software especializado en datos e inteligencia artificial. Cuatro proyectos: PROMETEO, NEXUS, ITERUM y Mesa de D&D.","ampliar":"Ampliar captura","boton":"English","botonEtiqueta":"Read this portfolio in English"},"en":{"titulo":"Jorge Valero — Software Engineer","descripcion":"Portfolio of Jorge Valero Marcos, a software engineer working in data and artificial intelligence. Four projects: PROMETEO, NEXUS, ITERUM and a D&D table.","ampliar":"Enlarge screenshot","boton":"Español","botonEtiqueta":"Ver este portfolio en español"}};
+/* Cambio de idioma.
+
+   Va incrustado en el HTML, no en main.js, y por un motivo concreto: si
+   viniera de un fichero aparte habría un viaje de red por medio y la página
+   podría llegar a pintarse en español antes de traducirse. Incrustado corre en
+   cuanto el navegador termina de leer el documento, antes del primer pintado.
+
+   El texto inglés viaja en atributos del propio marcado —data-en para el
+   contenido, data-en-alt para las descripciones de las capturas, data-en-aria
+   para las etiquetas de accesibilidad y data-en-href para el CV, que no es una
+   traducción sino otro fichero— así que aquí no hay diccionario que
+   mantener: sólo el intercambio. Lo único que se lleva suelto es T, que
+   publicar.mjs escribe justo encima con lo que no cuelga de ningún elemento
+   (el título del documento, la descripción y el propio botón).
+
+   El español no se guarda en ningún sitio: es lo que ya está escrito en el
+   HTML, y se recupera de ahí la primera vez que se traduce. */
+
+(function () {
+  'use strict';
+
+  var raiz = document.documentElement;
+  var boton = document.getElementById('idioma');
+  if (!boton) return;
+
+  var guardado = null;
+  try { guardado = localStorage.getItem('idioma'); } catch (e) { /* modo privado */ }
+
+  // Sin preferencia guardada manda el navegador, y el criterio es asimétrico a
+  // propósito: sólo entra en español quien lo tiene configurado en español.
+  // Cualquier otro idioma —francés, alemán, lo que sea— entra en inglés, que
+  // es lo que de verdad puede leer.
+  var actual = (guardado === 'es' || guardado === 'en')
+    ? guardado
+    : (String(navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en');
+
+  function aplicar(idioma) {
+    var otro = idioma === 'es' ? 'en' : 'es';
+
+    raiz.lang = idioma;
+    raiz.setAttribute('data-idioma', idioma);
+
+    // dataset[idioma] resuelve a data-es o data-en según toque. El español se
+    // captura del propio marcado la primera vez y ya se queda guardado.
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en]'), function (el) {
+      if (el.dataset.es == null) el.dataset.es = el.innerHTML;
+      el.innerHTML = el.dataset[idioma];
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en-alt]'), function (el) {
+      if (el.dataset.esAlt == null) el.dataset.esAlt = el.alt;
+      el.alt = idioma === 'en' ? el.dataset.enAlt : el.dataset.esAlt;
+    });
+
+    // El CV son dos ficheros distintos, no un texto traducido: lo que cambia
+    // es el destino del enlace, no su contenido.
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en-href]'), function (el) {
+      if (el.dataset.esHref == null) el.dataset.esHref = el.getAttribute('href');
+      el.setAttribute('href', idioma === 'en' ? el.dataset.enHref : el.dataset.esHref);
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en-aria]'), function (el) {
+      if (el.dataset.esAria == null) el.dataset.esAria = el.getAttribute('aria-label') || '';
+      el.setAttribute('aria-label', idioma === 'en' ? el.dataset.enAria : el.dataset.esAria);
+    });
+
+    // Las capturas reciben su etiqueta desde main.js, que corre después de
+    // este script en la primera carga pero no en los cambios posteriores. Se
+    // reescriben aquí para cubrir el segundo caso.
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lightbox]'), function (f) {
+      f.setAttribute('aria-label', T[idioma].ampliar);
+    });
+
+    document.title = T[idioma].titulo;
+    var descripcion = document.querySelector('meta[name="description"]');
+    if (descripcion) descripcion.setAttribute('content', T[idioma].descripcion);
+
+    // El botón nombra el idioma al que lleva, no el que estás viendo, y se
+    // marca con ese idioma para que un lector de pantalla lo pronuncie bien.
+    boton.textContent = T[idioma].boton;
+    boton.setAttribute('aria-label', T[idioma].botonEtiqueta);
+    boton.lang = otro;
+  }
+
+  boton.hidden = false;
+  aplicar(actual);
+
+  boton.addEventListener('click', function () {
+    actual = actual === 'es' ? 'en' : 'es';
+    try { localStorage.setItem('idioma', actual); } catch (e) { /* modo privado */ }
+    aplicar(actual);
+  });
+})();
+</script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
